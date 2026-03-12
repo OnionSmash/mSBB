@@ -74,7 +74,7 @@
 
 #### Pre-Built Release
 
-1. Download the latest release from [Releases](https://github.com/yourusername/mSCP-GUI/releases)
+1. Download the latest release from [Releases](https://github.com/SSMacAdmin/mSBB/releases)
 2. Open the downloaded `.dmg` file
 3. Drag **mSBB** to your Applications folder
 4. Launch from Applications (right-click → Open first time to bypass Gatekeeper)
