@@ -62,9 +62,9 @@
 > - *Baseline workspace with three-pane layout*
 > ![](/github/images/2.jpg)
 > - *Compliance check*
-> ![](/github/images/3.jpg)
-> - *Export options*
 > ![](/github/images/4.jpg)
+> - *Export options*
+> ![](/github/images/3.jpg)
 
 ---
 
