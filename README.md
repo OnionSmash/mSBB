@@ -174,7 +174,7 @@
 
 ### Sudo Privileges
 
-mSCP-GUI requires administrator privileges to run compliance checks because many security settings require elevated access to inspect. The app:
+mSBB requires administrator privileges to run compliance checks because many security settings require elevated access to inspect. The app:
 
 - ✅ Only requests sudo when running checks
 - ✅ Clearly indicates which operations need elevation
