@@ -57,6 +57,8 @@
 ## 📸 Screenshots
 
 > *Note: Add screenshots here showing:*
+> ![](/github/images/1.jpg)
+> 
 > - *Main baseline list view*
 > - *Baseline workspace with three-pane layout*
 > - *Compliance check results*
