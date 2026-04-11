@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ModelMesh Logo Preview — Blue Theme</title>
+  <meta name="description" content="Preview Model Signal branding in blue theme with logo, navbar, and visual asset mockups.">
+  <meta property="og:title" content="ModelMesh Logo Preview — Blue Theme">
+  <meta property="og:description" content="Preview Model Signal branding in blue theme with logo, navbar, and visual asset mockups.">
+  <meta name="twitter:title" content="ModelMesh Logo Preview — Blue Theme">
+  <meta name="twitter:description" content="Preview Model Signal branding in blue theme with logo, navbar, and visual asset mockups.">
+  <link rel="canonical" href="https://modelsignal.cloud/logo-preview-blue.html">
+  <meta name="robots" content="index, follow">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #081427;
+      --surface: #0c1a32;
+      --line: #183152;
+      --text: #d6e8ff;
+      --muted: #8bb2df;
+      --primary: #00d5ff;
+      --secondary: #4fa4ff;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      background: radial-gradient(circle at 12% -10%, #163b73, #081427 58%);
+      color: var(--text);
+      padding: 36px 28px 60px;
+    }
+
+    .wrap { max-width: 1180px; margin: 0 auto; }
+
+    .page-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .page-head h1 {
+      margin: 0;
+      font-size: 1.15rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #8fc1ff;
+    }
+
+    .switch-link {
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #8fd6ff;
+      border: 1px solid #275188;
+      background: rgba(8,26,48,0.76);
+      border-radius: 999px;
+      padding: 7px 12px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: 0 10px 28px rgba(1,8,22,0.42);
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+
+    .card-hd {
+      padding: 12px 16px;
+      border-bottom: 1px solid #193459;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #8fc1ff;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-mock {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 0 18px;
+      background: #0a1830;
+    }
+
+    .left { display: flex; align-items: center; gap: 26px; }
+    .links { display: flex; gap: 16px; }
+    .links a {
+      text-decoration: none;
+      color: #6ea2dc;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .links a:hover { color: #00d8ff; }
+
+    .right { display: flex; gap: 8px; }
+    .btn {
+      border-radius: 8px;
+      font-size: 0.78rem;
+      padding: 8px 14px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      color: #d8ecff;
+      background: transparent;
+    }
+    .btn-ghost {
+      border-color: #285890;
+      color: #7baee4;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #0052e0, #00b9ff);
+      color: #fff;
+      box-shadow: 0 3px 10px rgba(0,112,255,0.35);
+    }
+
+    .preview-pad { padding: 20px 16px; background: #0a1730; }
+    .logo-tile {
+      background: #0d1d39;
+      border: 1px dashed #275188;
+      border-radius: 10px;
+      min-height: 96px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .notes {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: #8fb5df;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    .notes div i { color: #00d5ff; margin-right: 6px; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .two-col { grid-template-columns: 1fr; }
+      .nav-mock { height: auto; padding: 14px; flex-direction: column; align-items: flex-start; }
+      .left { flex-direction: column; align-items: flex-start; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="page-head">
+      <h1><i class="bi bi-droplet-half"></i> ModelMesh Logo Preview — Blue</h1>
+      <a class="switch-link" href="/logo-preview-white.html"><i class="bi bi-sun"></i> View White Version</a>
+    </div>
+
+    <div class="card">
+      <div class="card-hd"><i class="bi bi-layout-text-window-reverse"></i> Navbar Preview (Dark / Blue Header)</div>
+      <div class="nav-mock">
+        <div class="left">
+          <img src="/img/modelsignal-logo.svg" width="190" height="36" alt="Model Signal logo" />
+          <nav class="links">
+            <a href="#">Products</a>
+            <a href="#">Services</a>
+            <a href="#">Docs</a>
+            <a href="#">Contact</a>
+          </nav>
+        </div>
+        <div class="right">
+          <button class="btn btn-ghost">Sign In</button>
+          <button class="btn btn-primary">Try Demo</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-hd"><i class="bi bi-grid-1x2"></i> Logo Isolation — Standard Asset</div>
+        <div class="preview-pad">
+          <div class="logo-tile">
+            <img src="/img/modelsignal-logo.svg" width="220" height="42" alt="Model Signal standard logo" />
+          </div>
+          <div class="notes">
+            <div><i class="bi bi-check-circle"></i>Strong neon-cyan edge glow reads premium on deep navy backgrounds.</div>
+            <div><i class="bi bi-check-circle"></i>Matches current platform palette (#1363C6 / #15ACE1 family).</div>
+            <div><i class="bi bi-info-circle"></i>Best for primary site nav, hero overlays, and dark marketing sections.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hd"><i class="bi bi-brightness-high"></i> High-Contrast Tiny Header Test</div>
+        <div class="preview-pad">
+          <div class="logo-tile">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 42" width="220" height="42" role="img" aria-label="ModelMesh high-contrast wordmark test">
+              <text x="0" y="30" font-family="Segoe UI, Helvetica Neue, Arial" font-weight="800" font-size="31" letter-spacing="-0.4">
+                <tspan fill="#79b8ff">Model</tspan><tspan fill="#00e5ff">Mesh</tspan>
+              </text>
+            </svg>
+          </div>
+          <div class="notes">
+            <div><i class="bi bi-star"></i>Use for condensed mobile headers where full icon + text feels crowded.</div>
+            <div><i class="bi bi-star"></i>Keep this variant as optional utility, not primary brand lockup.</div>
+            <div><i class="bi bi-exclamation-circle"></i>Avoid over-brightening links; let the logo stay the brightest anchor.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

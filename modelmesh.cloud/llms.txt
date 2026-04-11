@@ -1,0 +1,16 @@
+# Model Signal
+
+Model Signal is an AI-powered security and private data intelligence platform.
+
+## Founder Profile
+- Randall Scott Avenell: https://modelmesh.cloud/randall-scott-avenell.html
+
+## Primary Pages
+- Home: https://modelmesh.cloud/
+- About: https://modelmesh.cloud/about.html
+- Services: https://modelmesh.cloud/services/services.html
+- Products: https://modelmesh.cloud/products/product.html
+- Contact: https://modelmesh.cloud/contact.html
+
+## Sitemap
+- https://modelmesh.cloud/sitemap.xml

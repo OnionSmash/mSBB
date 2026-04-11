@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Agentic RAG Governance Playbook | Vigilant Voices</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="agentic RAG governance, enterprise RAG security, gen ai controls" name="keywords">
+    <meta content="A governance playbook for agentic RAG systems, covering retrieval controls, policy checks, observability, and rollback design." name="description">
+    <link rel="canonical" href="https://vigilantvoices.com/blog/agentic-rag-governance-playbook.html">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Agentic RAG Governance Playbook">
+    <meta property="og:description" content="A governance playbook for agentic RAG systems, covering retrieval controls, policy checks, observability, and rollback design.">
+    <meta property="og:url" content="https://vigilantvoices.com/blog/agentic-rag-governance-playbook.html">
+    <meta property="og:site_name" content="Vigilant Voices">
+    <meta property="og:image" content="https://vigilantvoices.com/img/carousel-1.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Agentic RAG Governance Playbook">
+    <meta name="twitter:description" content="How to design governance controls for enterprise agentic retrieval and action workflows.">
+    <meta name="twitter:image" content="https://vigilantvoices.com/img/carousel-1.jpg">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+    <body>
+    <script src="/js/navbar-loader.js" defer></script>
+    <div class="container-fluid sticky-top site-nav-theme-blue"></div>
+    <div class="container py-5 mt-5">
+        <p><a href="index.html">&larr; Back to Blog</a></p>
+        <h1 class="mb-3">Agentic RAG Governance Playbook</h1>
+        <p class="text-muted">Published April 6, 2026</p>
+        <p>Agentic RAG can deliver serious operational lift, but only if governance is treated as part of runtime design. This playbook outlines a production-safe baseline that balances autonomy with control.</p>
+        <h3 class="mt-4">Policy layers</h3>
+        <p>Apply policy at three points: request intake, retrieval, and action execution. Each layer should be independently testable and versioned.</p>
+        <h3 class="mt-4">Retrieval controls</h3>
+        <p>Use entitlement-aware retrieval, trust scoring, and freshness checks. If confidence drops below threshold, route to a constrained response mode instead of generating speculative outputs.</p>
+        <h3 class="mt-4">Action controls</h3>
+        <p>Classify actions by blast radius. Low-impact actions can run automatically; medium and high-impact actions should require additional policy checks and optional human approval.</p>
+        <h3 class="mt-4">Operational checkpoints</h3>
+        <p>Track policy hit rate, retrieval source quality, fallback frequency, and rollback events. These metrics reveal where governance is too loose or too restrictive.</p>
+        <h3 class="mt-5">Related reading</h3>
+        <ul>
+            <li><a href="gen-ai-topologies-enterprise-2026.html">GenAI Topologies for Enterprise Teams in 2026</a></li>
+            <li><a href="mcp-enterprise-agent-standard-2026.html">MCP Becomes the Enterprise Agent Standard in 2026</a></li>
+            <li><a href="agent-runtime-patterns-responses-api.html">Agent Runtime Patterns with the Responses API</a></li>
+            <li><a href="inference-efficiency-playbook-2026.html">Inference Efficiency Playbook for 2026 GenAI Teams</a></li>
+        </ul>
+    </div>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="../js/main.js"></script>
+    <script src="/js/navbar-loader.js"></script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f43066cf480b4383abeb276c44747bbb"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

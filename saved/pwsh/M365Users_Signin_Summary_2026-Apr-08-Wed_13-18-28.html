@@ -1,0 +1,41 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+body { font-family: system-ui, sans-serif; background: #f9f9f9; padding: 20px; }
+.card-container { display: flex; gap: 20px; flex-wrap: wrap; }
+.card { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,.1); flex: 1; min-width: 200px; }
+.card h2 { margin: 0; font-size: 18px; color: #555; }
+.card p { margin: 10px 0 0; font-size: 24px; font-weight: bold; color: #333; }
+table { width: 100%; max-width: 900px; border-collapse: collapse; margin: 20px 0 30px; }
+th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+th { background: #0078d4; color: #fff; }
+caption { caption-side: top; font-size: 18px; font-weight: bold; margin-bottom: 10px; text-align: left; }
+.sub-card-container { display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap; max-width: 360px; }
+.sub-card { background: #f1f1f1; padding: 10px; border-radius: 8px; flex: 1; min-width: 140px; }
+.sub-card h4 { margin: 0; font-size: 14px; color: #666; }
+.sub-card p { margin: 5px 0 0; font-size: 20px; font-weight: bold; color: #222; }
+.note { color: #666; font-size: 14px; margin-bottom: 16px; }
+</style>
+</head>
+<body>
+<h1>Daily User Sign-in Summary</h1>
+<p class="note">Window: 2026-04-07 20:18 UTC → 2026-04-08 20:18 UTC · Records: 6</p>
+<p class="note">CA &quot;Blocked&quot; Counts Sign-Ins Where Conditional Access Status Is <strong>Failure</strong> Only.</p>
+<div class="card-container">
+<div class="card"><h2>Total Sign-Ins</h2><p>6</p></div>
+<div class="card"><h2>Successful</h2><p>5</p></div>
+<div class="card"><h2>Failed</h2><p>1</p></div>
+<div class="card"><h2>CA Failure</h2><p>0</p></div>
+<div class="card"><h2>CA Success + MFA</h2><p>0</p></div>
+<div class="card"><h2>MFA / Non-MFA (success)</h2>
+<div class="sub-card-container">
+<div class="sub-card"><h4>MFA</h4><p>0</p></div>
+<div class="sub-card"><h4>Non-MFA</h4><p>5</p></div>
+</div></div>
+<div class="card"><h2>External users</h2>
+<div class="sub-card-container">
+<div class="sub-card"><h4>Success</h4><p>0</p></div>
+<div class="sub-card"><h4>Failed</h4><p>0</p></div>
+</div></div>
+</div><table><caption>Failed sign-ins by user</caption><tr><th>UPN</th><th>Count</th></tr><tr><td>ravenell@modelmesh.cloud</td><td>1</td></tr></table><table><caption>Successful Single-Factor Sign-Ins</caption><tr><th>UPN</th><th>Count</th><th>Last Sign-In</th></tr><tr><td>ravenell@modelmesh.cloud</td><td>5</td><td>04/08/2026 03:27:13</td></tr></table></body></html>

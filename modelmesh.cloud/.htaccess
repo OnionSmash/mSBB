@@ -1,0 +1,42 @@
+# Preserve legacy backlinks after services page rename.
+Redirect 301 /services/service.html /services/services.html
+
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteRule ^favicon\.ico$ /img/favicon.png [L]
+	RewriteRule ^img/favicon\.ico$ /img/favicon.png [L]
+</IfModule>
+
+# App secrets: /etc/apache2/site-secrets.env (sourced from /etc/apache2/envvars; PassEnv in Apache vhosts).
+
+# Static asset caching for faster repeat visits.
+<IfModule mod_expires.c>
+	ExpiresActive On
+	ExpiresByType text/css "access plus 30 days"
+	ExpiresByType application/javascript "access plus 30 days"
+	ExpiresByType application/x-javascript "access plus 30 days"
+	ExpiresByType image/webp "access plus 1 year"
+	ExpiresByType image/png "access plus 1 year"
+	ExpiresByType image/jpeg "access plus 1 year"
+	ExpiresByType image/gif "access plus 1 year"
+	ExpiresByType image/x-icon "access plus 1 year"
+	ExpiresByType image/svg+xml "access plus 1 year"
+	ExpiresByType font/woff2 "access plus 1 year"
+	ExpiresByType font/woff "access plus 1 year"
+	ExpiresByType application/font-woff "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+	<FilesMatch "\.(css|js|png|jpe?g|gif|svg|ico|webp|woff2?)$">
+		Header set Cache-Control "public, max-age=31536000, immutable"
+	</FilesMatch>
+	Header append Vary Accept-Encoding
+</IfModule>
+
+<IfModule mod_deflate.c>
+	AddOutputFilterByType DEFLATE text/plain text/html text/xml text/css application/xml application/xhtml+xml application/rss+xml application/javascript application/x-javascript application/json image/svg+xml
+</IfModule>
+
+<IfModule mod_brotli.c>
+	AddOutputFilterByType BROTLI_COMPRESS text/plain text/html text/xml text/css application/xml application/xhtml+xml application/rss+xml application/javascript application/x-javascript application/json image/svg+xml
+</IfModule>

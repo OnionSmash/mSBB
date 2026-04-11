@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>AI Tools, Claude, and Fortinet FortiGate | Vigilant Voices</title>
+    <meta property="og:title" content="AI Tools, Claude, and Fortinet FortiGate | Vigilant Voices">
+    <meta name="twitter:title" content="AI Tools, Claude, and Fortinet FortiGate | Vigilant Voices">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="description" content="A new campaign is using AI tools to scale attacks against Fortinet FortiGate firewalls. Find the practical defensive controls and response steps.">
+    <meta property="og:description" content="A new campaign is using AI tools to scale attacks against Fortinet FortiGate firewalls. Find the practical defensive controls and response steps.">
+    <meta name="twitter:description" content="A new campaign is using AI tools to scale attacks against Fortinet FortiGate firewalls. Find the practical defensive controls and response steps.">
+    <link rel="canonical" href="https://vigilantvoices.com/blog/ai-tools-claude-fortinet-fortigate.html">
+    <meta name="robots" content="index, follow">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Ubuntu:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+<body>
+    <script src="/js/navbar-loader.js" defer></script>
+    <div class="container-fluid sticky-top site-nav-theme-blue" id="site-navbar-root"></div>
+    <div class="container-fluid pt-5 bg-primary hero-header mb-5">
+        <div class="container pt-5">
+            <div class="row g-5 pt-4 pb-3">
+                <div class="col-lg-9">
+                    <div class="btn btn-sm border rounded-pill text-white px-3 mb-3">Vigilant Voices Blog</div>
+                    <h1 class="display-5 text-white mb-3">AI Tools, Claude, and Fortinet FortiGate Attacks</h1>
+                    <p class="text-white mb-0">Threat actors are using commercial AI services to accelerate FortiGate firewall attacks and expose weak perimeter controls.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="mb-4 text-muted"><small>April 10, 2026 • Cybersecurity</small></div>
+                <p>Defenders are seeing new attack campaigns in which AI assistants like Claude are being used to automate reconnaissance, vulnerability validation, and exploitation against Fortinet FortiGate appliances.</p>
+                <p>Amazon Threat Intelligence has observed a Russian-speaking actor compromise more than 600 Fortinet firewalls in a single month, showing how AI can let less-experienced operators carry out high-impact campaigns.</p>
+
+                <h2>Attack mechanics</h2>
+                <p>These campaigns combine exposed FortiGate management planes with AI-assisted tooling to:</p>
+                <ul>
+                    <li>scan for internet-facing FortiGate appliances and open admin ports;</li>
+                    <li>identify FortiOS versions and risky configuration settings;</li>
+                    <li>automate exploit validation and payload generation;</li>
+                    <li>move quickly from initial access to persistence and control.</li>
+                </ul>
+
+                <h2>Why FortiGate is a high-value target</h2>
+                <p>FortiGate appliances often sit at the network edge and expose administrative interfaces. When they are reachable from untrusted networks, they become a prime target for lateral movement, data theft, and network disruption.</p>
+
+                <h2>Recommended hardening</h2>
+                <ul>
+                    <li><strong>Patch FortiGate devices.</strong> Apply the latest FortiOS updates and security hardening guidance.</li>
+                    <li><strong>Limit remote management.</strong> Remove public access to FortiGate management and require VPN or jump host access.</li>
+                    <li><strong>Enable MFA.</strong> Protect FortiGate admin sessions with multifactor authentication.</li>
+                    <li><strong>Monitor exposure.</strong> Continuously discover FortiGate endpoints and detect unauthorized access attempts.</li>
+                    <li><strong>Watch for anomalies.</strong> Alert on unexpected admin logins, configuration changes, or unusual traffic patterns.</li>
+                </ul>
+
+                <h2>Defender takeaway</h2>
+                <p>This campaign is a reminder that AI is making attack operations more accessible. Security teams need better visibility, stricter perimeter controls, and faster response playbooks to keep Fortinet edge appliances secure.</p>
+                <p>Protect exposed FortiGate devices now and treat any internet-facing management plane as a high-risk asset.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid bg-dark text-white-50 footer pt-5">
+        <div class="container py-4 text-center">
+            <p class="mb-0">&copy; <a class="border-bottom text-white" href="../index.html">Vigilant Voices</a>, All Rights Reserved.</p>
+        </div>
+    </div>
+
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top pt-2"><i class="bi bi-arrow-up"></i></a>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+  =>  Project Name     : Vigilant Voices Website
+
+  =>  Notes            : Template attribution links removed per project owner request.

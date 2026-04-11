@@ -1,0 +1,34 @@
+User-agent: *
+Allow: /
+Disallow: /ssl/
+Disallow: /letsencrypt/
+Disallow: /api/
+Disallow: /intergrations/
+Disallow: /js/
+Disallow: /scripts/
+
+User-agent: BingPreview
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+Sitemap: https://modelsignal.cloud/sitemap.xml

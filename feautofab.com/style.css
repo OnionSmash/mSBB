@@ -1,0 +1,339 @@
+/* Hero Section Overlay */
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+  }
+  #heroCarousel {
+    position: relative;
+  }
+
+  .carousel-img {
+    height: 100vh;
+    object-fit: cover;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 100%;
+    padding: 0 15px;
+  }
+
+  .hero-overlay h1,
+  .hero-overlay p,
+  .hero-overlay a {
+    animation: fadeInDown 1s ease-out;
+  }
+
+  @keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Optional: dark overlay on images */
+  #heroCarousel::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 5;
+  }
+  /* Testimonial Images */
+  .testimonial-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+  }
+  
+  /* Professional Avatar Circles */
+  .avatar-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+  }
+  
+  .avatar-circle:hover {
+    transform: scale(1.05);
+  }
+  
+  .testimonial-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  /* Footer Links */
+  .footer-top a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  .footer-top a:hover {
+    text-decoration: underline;
+  }
+
+  /* Phone number links */
+  a[href^="tel:"], a[href^="sms:"] {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+  }
+  a[href^="tel:"]:hover, a[href^="sms:"]:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+  }
+  .navbar-brand a[href^="tel:"]:hover, .navbar-brand a[href^="sms:"]:hover {
+    opacity: 0.8;
+  }
+  
+  /* Button hover effects for call/text buttons - only transform (composited) */
+  .btn-success,
+  .btn-warning {
+    transition: transform 0.3s ease;
+  }
+  .btn-success:hover,
+  .btn-warning:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Responsive adjustments for hero section */
+  @media (max-width: 768px) {
+    .hero-overlay {
+      padding: 0 20px;
+    }
+    .hero-overlay h1 {
+      font-size: 1.75rem;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+    .hero-overlay p {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+    .hero-overlay .btn {
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+    }
+    .carousel-img {
+      height: 70vh;
+    }
+    .hero-overlay .d-flex {
+      flex-direction: column;
+      gap: 0.75rem !important;
+    }
+    .hero-overlay .d-flex .btn {
+      width: 100%;
+      max-width: 280px;
+    }
+  }
+
+  /* Mobile Navbar Improvements */
+  @media (max-width: 991px) {
+    .navbar-brand {
+      font-size: 0.85rem;
+      white-space: normal;
+      line-height: 1.3;
+    }
+    .navbar-brand a {
+      display: block;
+      margin-top: 0.25rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .navbar-brand {
+      font-size: 0.75rem;
+    }
+    .navbar-brand span {
+      display: block;
+    }
+  }
+
+  /* Statistics Section Mobile */
+  @media (max-width: 768px) {
+    section.bg-light .col-md-3 {
+      margin-bottom: 1.5rem;
+    }
+    section.bg-light .col-md-3 i {
+      font-size: 2.5rem !important;
+    }
+    section.bg-light .col-md-3 h3 {
+      font-size: 1.75rem;
+    }
+  }
+
+  /* Services Cards Mobile */
+  @media (max-width: 768px) {
+    .card-body i[class^="bi"] {
+      font-size: 3rem !important;
+    }
+    .card-title {
+      font-size: 1.1rem;
+    }
+    .card-text {
+      font-size: 0.9rem;
+    }
+  }
+
+  /* Contact Form Mobile */
+  @media (max-width: 768px) {
+    .form-control, .form-select {
+      font-size: 16px; /* Prevents zoom on iOS */
+    }
+    .btn-lg {
+      width: 100%;
+      padding: 0.75rem 1rem;
+    }
+  }
+
+  /* Footer Mobile */
+  @media (max-width: 768px) {
+    .footer-top {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .footer-top ul {
+      justify-content: center;
+    }
+  }
+
+  /* Gallery Mobile */
+  @media (max-width: 768px) {
+    #gallery .col-md-4 {
+      margin-bottom: 1rem;
+    }
+  }
+
+  /* FAQ Mobile */
+  @media (max-width: 768px) {
+    .accordion-button {
+      font-size: 0.95rem;
+      padding: 0.75rem 1rem;
+    }
+    .accordion-body {
+      font-size: 0.9rem;
+      padding: 1rem;
+    }
+  }
+
+  /* Business Hours Cards Mobile */
+  @media (max-width: 768px) {
+    .card {
+      margin-bottom: 1rem;
+    }
+  }
+
+  /* Button Groups Mobile */
+  @media (max-width: 576px) {
+    .d-flex.gap-3 {
+      flex-direction: column;
+      gap: 0.5rem !important;
+    }
+    .d-flex.gap-3 .btn {
+      width: 100%;
+    }
+  }
+
+  /* Floating Call Button for Mobile */
+  .floating-call-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: #198754;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 1000;
+    text-decoration: none;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+
+  .floating-call-btn:hover {
+    background: #157347;
+    transform: scale(1.1);
+    color: white;
+  }
+
+  /* Enhanced Card Hover Effects */
+  .card {
+    border: 1px solid rgba(0,0,0,0.125);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    border-color: #ffc107;
+  }
+
+  /* Service Icon Animations */
+  .card-body i[class^="bi"] {
+    transition: transform 0.3s ease;
+  }
+
+  .card:hover .card-body i[class^="bi"] {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  /* Statistics Section */
+  section.bg-light .col-md-3 {
+    transition: transform 0.3s ease;
+  }
+
+  section.bg-light .col-md-3:hover {
+    transform: translateY(-5px);
+  }
+
+  section.bg-light .col-md-3 i {
+    transition: transform 0.3s ease;
+  }
+
+  section.bg-light .col-md-3:hover i {
+    transform: scale(1.1);
+  }
+
+  /* Form Enhancements */
+  .form-control:focus, .form-select:focus {
+    border-color: #ffc107;
+    box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+  }
+
+  /* Accordion Enhancements */
+  .accordion-button:not(.collapsed) {
+    background-color: #fff3cd;
+    color: #856404;
+  }
+
+  .accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+  }
+
+  

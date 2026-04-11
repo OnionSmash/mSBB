@@ -1,0 +1,39 @@
+User-agent: *
+Allow: /
+# New cybersecurity blog posts added 2026-04-10
+Disallow: /ssl/
+Disallow: /letsencrypt/
+Disallow: /api/
+Disallow: /intergrations/
+Disallow: /js/
+Disallow: /scripts/
+
+User-agent: bingbot
+Allow: /
+
+User-agent: BingPreview
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Allow all search engines to crawl
+User-agent: Googlebot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+Sitemap: https://vigilantvoices.com/sitemap.xml

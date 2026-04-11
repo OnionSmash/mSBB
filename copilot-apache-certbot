@@ -1,0 +1,1 @@
+groot ALL=(root) NOPASSWD: /usr/sbin/apache2ctl, /usr/sbin/a2ensite, /usr/sbin/a2dissite, /usr/sbin/a2enmod, /bin/systemctl reload apache2, /bin/systemctl restart apache2, /usr/bin/certbot, /usr/bin/tee, /bin/cp, /bin/mkdir, /bin/ln, /bin/chown, /bin/chmod

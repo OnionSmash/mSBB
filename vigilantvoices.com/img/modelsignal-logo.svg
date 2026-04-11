@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 190 36" width="190" height="36" role="img" aria-label="Model Signal logo">
+  <defs>
+    <linearGradient id="ms-centerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00E5FF"/>
+      <stop offset="100%" stop-color="#0055FF"/>
+    </linearGradient>
+    <linearGradient id="ms-glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#003399" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#001166" stop-opacity="0.3"/>
+    </linearGradient>
+    <filter id="ms-glow">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- === ICON: Hexagonal Mesh Network === -->
+  <!-- Center: (22, 22), hex outer radius: 16 -->
+  <!-- Hex vertices (flat-top): -->
+  <!-- right:       (38, 22) -->
+  <!-- top-right:   (30, 8.1) -->
+  <!-- top-left:    (14, 8.1) -->
+  <!-- left:        (6, 22) -->
+  <!-- bottom-left: (14, 35.9) -->
+  <!-- bottom-right:(30, 35.9) -->
+
+  <!-- Outer hexagon frame -->
+  <polygon points="38,22 30,8 14,8 6,22 14,36 30,36"
+           fill="none" stroke="#0E4FA0" stroke-width="1.4" stroke-opacity="0.7"/>
+
+  <!-- Inner glow fill -->
+  <polygon points="38,22 30,8 14,8 6,22 14,36 30,36"
+           fill="url(#ms-glowGrad)"/>
+
+  <!-- Spokes from center to each vertex -->
+  <line x1="22" y1="22" x2="38" y2="22" stroke="#1A8EFF" stroke-width="1.2" opacity="0.85"/>
+  <line x1="22" y1="22" x2="30" y2="8"  stroke="#1A8EFF" stroke-width="1.2" opacity="0.85"/>
+  <line x1="22" y1="22" x2="14" y2="8"  stroke="#1A8EFF" stroke-width="1.2" opacity="0.85"/>
+  <line x1="22" y1="22" x2="6"  y2="22" stroke="#1A8EFF" stroke-width="1.2" opacity="0.85"/>
+  <line x1="22" y1="22" x2="14" y2="36" stroke="#1A8EFF" stroke-width="1.2" opacity="0.85"/>
+  <line x1="22" y1="22" x2="30" y2="36" stroke="#1A8EFF" stroke-width="1.2" opacity="0.85"/>
+
+  <!-- Outer vertex nodes -->
+  <circle cx="38" cy="22" r="2.5" fill="#00BBFF" filter="url(#ms-glow)"/>
+  <circle cx="30" cy="8"  r="2.5" fill="#00BBFF" filter="url(#ms-glow)"/>
+  <circle cx="14" cy="8"  r="2.5" fill="#00BBFF" filter="url(#ms-glow)"/>
+  <circle cx="6"  cy="22" r="2.5" fill="#00BBFF" filter="url(#ms-glow)"/>
+  <circle cx="14" cy="36" r="2.5" fill="#00BBFF" filter="url(#ms-glow)"/>
+  <circle cx="30" cy="36" r="2.5" fill="#00BBFF" filter="url(#ms-glow)"/>
+
+  <!-- Center node (glowing core) -->
+  <circle cx="22" cy="22" r="7"   fill="#0033AA" opacity="0.25"/>
+  <circle cx="22" cy="22" r="5"   fill="url(#mm-centerGrad)" filter="url(#mm-glow)"/>
+  <circle cx="20.5" cy="20.5" r="1.8" fill="white" opacity="0.75"/>
+
+  <!-- === TEXT === -->
+  <!-- Primary wordmark -->
+  <text font-family="'Segoe UI', 'Helvetica Neue', 'Arial', sans-serif" font-weight="700" font-size="20" letter-spacing="-0.3">
+    <tspan x="50" y="27" fill="#4DB8FF">Model</tspan><tspan fill="#00E5FF">Signal</tspan>
+  </text>
+</svg>

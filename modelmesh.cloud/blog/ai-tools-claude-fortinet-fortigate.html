@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>AI Tools, Claude, and Fortinet FortiGate | Model Signal</title>
+    <meta property="og:title" content="AI Tools, Claude, and Fortinet FortiGate | Model Signal">
+    <meta name="twitter:title" content="AI Tools, Claude, and Fortinet FortiGate | Model Signal">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="description" content="New campaigns are using AI tools to scale Fortinet FortiGate attacks. Learn how defenders can protect exposed firewalls and management planes.">
+    <meta property="og:description" content="New campaigns are using AI tools to scale Fortinet FortiGate attacks. Learn how defenders can protect exposed firewalls and management planes.">
+    <meta name="twitter:description" content="New campaigns are using AI tools to scale Fortinet FortiGate attacks. Learn how defenders can protect exposed firewalls and management planes.">
+    <link rel="canonical" href="https://modelsignal.cloud/blog/ai-tools-claude-fortinet-fortigate.html">
+    <meta name="robots" content="index, follow">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Ubuntu:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+<body>
+    <script src="/js/navbar-loader.js" defer></script>
+    <div class="container-fluid sticky-top site-nav-theme-blue" id="site-navbar-root"></div>
+    <div class="container-fluid pt-5 bg-primary hero-header mb-5">
+        <div class="container pt-5">
+            <div class="row g-5 pt-4 pb-3">
+                <div class="col-lg-9">
+                    <div class="btn btn-sm border rounded-pill text-white px-3 mb-3">Model Signal Blog</div>
+                    <h1 class="display-5 text-white mb-3">AI-Driven FortiGate Attacks: When Threat Actors Use Claude</h1>
+                    <p class="text-white mb-0">A new threat campaign is using commercial AI tools to automate attacks against Fortinet FortiGate firewalls and exposed management interfaces.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="mb-4 text-muted"><small>April 10, 2026 • Cybersecurity</small></div>
+                <p>Security teams are now seeing threat actors pair AI research tools with operational access to Fortinet FortiGate appliances. Amazon Threat Intelligence reported a Russian-speaking actor leveraging models such as Claude and other AI services to speed reconnaissance, attack validation, and exploit workflows.</p>
+                <p>The abuse pattern is familiar: once attackers identify exposed FortiGate management interfaces, they use automation to enumerate firmware, validate known vulnerabilities, and compile payloads quickly. In this campaign, more than 600 Fortinet firewalls were impacted in a single month, underscoring how AI can amplify even unsophisticated actors.</p>
+
+                <h2>What makes this campaign different</h2>
+                <p>AI tools are not the vulnerability. The shift is in how low-skill operators can now stitch together reconnaissance, exploit crafting, and lateral access faster than before. The threat actor used generative assistants to:</p>
+                <ul>
+                    <li>automatically scan FortiGate endpoints for exposed administrative ports;</li>
+                    <li>identify vulnerable FortiOS versions and risky configuration settings;</li>
+                    <li>generate targeted login or exploitation sequences;</li>
+                    <li>accelerate persistence and command-and-control setup once access was gained.</li>
+                </ul>
+
+                <h2>Why FortiGate appliances are attractive</h2>
+                <p>Fortinet FortiGate appliances often sit at the edge of a network and expose high-value management planes. Unpatched or internet-facing devices can quickly become a staging ground for broader intrusion, data exfiltration, or network disruption.</p>
+
+                <h2>Immediate defender actions</h2>
+                <ul>
+                    <li><strong>Patch FortiOS immediately.</strong> Confirm that all FortiGate devices are running the latest recommended firmware and configuration hardening guides.</li>
+                    <li><strong>Restrict administrative access.</strong> Block remote management interfaces from the public internet and limit access to trusted VPN or jump hosts.</li>
+                    <li><strong>Enable MFA and strong authentication.</strong> FortiGate management and CLI access should require multifactor protection wherever possible.</li>
+                    <li><strong>Audit exposed assets continuously.</strong> Use external scanning and internal asset inventories to detect exposed Fortinet firewalls before attackers do.</li>
+                    <li><strong>Monitor for anomalous access.</strong> Watch for unusual login patterns, failed authentication bursts, and unexpected configuration changes.</li>
+                </ul>
+
+                <h2>Beyond FortiGate: AI-assisted threat operations</h2>
+                <p>This incident is a warning that adversaries are treating AI as a force multiplier. Attackers can now generate exploit sequences, analyze output from security tools, and accelerate discovery with fewer specialized skills. Defenders must respond with stronger segmentation, automation, and threat detection tuned for AI-enabled playbooks.</p>
+
+                <p>For enterprise security teams, the practical takeaway is clear: secure Fortinet perimeter appliances as a priority, and assume that exposed management interfaces will be targeted by increasingly automated attacks.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid bg-dark text-white-50 footer pt-5">
+        <div class="container py-4 text-center">
+            <p class="mb-0">&copy; <a class="border-bottom text-white" href="../index.html">Model Signal</a>, All Rights Reserved.</p>
+        </div>
+    </div>
+
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top pt-2"><i class="bi bi-arrow-up"></i></a>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="../js/main.js"></script>
+</body>
+</html>

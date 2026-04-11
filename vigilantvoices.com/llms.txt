@@ -1,0 +1,16 @@
+# Vigilant Voices
+
+Vigilant Voices is the AI-powered security and private data intelligence platform from Model Signal.
+
+## Founder Profile
+- Randall Scott Avenell: https://vigilantvoices.com/randall-scott-avenell.html
+
+## Primary Pages
+- Home: https://vigilantvoices.com/
+- About: https://vigilantvoices.com/about.html
+- Services: https://vigilantvoices.com/services/services.html
+- Products: https://vigilantvoices.com/products/product.html
+- Contact: https://vigilantvoices.com/contact.html
+
+## Sitemap
+- https://vigilantvoices.com/sitemap.xml

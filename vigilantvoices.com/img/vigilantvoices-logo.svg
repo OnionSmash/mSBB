@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 235 36" width="235" height="36" role="img" aria-label="VigilantVoices.com logo">
+  <defs>
+    <linearGradient id="vv-shieldFill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0B2260"/>
+      <stop offset="100%" stop-color="#030C28"/>
+    </linearGradient>
+    <linearGradient id="vv-barGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00E0FF"/>
+      <stop offset="100%" stop-color="#005EFF"/>
+    </linearGradient>
+    <linearGradient id="vv-shieldStroke" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2266DD"/>
+      <stop offset="100%" stop-color="#0044AA"/>
+    </linearGradient>
+    <filter id="vv-glow">
+      <feGaussianBlur stdDeviation="1.2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- === ICON: Shield with voice equalizer bars === -->
+  <!-- Shield centered at x=22, spans x: 6–38, y: 3–43 -->
+  <!-- Path: top-left corner to right, curves down, meets at bottom point -->
+  <path d="M 22,3 L 38,10 L 38,27 Q 38,42 22,44 Q 6,42 6,27 L 6,10 Z"
+        fill="url(#vv-shieldFill)"/>
+  <!-- Shield border (stroke only, gradient via linearGradient via stop) -->
+  <path d="M 22,3 L 38,10 L 38,27 Q 38,42 22,44 Q 6,42 6,27 L 6,10 Z"
+        fill="none" stroke="#1A5FCC" stroke-width="1.5" stroke-opacity="0.9"/>
+  <!-- Subtle inner highlight on shield top -->
+  <path d="M 22,5 L 36,11.5 L 36,13 L 22,6.5 L 8,13 L 8,11.5 Z"
+        fill="white" opacity="0.05"/>
+
+  <!-- Equalizer / Voice bars (5 bars, centered at x=22, bottom at y=34) -->
+  <!-- Bar widths: 3px each, gap: 2px, total span: 5×3 + 4×2 = 23px, start x = 22 - 11.5 = 10.5 -->
+  <!-- Heights (symmetric bell curve): 7, 13, 20, 13, 7 -->
+
+  <!-- Bar 1 (leftmost, shortest) -->
+  <rect x="10.5" y="27" width="3" height="7"  rx="1.5" fill="url(#vv-barGrad)" opacity="0.65" filter="url(#vv-glow)"/>
+  <!-- Bar 2 -->
+  <rect x="15.5" y="21" width="3" height="13" rx="1.5" fill="url(#vv-barGrad)" opacity="0.82" filter="url(#vv-glow)"/>
+  <!-- Bar 3 (center, tallest) -->
+  <rect x="20.5" y="14" width="3" height="20" rx="1.5" fill="url(#vv-barGrad)"               filter="url(#vv-glow)"/>
+  <!-- Bar 4 -->
+  <rect x="25.5" y="21" width="3" height="13" rx="1.5" fill="url(#vv-barGrad)" opacity="0.82" filter="url(#vv-glow)"/>
+  <!-- Bar 5 (rightmost, shortest) -->
+  <rect x="30.5" y="27" width="3" height="7"  rx="1.5" fill="url(#vv-barGrad)" opacity="0.65" filter="url(#vv-glow)"/>
+
+  <!-- === TEXT === -->
+  <!-- Primary wordmark -->
+  <text font-family="'Segoe UI', 'Helvetica Neue', 'Arial', sans-serif" font-weight="700" font-size="20" letter-spacing="-0.3">
+    <tspan x="50" y="27" fill="#5599FF">Vigilant</tspan><tspan fill="#00CFFF">Voices</tspan>
+  </text>
+</svg>

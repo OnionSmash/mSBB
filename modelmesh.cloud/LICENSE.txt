@@ -1,0 +1,10 @@
+ 
+
+ => VIGILANT VOICES SITE NOTICE
+
+ This project has been customized for modelmesh.cloud.
+
+ Legacy third-party attribution backlink references have been removed from the website and project text files per project owner request.
+
+ Any remaining third-party assets must be used in accordance with their respective upstream licenses.
+
