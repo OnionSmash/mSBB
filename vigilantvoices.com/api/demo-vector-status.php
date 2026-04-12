@@ -26,25 +26,11 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'GET') {
 
 require_once __DIR__ . '/demo-vector-lib.php';
 
-$index = demoVectorLoadIndex(session_id());
-$items = is_array($index['items'] ?? null) ? $index['items'] : [];
-
-$docSet = [];
-$lastUpdated = null;
-foreach ($items as $item) {
-    $docId = (string)($item['doc_id'] ?? '');
-    if ($docId !== '') {
-        $docSet[$docId] = true;
-    }
-    $updated = (string)($item['updated_at'] ?? '');
-    if ($updated !== '' && ($lastUpdated === null || strcmp($updated, $lastUpdated) > 0)) {
-        $lastUpdated = $updated;
-    }
-}
+$status = demoVectorStatus(session_id());
 
 echo json_encode([
     'ok' => true,
-    'documents' => count($docSet),
-    'chunks' => count($items),
-    'last_updated' => $lastUpdated,
+    'documents' => (int)($status['documents'] ?? 0),
+    'chunks' => (int)($status['chunks'] ?? 0),
+    'last_updated' => $status['last_updated'] ?? null,
 ]);

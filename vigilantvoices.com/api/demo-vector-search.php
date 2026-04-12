@@ -44,40 +44,7 @@ if ($query === '') {
     exit;
 }
 
-$index = demoVectorLoadIndex(session_id());
-$items = is_array($index['items'] ?? null) ? $index['items'] : [];
-
-if (!$items) {
-    echo json_encode([
-        'ok' => true,
-        'results' => [],
-        'count' => 0,
-    ]);
-    exit;
-}
-
-$queryVector = demoVectorEmbedText($query);
-$scored = [];
-
-foreach ($items as $item) {
-    $embedding = is_array($item['embedding'] ?? null) ? $item['embedding'] : [];
-    if (!$embedding) {
-        continue;
-    }
-
-    $score = demoVectorCosine($queryVector, $embedding);
-    $scored[] = [
-        'id' => (string)($item['id'] ?? ''),
-        'doc_id' => (string)($item['doc_id'] ?? ''),
-        'title' => (string)($item['title'] ?? 'Untitled'),
-        'text' => (string)($item['text'] ?? ''),
-        'metadata' => is_array($item['metadata'] ?? null) ? $item['metadata'] : [],
-        'score' => $score,
-    ];
-}
-
-usort($scored, static fn ($a, $b) => $b['score'] <=> $a['score']);
-$results = array_slice($scored, 0, $topK);
+$results = demoVectorSearch(session_id(), $query, $topK);
 
 echo json_encode([
     'ok' => true,

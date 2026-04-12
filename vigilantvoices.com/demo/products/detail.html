@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Product Detail | Vigilant Voices Demo</title>
+  <style>
+    body{font-family:Arial,sans-serif;margin:0;background:#f6f8ff;color:#1b2140}
+    .wrap{max-width:1100px;margin:0 auto;padding:24px}
+    .layout{display:grid;grid-template-columns:280px 1fr;gap:14px}
+    .card{background:#fff;border:1px solid #e3eafc;border-radius:12px;padding:18px}
+    .pill{display:inline-block;background:#eef3ff;color:#2a3c78;border-radius:999px;padding:4px 10px;font-size:.75rem;font-weight:700}
+    h1{margin:.4rem 0 1rem}
+    p{line-height:1.5;color:#4b5578}
+    .row{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{border:1px solid #cdd8f6;background:#fff;color:#1a1f3a;padding:8px 12px;border-radius:10px;text-decoration:none;font-weight:600}
+    .mini-nav h2{margin:0 0 10px;font-size:.92rem;color:#2a3c78}
+    .mini-nav a{display:block;padding:8px 10px;border-radius:8px;color:#2d3a63;text-decoration:none;font-size:.88rem}
+    .mini-nav a:hover,.mini-nav a.active{background:#eef3ff;color:#1c2f68;font-weight:700}
+    @media (max-width: 920px){.layout{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="layout">
+  <aside class="card mini-nav">
+    <h2>Products list</h2>
+    <div id="miniNav"></div>
+  </aside>
+  <div class="card">
+    <div class="pill">Secure demo product page</div>
+    <h1 id="title">Loading product…</h1>
+    <p id="what"></p>
+    <p id="why"></p>
+    <div class="row">
+      <a class="btn" href="/demo/products.html">Back to Products</a>
+      <a class="btn" href="/demo/services.html">Services</a>
+      <a class="btn" href="/demo.html">Demo Home</a>
+    </div>
+  </div>
+  </div>
+</div>
+<script>
+const content = {
+  "agentchain-commander": { title:"AgentChain Commander", what:"What it does: provides orchestration and policy-gated control for multi-agent task graphs.", why:"Why companies use it: scales automation while keeping approvals, role boundaries, and traceability intact." },
+  "promptshield-nexus": { title:"PromptShield Nexus", what:"What it does: detects and blocks prompt injection, jailbreak, and unsafe instruction chains at runtime.", why:"Why companies use it: reduces model abuse risk and protects connected tools/data from hostile prompts." },
+  "authenticity-chain-vault": { title:"Authenticity Chain Vault", what:"What it does: scores content authenticity and tracks provenance for media and document trust workflows.", why:"Why companies use it: combats deepfakes and tampering before content enters business-critical decisions." },
+  "hallucination-forensics-studio": { title:"Hallucination Forensics Studio", what:"What it does: pinpoints root causes of unsupported responses across retrieval, routing, and generation.", why:"Why companies use it: shortens debugging cycles and improves response fidelity over time." },
+  "adaptive-ai-honeymesh": { title:"Adaptive AI HoneyMesh", what:"What it does: deploys deceptive assets to attract and profile AI-assisted reconnaissance activity.", why:"Why companies use it: raises adversary cost and generates early detection intelligence." },
+  "policy-compiler-studio": { title:"Policy Compiler Studio", what:"What it does: transforms policy text into executable AI controls with clause-level mapping.", why:"Why companies use it: operationalizes compliance quickly and proves why runtime decisions were made." },
+  "vectorpulse-sentinel": { title:"VectorPulse Sentinel", what:"What it does: monitors vector index drift, poisoning patterns, and retrieval health indicators.", why:"Why companies use it: preserves RAG quality and catches integrity issues before user impact." },
+  "compliance-guardian": { title:"Compliance Guardian", what:"What it does: scores AI outputs against frameworks and routes high-risk content through review gates.", why:"Why companies use it: lowers regulatory and legal exposure from generated output." }
+};
+async function guardAndRender() {
+  try {
+    const res = await fetch('/api/demo-session.php', { credentials: 'same-origin' });
+    const json = await res.json();
+    if (!json.authenticated) { window.location.href = '/login.html'; return; }
+    const slug = new URLSearchParams(window.location.search).get('slug') || '';
+    const c = content[slug];
+    if (!c) { window.location.href = '/demo/products.html'; return; }
+    var nav = document.getElementById('miniNav');
+    Object.keys(content).forEach(function (k) {
+      var a = document.createElement('a');
+      a.href = '/demo/products/' + k + '.html';
+      a.textContent = content[k].title;
+      if (k === slug) a.className = 'active';
+      nav.appendChild(a);
+    });
+    document.title = c.title + ' | Vigilant Voices Demo';
+    document.getElementById('title').textContent = c.title;
+    document.getElementById('what').textContent = c.what;
+    document.getElementById('why').textContent = c.why;
+  } catch (_e) { window.location.href = '/login.html'; }
+}
+guardAndRender();
+</script>
+</body>
+</html>

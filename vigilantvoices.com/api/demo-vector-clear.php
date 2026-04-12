@@ -26,10 +26,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'POST') {
 
 require_once __DIR__ . '/demo-vector-lib.php';
 
-$path = demoVectorIndexPath(session_id());
-if (is_file($path)) {
-    @unlink($path);
-}
+demoVectorClearStore(session_id());
 
 echo json_encode([
     'ok' => true,

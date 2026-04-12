@@ -21,8 +21,124 @@ function demoVectorIndexPath(string $sessionId): string
     return demoVectorDataDir() . '/index_' . preg_replace('/[^a-zA-Z0-9_-]/', '', $sessionId) . '.json';
 }
 
+function demoVectorDbDsn(): ?string
+{
+    $dsn = getenv('DEMO_VECTOR_PG_DSN');
+    if (is_string($dsn) && trim($dsn) !== '') {
+        return trim($dsn);
+    }
+
+    $host = getenv('DEMO_VECTOR_PG_HOST') ?: '127.0.0.1';
+    $port = getenv('DEMO_VECTOR_PG_PORT') ?: '5432';
+    $db = getenv('DEMO_VECTOR_PG_DB') ?: '';
+    if ($db === '') {
+        return null;
+    }
+    return 'pgsql:host=' . $host . ';port=' . $port . ';dbname=' . $db;
+}
+
+function demoVectorDbUser(): string
+{
+    return (string)(getenv('DEMO_VECTOR_PG_USER') ?: '');
+}
+
+function demoVectorDbPass(): string
+{
+    return (string)(getenv('DEMO_VECTOR_PG_PASS') ?: '');
+}
+
+function demoVectorPdo(): ?PDO
+{
+    static $pdo = false;
+    if ($pdo !== false) {
+        return $pdo instanceof PDO ? $pdo : null;
+    }
+
+    if (!extension_loaded('pdo_pgsql')) {
+        $pdo = null;
+        return null;
+    }
+
+    $dsn = demoVectorDbDsn();
+    if ($dsn === null) {
+        $pdo = null;
+        return null;
+    }
+
+    try {
+        $conn = new PDO($dsn, demoVectorDbUser(), demoVectorDbPass(), [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        ]);
+        $conn->exec('SET TIME ZONE "UTC"');
+        $pdo = $conn;
+        return $conn;
+    } catch (Throwable $e) {
+        $pdo = null;
+        return null;
+    }
+}
+
+function demoVectorPgvectorLiteral(array $embedding): string
+{
+    $vals = array_map(static fn ($v) => (string)(float)$v, $embedding);
+    return '[' . implode(',', $vals) . ']';
+}
+
+function demoVectorDbEnsureSchema(PDO $pdo): void
+{
+    static $ready = false;
+    if ($ready) return;
+
+    $pdo->exec('CREATE EXTENSION IF NOT EXISTS vector');
+    $pdo->exec("CREATE TABLE IF NOT EXISTS demo_vector_chunks (
+        session_id TEXT NOT NULL,
+        id TEXT NOT NULL,
+        doc_id TEXT NOT NULL,
+        title TEXT NOT NULL,
+        text TEXT NOT NULL,
+        metadata JSONB NOT NULL DEFAULT '{}'::jsonb,
+        embedding VECTOR(96) NOT NULL,
+        updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        PRIMARY KEY (session_id, id)
+    )");
+    $pdo->exec('CREATE INDEX IF NOT EXISTS idx_demo_vector_session ON demo_vector_chunks(session_id)');
+    $pdo->exec('CREATE INDEX IF NOT EXISTS idx_demo_vector_doc ON demo_vector_chunks(session_id, doc_id)');
+    $pdo->exec('CREATE INDEX IF NOT EXISTS idx_demo_vector_embedding_hnsw ON demo_vector_chunks USING hnsw (embedding vector_cosine_ops)');
+
+    $ready = true;
+}
+
 function demoVectorLoadIndex(string $sessionId): array
 {
+    $pdo = demoVectorPdo();
+    if ($pdo instanceof PDO) {
+        try {
+            demoVectorDbEnsureSchema($pdo);
+            $stmt = $pdo->prepare('SELECT id, doc_id, title, text, metadata, updated_at FROM demo_vector_chunks WHERE session_id = :sid ORDER BY updated_at DESC');
+            $stmt->execute([':sid' => $sessionId]);
+            $rows = $stmt->fetchAll();
+            $items = array_map(static function (array $r): array {
+                $meta = [];
+                if (isset($r['metadata'])) {
+                    $decoded = json_decode((string)$r['metadata'], true);
+                    if (is_array($decoded)) $meta = $decoded;
+                }
+                return [
+                    'id' => (string)$r['id'],
+                    'doc_id' => (string)$r['doc_id'],
+                    'title' => (string)$r['title'],
+                    'text' => (string)$r['text'],
+                    'metadata' => $meta,
+                    'updated_at' => (string)$r['updated_at'],
+                ];
+            }, $rows ?: []);
+            return ['items' => $items];
+        } catch (Throwable $e) {
+            // fallback below
+        }
+    }
+
     $path = demoVectorIndexPath($sessionId);
     if (!is_file($path)) {
         return ['items' => []];
@@ -43,6 +159,38 @@ function demoVectorLoadIndex(string $sessionId): array
 
 function demoVectorSaveIndex(string $sessionId, array $index): void
 {
+    $items = is_array($index['items'] ?? null) ? $index['items'] : [];
+
+    $pdo = demoVectorPdo();
+    if ($pdo instanceof PDO) {
+        try {
+            demoVectorDbEnsureSchema($pdo);
+            $pdo->beginTransaction();
+            $pdo->prepare('DELETE FROM demo_vector_chunks WHERE session_id = :sid')->execute([':sid' => $sessionId]);
+            $ins = $pdo->prepare('INSERT INTO demo_vector_chunks (session_id,id,doc_id,title,text,metadata,embedding,updated_at)
+                VALUES (:sid,:id,:doc_id,:title,:text,:meta,CAST(:emb AS vector),:updated_at)');
+            foreach ($items as $item) {
+                if (!is_array($item)) continue;
+                $emb = is_array($item['embedding'] ?? null) ? $item['embedding'] : demoVectorEmbedText((string)($item['text'] ?? ''));
+                $ins->execute([
+                    ':sid' => $sessionId,
+                    ':id' => (string)($item['id'] ?? ''),
+                    ':doc_id' => (string)($item['doc_id'] ?? ''),
+                    ':title' => mb_substr((string)($item['title'] ?? 'Untitled'), 0, 180),
+                    ':text' => mb_substr((string)($item['text'] ?? ''), 0, 2000),
+                    ':meta' => json_encode(is_array($item['metadata'] ?? null) ? $item['metadata'] : [], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
+                    ':emb' => demoVectorPgvectorLiteral($emb),
+                    ':updated_at' => (string)($item['updated_at'] ?? gmdate('c')),
+                ]);
+            }
+            $pdo->commit();
+            return;
+        } catch (Throwable $e) {
+            if ($pdo->inTransaction()) $pdo->rollBack();
+            // fallback below
+        }
+    }
+
     $path = demoVectorIndexPath($sessionId);
     $encoded = json_encode($index, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     if ($encoded === false) {
@@ -51,6 +199,117 @@ function demoVectorSaveIndex(string $sessionId, array $index): void
     if (file_put_contents($path, $encoded, LOCK_EX) === false) {
         throw new RuntimeException('Failed to persist vector index.');
     }
+}
+
+function demoVectorClearStore(string $sessionId): void
+{
+    $pdo = demoVectorPdo();
+    if ($pdo instanceof PDO) {
+        try {
+            demoVectorDbEnsureSchema($pdo);
+            $pdo->prepare('DELETE FROM demo_vector_chunks WHERE session_id = :sid')->execute([':sid' => $sessionId]);
+            return;
+        } catch (Throwable $e) {
+            // fallback below
+        }
+    }
+    $path = demoVectorIndexPath($sessionId);
+    if (is_file($path)) {
+        @unlink($path);
+    }
+}
+
+function demoVectorSearch(string $sessionId, string $query, int $topK): array
+{
+    $topK = max(1, min(8, $topK));
+    $pdo = demoVectorPdo();
+    if ($pdo instanceof PDO) {
+        try {
+            demoVectorDbEnsureSchema($pdo);
+            $qv = demoVectorPgvectorLiteral(demoVectorEmbedText($query));
+            $sql = 'SELECT id, doc_id, title, text, metadata, (1 - (embedding <=> CAST(:qvec AS vector))) AS score
+                    FROM demo_vector_chunks
+                    WHERE session_id = :sid
+                    ORDER BY embedding <=> CAST(:qvec AS vector)
+                    LIMIT ' . $topK;
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([':sid' => $sessionId, ':qvec' => $qv]);
+            $rows = $stmt->fetchAll();
+            return array_map(static function (array $r): array {
+                $meta = [];
+                if (isset($r['metadata'])) {
+                    $decoded = json_decode((string)$r['metadata'], true);
+                    if (is_array($decoded)) $meta = $decoded;
+                }
+                return [
+                    'id' => (string)$r['id'],
+                    'doc_id' => (string)$r['doc_id'],
+                    'title' => (string)$r['title'],
+                    'text' => (string)$r['text'],
+                    'metadata' => $meta,
+                    'score' => (float)($r['score'] ?? 0),
+                ];
+            }, $rows ?: []);
+        } catch (Throwable $e) {
+            // fallback below
+        }
+    }
+
+    $index = demoVectorLoadIndex($sessionId);
+    $items = is_array($index['items'] ?? null) ? $index['items'] : [];
+    if (!$items) return [];
+
+    $qv = demoVectorEmbedText($query);
+    $scored = [];
+    foreach ($items as $item) {
+        if (!is_array($item)) continue;
+        $emb = is_array($item['embedding'] ?? null) ? $item['embedding'] : demoVectorEmbedText((string)($item['text'] ?? ''));
+        $scored[] = [
+            'id' => (string)($item['id'] ?? ''),
+            'doc_id' => (string)($item['doc_id'] ?? ''),
+            'title' => (string)($item['title'] ?? 'Untitled'),
+            'text' => (string)($item['text'] ?? ''),
+            'metadata' => is_array($item['metadata'] ?? null) ? $item['metadata'] : [],
+            'score' => demoVectorCosine($qv, $emb),
+        ];
+    }
+    usort($scored, static fn ($a, $b) => $b['score'] <=> $a['score']);
+    return array_slice($scored, 0, $topK);
+}
+
+function demoVectorStatus(string $sessionId): array
+{
+    $pdo = demoVectorPdo();
+    if ($pdo instanceof PDO) {
+        try {
+            demoVectorDbEnsureSchema($pdo);
+            $stmt = $pdo->prepare('SELECT COUNT(*)::int AS chunks, COUNT(DISTINCT doc_id)::int AS documents, MAX(updated_at) AS last_updated FROM demo_vector_chunks WHERE session_id = :sid');
+            $stmt->execute([':sid' => $sessionId]);
+            $row = $stmt->fetch();
+            return [
+                'documents' => (int)($row['documents'] ?? 0),
+                'chunks' => (int)($row['chunks'] ?? 0),
+                'last_updated' => isset($row['last_updated']) ? (string)$row['last_updated'] : null,
+            ];
+        } catch (Throwable $e) {
+            // fallback below
+        }
+    }
+
+    $index = demoVectorLoadIndex($sessionId);
+    $items = is_array($index['items'] ?? null) ? $index['items'] : [];
+    $docSet = [];
+    $lastUpdated = null;
+    foreach ($items as $item) {
+        if (!is_array($item)) continue;
+        $docId = (string)($item['doc_id'] ?? '');
+        if ($docId !== '') $docSet[$docId] = true;
+        $updated = (string)($item['updated_at'] ?? '');
+        if ($updated !== '' && ($lastUpdated === null || strcmp($updated, $lastUpdated) > 0)) {
+            $lastUpdated = $updated;
+        }
+    }
+    return ['documents' => count($docSet), 'chunks' => count($items), 'last_updated' => $lastUpdated];
 }
 
 function demoVectorNormalizeText(string $text): string

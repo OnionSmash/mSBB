@@ -29,6 +29,15 @@
             --dark: #14183E;
             --light: #F4F7FE;
             --sidebar-w: 260px;
+            --phase1-border: #e4eaf7;
+            --phase1-muted: #667;
+            --phase1-text: #14183E;
+            --phase1-badge-safe-bg: #e8f7ed;
+            --phase1-badge-safe-fg: #1a7a3e;
+            --phase1-badge-review-bg: #fff4dd;
+            --phase1-badge-review-fg: #9a6700;
+            --phase1-badge-blocked-bg: #fde8e8;
+            --phase1-badge-blocked-fg: #b42318;
         }
 
         * { box-sizing: border-box; }
@@ -43,7 +52,8 @@
         /* ── Sidebar (app rail) ── */
         .sidebar {
             position: fixed;
-            top: 0; left: -var(--sidebar-w);
+            top: 0;
+            left: 0;
             width: var(--sidebar-w);
             height: 100vh;
             background: linear-gradient(168deg, #0a0e22 0%, #14183e 45%, #0e1228 100%);
@@ -63,7 +73,6 @@
             background: rgba(255, 255, 255, 0.14);
             border-radius: 8px;
         }
-        .sidebar:hover { left: 0; }
 
         .sidebar-brand {
             padding: 20px 18px 18px;
@@ -1108,9 +1117,47 @@
         }
         .capability-learn-more a:hover { text-decoration: underline; }
 
+        /* Phase 1 shared renderer classes */
+        .phase1-head { display:flex; align-items:center; gap:8px; margin-bottom:8px; flex-wrap:wrap; }
+        .phase1-title { font-size:0.88rem; color:var(--phase1-text); }
+        .phase1-mode { font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; background:var(--phase1-badge-safe-bg); color:var(--phase1-badge-safe-fg); padding:3px 8px; border-radius:6px; }
+        .phase1-app { font-size:0.65rem; color:#888; }
+        .phase1-row { display:flex; justify-content:space-between; gap:12px; border-bottom:1px solid var(--phase1-border); padding:6px 0; font-size:0.76rem; }
+        .phase1-row-key { color:var(--phase1-muted); }
+        .phase1-row-val { color:var(--phase1-text); }
+        .phase1-detail { margin-top:10px; font-size:0.76rem; color:#555; line-height:1.45; }
+        .phase1-checks { margin-top:8px; font-size:0.72rem; color:#28a745; }
+        .phase1-footer { display:block; margin-top:10px; color:var(--phase1-muted); font-size:0.74rem; }
+        .phase1-legend { display:flex; gap:8px; flex-wrap:wrap; }
+        .phase1-badge { font-size:0.68rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; padding:4px 8px; border-radius:6px; }
+        .phase1-badge--safe { background:var(--phase1-badge-safe-bg); color:var(--phase1-badge-safe-fg); }
+        .phase1-badge--review { background:var(--phase1-badge-review-bg); color:var(--phase1-badge-review-fg); }
+        .phase1-badge--blocked { background:var(--phase1-badge-blocked-bg); color:var(--phase1-badge-blocked-fg); }
+        .phase1-why-title { display:block; margin-bottom:4px; color:var(--phase1-text); }
+        .phase1-why-body { color:var(--phase1-muted); font-size:0.76rem; line-height:1.45; }
+
+
         @media (max-width: 991px) {
-            .sidebar { transform: translateX(-100%); }
             .main-content, .topbar { margin-left: 0; left: 0; }
+            .sidebar {
+                left: 0 !important;
+                transform: translateX(-100%);
+                transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .sidebar:hover {
+                left: 0 !important;
+            }
+            body:not(.sidebar-collapsed) .sidebar {
+                transform: translateX(0);
+                pointer-events: auto;
+            }
+            body.sidebar-collapsed .sidebar {
+                transform: translateX(-100%);
+                pointer-events: none;
+            }
+            .sidebar-collapsed .sidebar:hover {
+                transform: translateX(-100%) !important;
+            }
         }
     </style>
 </head>
@@ -1142,49 +1189,49 @@
                 <i class="bi bi-chat-dots"></i> Ask Your Data
             </a>
             <div class="sidebar-group open">
-                <button class="sidebar-group-toggle" type="button" onclick="toggleGroup(this)">
+                <button class="sidebar-group-toggle" type="button" onclick="window.location.href='/demo/services.html'">
                     <span>Services</span>
                     <i class="bi bi-chevron-down"></i>
                 </button>
                 <div class="sidebar-group-items">
-                    <a href="javascript:void(0)" data-demo-cap="svc-retrieval-quality" onclick="openCapabilityDemo('svc-retrieval-quality', this)">
+                    <a href="/demo/services/retrieval-quality-engineering.html" data-demo-cap="svc-retrieval-quality">
                         <i class="bi bi-search-heart"></i> Retrieval Quality Engineering
                     </a>
-                    <a href="javascript:void(0)" data-demo-cap="svc-guardrail-policy" onclick="openCapabilityDemo('svc-guardrail-policy', this)">
+                    <a href="/demo/services/guardrail-policy-engineering.html" data-demo-cap="svc-guardrail-policy">
                         <i class="bi bi-shield-check"></i> Guardrail Policy Engineering
                     </a>
-                    <a href="javascript:void(0)" data-demo-cap="svc-private-finetuning" onclick="openCapabilityDemo('svc-private-finetuning', this)">
+                    <a href="/demo/services/private-finetuning-ops.html" data-demo-cap="svc-private-finetuning">
                         <i class="bi bi-cpu"></i> Private Fine-Tuning Operations
                     </a>
-                    <a href="javascript:void(0)" data-demo-cap="svc-model-reliability" onclick="openCapabilityDemo('svc-model-reliability', this)">
+                    <a href="/demo/services/model-reliability-sre.html" data-demo-cap="svc-model-reliability">
                         <i class="bi bi-life-preserver"></i> Model Reliability SRE
                     </a>
                 </div>
             </div>
             <div class="sidebar-group open">
-                <button class="sidebar-group-toggle" type="button" onclick="toggleGroup(this)">
+                <button class="sidebar-group-toggle" type="button" onclick="window.location.href='/demo/products.html'">
                     <span>Products</span>
                     <i class="bi bi-chevron-down"></i>
                 </button>
                 <div class="sidebar-group-items">
-                    <a href="javascript:void(0)" data-demo-cap="prd-agentchain" onclick="openCapabilityDemo('prd-agentchain', this)"><i class="bi bi-diagram-3"></i> AgentChain Commander</a>
-                    <a href="javascript:void(0)" data-demo-cap="prd-promptshield" onclick="openCapabilityDemo('prd-promptshield', this)"><i class="bi bi-shield-lock"></i> PromptShield Nexus</a>
-                    <a href="javascript:void(0)" data-demo-cap="prd-authenticity-vault" onclick="openCapabilityDemo('prd-authenticity-vault', this)"><i class="bi bi-person-badge"></i> Authenticity Chain Vault</a>
-                    <a href="javascript:void(0)" data-demo-cap="prd-hallucination-forensics" onclick="openCapabilityDemo('prd-hallucination-forensics', this)"><i class="bi bi-bug"></i> Hallucination Forensics Studio</a>
-                    <a href="javascript:void(0)" data-demo-cap="prd-adaptive-honeymesh" onclick="openCapabilityDemo('prd-adaptive-honeymesh', this)"><i class="bi bi-hurricane"></i> Adaptive AI HoneyMesh</a>
-                    <a href="javascript:void(0)" data-demo-cap="prd-policy-compiler" onclick="openCapabilityDemo('prd-policy-compiler', this)"><i class="bi bi-journal-code"></i> Policy Compiler Studio</a>
-                    <a href="javascript:void(0)" data-demo-cap="prd-vectorpulse" onclick="openCapabilityDemo('prd-vectorpulse', this)"><i class="bi bi-activity"></i> VectorPulse Sentinel</a>
-                    <a href="javascript:void(0)" data-demo-cap="prd-compliance-guardian" onclick="openCapabilityDemo('prd-compliance-guardian', this)"><i class="bi bi-clipboard-check"></i> Compliance Guardian</a>
+                    <a href="/demo/products/agentchain-commander.html" data-demo-cap="prd-agentchain"><i class="bi bi-diagram-3"></i> AgentChain Commander</a>
+                    <a href="/demo/products/promptshield-nexus.html" data-demo-cap="prd-promptshield"><i class="bi bi-shield-lock"></i> PromptShield Nexus</a>
+                    <a href="/demo/products/authenticity-chain-vault.html" data-demo-cap="prd-authenticity-vault"><i class="bi bi-person-badge"></i> Authenticity Chain Vault</a>
+                    <a href="/demo/products/hallucination-forensics-studio.html" data-demo-cap="prd-hallucination-forensics"><i class="bi bi-bug"></i> Hallucination Forensics Studio</a>
+                    <a href="/demo/products/adaptive-ai-honeymesh.html" data-demo-cap="prd-adaptive-honeymesh"><i class="bi bi-hurricane"></i> Adaptive AI HoneyMesh</a>
+                    <a href="/demo/products/policy-compiler-studio.html" data-demo-cap="prd-policy-compiler"><i class="bi bi-journal-code"></i> Policy Compiler Studio</a>
+                    <a href="/demo/products/vectorpulse-sentinel.html" data-demo-cap="prd-vectorpulse"><i class="bi bi-activity"></i> VectorPulse Sentinel</a>
+                    <a href="/demo/products/compliance-guardian.html" data-demo-cap="prd-compliance-guardian"><i class="bi bi-clipboard-check"></i> Compliance Guardian</a>
                 </div>
             </div>
             <div class="nav-section-label" style="margin-top:8px;">Links</div>
-            <a href="services/services.html">
+            <a href="/demo/services.html">
                 <i class="bi bi-plug"></i> Services
             </a>
-            <a href="products/product.html">
+            <a href="/demo/products.html">
                 <i class="bi bi-box-seam"></i> Products
             </a>
-            <a href="index.html">
+            <a href="/index.html">
                 <i class="bi bi-house"></i> Main Site
             </a>
         </nav>
@@ -1203,7 +1250,7 @@
     </aside>
 
     <!-- Topbar -->
-    <header class="topbar hidden">
+    <header class="topbar">
         <div class="topbar-title">
             <span id="topbarTitle">Overview</span>
             <small id="topbarSub">Vigilant Voices — Private Data Intelligence Demo</small>
@@ -1373,7 +1420,7 @@
         ═══════════════════════════════════════════ -->
         <div class="panel" id="panel-upload">
             <div class="section-heading">Upload &amp; Parse</div>
-            <div class="section-sub">Drop your files below. Vigilant Voices will extract, chunk, and index the content into your private data store.</div>
+            <div class="section-sub">Drop your files below. This demo <strong>simulates</strong> extract/chunk/index in the browser (no real PDF/DOC parsing). Search vectors are stored per session in a small JSON index on the server — you do <strong>not</strong> need MySQL/Postgres for the demo to work.</div>
 
             <div class="row g-3">
                 <div class="col-lg-8">
@@ -1407,6 +1454,18 @@
                                     <button class="btn-ghost-sm" onclick="clearQueue()" style="font-size:0.72rem;padding:5px 12px;">Clear All</button>
                                 </div>
                                 <div id="fileList"></div>
+                            </div>
+
+                            <div id="uploadDiagnostics" style="margin-top:12px;border:1px solid var(--phase1-border,#e4eaf7);border-radius:10px;background:#fff;padding:10px 12px;">
+                                <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px;">
+                                    <strong style="font-size:0.78rem;color:var(--phase1-text,#14183E);">Upload diagnostics</strong>
+                                    <span id="diagStatusPill" style="font-size:0.68rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;background:#eef3ff;color:#2a3c78;padding:3px 8px;border-radius:999px;">Idle</span>
+                                </div>
+                                <div style="font-size:0.74rem;color:var(--phase1-muted,#667);line-height:1.45;">
+                                    <div>Accepted: <strong id="diagAccepted">0</strong> · Rejected: <strong id="diagRejected">0</strong></div>
+                                    <div style="margin-top:4px;">Guidance: keep individual files under typical PHP limits (often 2M-10M unless server-configured higher).</div>
+                                    <div id="diagLastMsg" style="margin-top:6px;color:#4f5d75;">Last API response: none yet.</div>
+                                </div>
                             </div>
 
                             <div style="margin-top:16px;padding:14px;border:1px solid #e4eaf7;border-radius:10px;background:#f8faff;">
@@ -1914,10 +1973,10 @@
                                 <textarea id="capabilityTestPrompt" rows="3" placeholder="Custom retrieval query, PromptShield / compliance sample, policy text, or guardrail prose — optional; built-in defaults apply when empty." style="width:100%;font-size:0.82rem;border-radius:8px;border:1px solid #e4eaf7;padding:10px 12px;resize:vertical;font-family:inherit;box-sizing:border-box;"></textarea>
                             </div>
                             <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;">
-                                <button type="button" class="btn-primary-sm" id="capabilityRunBtn" onclick="runCapabilityDemo()"><i class="bi bi-play-circle me-1"></i>Run Scenario</button>
+                                <button type="button" class="btn-primary-sm" id="capabilityRunBtn" onclick="runCapabilityDemo()"><i class="bi bi-play-circle me-1"></i>Run Scenario</button><button type="button" class="btn-ghost-sm" id="copyExecSummaryBtn" onclick="copyExecutiveSummary()"><i class="bi bi-clipboard me-1"></i>Copy summary</button>
                                 <button class="btn-ghost-sm" onclick="showPanel('chat', null)"><i class="bi bi-chat-dots me-1"></i>Test in Chat</button>
                             </div>
-                            <div id="capabilityResult" style="margin-top:16px;display:none;background:#f8faff;border:1px solid #e4eaf7;border-radius:8px;padding:10px;font-size:0.78rem;color:#555;"></div>
+                            <div style="margin-top:10px;"><label for="capabilityPreset" style="display:block;font-size:0.72rem;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">Scenario preset</label><select id="capabilityPreset" style="width:100%;font-size:0.82rem;border-radius:8px;border:1px solid var(--phase1-border);padding:8px 10px;background:#fff;"></select></div><div id="capabilityResult" style="margin-top:16px;display:none;background:#f8faff;border:1px solid var(--phase1-border);border-radius:8px;padding:10px;font-size:0.78rem;color:#555;"></div><div id="whyThisMattersHost" class="phase1-host" style="margin-top:12px;background:#fff;border:1px solid var(--phase1-border);border-radius:8px;padding:10px;"></div><div id="kpiPartialMount" style="margin-top:12px;"></div><div id="legendPartialMount" style="margin-top:10px;"></div>
                         </div>
                     </div>
                 </div>
@@ -1967,17 +2026,20 @@
         applySidebarState();
 
         // ── State ──
+        let demoUploadIdSeq = 0;
         let uploadedFiles   = [];
         let parsedRecords   = [];
         let queryCount      = 0;
         let selectedModel   = 'Auto (Mesh)';
         let typeCounts      = {};
+        let uploadDiagState = { accepted: 0, rejected: 0, lastMessage: "Last API response: none yet.", status: "idle" };
         const MAX_REPO_FILES = 60;
         const VECTOR_INGEST_ENDPOINT = '/api/demo-vector-ingest.php';
         const VECTOR_SEARCH_ENDPOINT = '/api/demo-vector-search.php';
         const VECTOR_STATUS_ENDPOINT = '/api/demo-vector-status.php';
         const VECTOR_CLEAR_ENDPOINT = '/api/demo-vector-clear.php';
         const CAPABILITY_RUN_ENDPOINT = '/api/demo-capability-run.php';
+        const UPLOAD_PARSE_ENDPOINT = '/api/demo-upload-parse.php';
         const DEMO_PRODUCT_NAME = 'Vigilant Voices';
         const RETRIEVAL_TOP_K = 3;
 
@@ -2126,11 +2188,13 @@
             window.scrollTo(0, 0);
         }
 
-        const SIDEBAR_STATE_KEY = 'demoSidebarCollapsed';
+        /* v2: ignore legacy demoSidebarCollapsed so a stale "hidden" preference does not keep the left rail off-screen */
+        const SIDEBAR_STATE_KEY = 'demoSidebarCollapsed_v2';
 
         function openCapabilityDemo(key, linkEl) {
             activeCapabilityKey = key;
             renderCapabilityDemo();
+            refreshCapabilityPresetOptions();
             showPanel('capability', linkEl);
         }
 
@@ -2161,10 +2225,15 @@
             }
         }
 
-        function toggleGroup(button) {
+        function openSidebarSectionDemo(button) {
             const group = button.closest('.sidebar-group');
             if (!group) return;
-            group.classList.toggle('collapsed');
+            group.classList.remove('collapsed');
+            const first = group.querySelector('.sidebar-group-items a[data-demo-cap]');
+            if (!first) return;
+            const key = first.getAttribute('data-demo-cap');
+            if (!key) return;
+            openCapabilityDemo(key, first);
         }
 
         function renderCapabilityDemo() {
@@ -2189,6 +2258,9 @@
                 }
             }
             document.getElementById('capabilityResult').style.display = 'none';
+            if (window.DemoRenderers && window.DemoRenderers.renderWhyThisMatters) {
+                window.DemoRenderers.renderWhyThisMatters(document.getElementById('whyThisMattersHost'), activeCapabilityKey);
+            }
             const tw = document.getElementById('capabilityTestWrap');
             if (tw) {
                 tw.style.display = CAPABILITY_NEEDS_TEST_INPUT.has(activeCapabilityKey) ? 'block' : 'none';
@@ -2206,9 +2278,11 @@
             }
 
             const testEl = document.getElementById('capabilityTestPrompt');
-            const prompt = testEl && CAPABILITY_NEEDS_TEST_INPUT.has(activeCapabilityKey)
-                ? String(testEl.value || '').trim()
-                : '';
+            const presetEl = document.getElementById('capabilityPreset');
+            const selectedPreset = presetEl ? String(presetEl.value || '') : '';
+            const prompt = (window.DemoPresets && window.DemoPresets.resolvePrompt)
+                ? window.DemoPresets.resolvePrompt(activeCapabilityKey, selectedPreset, testEl && CAPABILITY_NEEDS_TEST_INPUT.has(activeCapabilityKey) ? String(testEl.value || '').trim() : '')
+                : (testEl && CAPABILITY_NEEDS_TEST_INPUT.has(activeCapabilityKey) ? String(testEl.value || '').trim() : '');
 
             try {
                 const res = await fetch(CAPABILITY_RUN_ENDPOINT, {
@@ -2227,27 +2301,31 @@
                 }
 
                 const rows = Array.isArray(json.metrics) ? json.metrics : [];
-                const table = rows.map(([k, v]) =>
-                    '<div style="display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #e4eaf7;padding:5px 0;font-size:0.76rem;"><span style="color:#667;">' + escapeHtml(String(k)) + '</span><strong style="color:#14183E;">' + escapeHtml(String(v)) + '</strong></div>'
-                ).join('');
-
                 const mode = json.mode ? String(json.mode) : 'live';
-                const detail = json.detail ? '<div style="margin-top:10px;font-size:0.76rem;color:#555;line-height:1.45;">' + escapeHtml(String(json.detail)) + '</div>' : '';
-                const checks = (typeof json.checks_passed === 'number' && typeof json.checks_total === 'number')
-                    ? '<div style="margin-top:8px;font-size:0.72rem;color:#28a745;"><i class="bi bi-check2-circle me-1"></i>Checks passed: <strong>' + json.checks_passed + '</strong> / ' + json.checks_total + '</div>'
-                    : '';
+                const risk = (window.DemoRenderers && window.DemoRenderers.riskFrom)
+                    ? window.DemoRenderers.riskFrom(mode, json.checks_passed, json.checks_total)
+                    : 'review';
 
-                result.innerHTML =
-                    '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;">' +
-                    '<strong style="font-size:0.88rem;color:#14183E;">' + escapeHtml(c.title) + '</strong>' +
-                    '<span style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;background:#e8f7ed;color:#1a7a3e;padding:3px 8px;border-radius:6px;">' + escapeHtml(mode) + '</span>' +
-                    '<span style="font-size:0.65rem;color:#888;">' + escapeHtml(DEMO_PRODUCT_NAME) + '</span>' +
-                    '</div>' +
-                    table +
-                    detail +
-                    checks +
-                    '<span style="display:block;margin-top:10px;color:#667;font-size:0.74rem;">Use <strong>Ask Your Data</strong> with indexed content to pair mesh-grounded answers with this scenario.</span>';
+                if (window.DemoRenderers && window.DemoRenderers.renderCapabilityResultHtml) {
+                    result.innerHTML = window.DemoRenderers.renderCapabilityResultHtml({
+                        title: c.title,
+                        mode: mode,
+                        risk: risk,
+                        productName: DEMO_PRODUCT_NAME,
+                        metrics: rows,
+                        detail: json.detail || '',
+                        checksPassed: (typeof json.checks_passed === 'number' ? json.checks_passed : null),
+                        checksTotal: (typeof json.checks_total === 'number' ? json.checks_total : null)
+                    });
+                } else {
+                    result.innerHTML = '<strong style="font-size:0.88rem;color:var(--phase1-text,#14183E);">' + escapeHtml(c.title) + '</strong>';
+                }
 
+                if (window.DemoRenderers && window.DemoRenderers.renderMetrics) {
+                    window.DemoRenderers.renderMetrics(document.getElementById('productMetricsHost'), json);
+                    window.DemoRenderers.renderLegend(document.getElementById('riskLegendHost'));
+                    lastExecutiveSummary = window.DemoRenderers.executiveSummary(c.title, mode, json.checks_passed, json.checks_total, json.detail || '');
+                }
                 addActivity('<strong>Capability</strong> live run: ' + escapeHtml(c.title));
             } catch (err) {
                 result.innerHTML =
@@ -2258,6 +2336,56 @@
                 if (btn) {
                     btn.disabled = false;
                 }
+            }
+        }
+
+        
+        
+        async function loadPhaseOnePartials() {
+            await Promise.all([
+                loadHtmlPartial('/partials/demo/product-metrics-panel.html', 'kpiPartialMount'),
+                loadHtmlPartial('/partials/demo/risk-badge-legend.html', 'legendPartialMount')
+            ]);
+        }
+
+        async function loadHtmlPartial(url, mountId) {
+            const mount = document.getElementById(mountId);
+            if (!mount) return;
+            try {
+                const res = await fetch(url, { credentials: 'same-origin' });
+                if (!res.ok) return;
+                mount.innerHTML = await res.text();
+            } catch (_e) {
+                // Optional enhancement only.
+            }
+        }
+
+function refreshCapabilityPresetOptions() {
+            const el = document.getElementById('capabilityPreset');
+            if (!el) return;
+            const opts = (window.DemoPresets && window.DemoPresets.optionsFor) ? window.DemoPresets.optionsFor(activeCapabilityKey) : [];
+            el.innerHTML = '';
+            if (!opts.length) {
+                const o = document.createElement('option');
+                o.value = '';
+                o.textContent = 'Default scenario';
+                el.appendChild(o);
+                return;
+            }
+            opts.forEach(function (p, idx) {
+                const o = document.createElement('option');
+                o.value = p.id;
+                o.textContent = p.label;
+                if (idx === 0) o.selected = true;
+                el.appendChild(o);
+            });
+        }
+
+        let lastExecutiveSummary = '';
+        function copyExecutiveSummary() {
+            if (!lastExecutiveSummary) return;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(lastExecutiveSummary).catch(function () {});
             }
         }
 
@@ -2326,6 +2454,7 @@
                     alert('Unable to clear vector index right now.');
                     return;
                 }
+                setUploadDiagnostics('success', uploadDiagState.accepted, uploadDiagState.rejected, 'Last API response: vector index cleared for current session.');
                 await refreshVectorStatus();
                 addActivity('<strong>Vector index</strong> cleared for current demo session');
             } catch (e) {
@@ -2368,6 +2497,7 @@
                     return;
                 }
 
+                setUploadDiagnostics('success', uploadDiagState.accepted, uploadDiagState.rejected, 'Last API response: vector rebuild completed from parsed records (' + documents.length + ').');
                 await refreshVectorStatus();
                 addActivity(`<strong>Vector rebuild</strong> completed from parsed table (${documents.length} records)`);
             } catch (e) {
@@ -2453,34 +2583,63 @@
             return (b / 1048576).toFixed(1) + ' MB';
         }
 
-        function handleFiles(files) {
-            if (!files.length) return;
-            document.getElementById('fileQueue').style.display = 'block';
+        function renderUploadDiagnostics() {
+            const acceptedEl = document.getElementById('diagAccepted');
+            const rejectedEl = document.getElementById('diagRejected');
+            const msgEl = document.getElementById('diagLastMsg');
+            const pill = document.getElementById('diagStatusPill');
+            if (acceptedEl) acceptedEl.textContent = String(uploadDiagState.accepted || 0);
+            if (rejectedEl) rejectedEl.textContent = String(uploadDiagState.rejected || 0);
+            if (msgEl) msgEl.textContent = String(uploadDiagState.lastMessage || 'Last API response: none yet.');
+            if (pill) {
+                const st = String(uploadDiagState.status || 'idle');
+                pill.textContent = st;
+                if (st === 'error') {
+                    pill.style.background = 'var(--phase1-badge-blocked-bg,#fde8e8)';
+                    pill.style.color = 'var(--phase1-badge-blocked-fg,#b42318)';
+                } else if (st === 'success') {
+                    pill.style.background = 'var(--phase1-badge-safe-bg,#e8f7ed)';
+                    pill.style.color = 'var(--phase1-badge-safe-fg,#1a7a3e)';
+                } else if (st === 'uploading') {
+                    pill.style.background = 'var(--phase1-badge-review-bg,#fff4dd)';
+                    pill.style.color = 'var(--phase1-badge-review-fg,#9a6700)';
+                } else {
+                    pill.style.background = '#eef3ff';
+                    pill.style.color = '#2a3c78';
+                }
+            }
+        }
 
-            Array.from(files).forEach(file => {
-                enqueueFileRecord(file);
-            });
+        function setUploadDiagnostics(status, accepted, rejected, message) {
+            uploadDiagState.status = status || uploadDiagState.status;
+            if (typeof accepted === 'number') uploadDiagState.accepted = accepted;
+            if (typeof rejected === 'number') uploadDiagState.rejected = rejected;
+            if (message) uploadDiagState.lastMessage = message;
+            renderUploadDiagnostics();
+        }
+
+        function handleFiles(files) {
+            if (!files || !files.length) return;
+            document.getElementById('fileQueue').style.display = 'block';
+            const records = Array.from(files).map(file => enqueueFileRecord(file));
+            setUploadDiagnostics('uploading', 0, 0, 'Last API response: uploading ' + records.length + ' file(s)…');
+            uploadAndParseFiles(Array.from(files), records);
 
             const finput = document.getElementById('fileInput');
             if (finput) {
-                try {
-                    finput.value = '';
-                } catch (e) { /* ignore */ }
+                try { finput.value = ''; } catch (e) { }
             }
         }
 
         function enqueueFileRecord(fileLike, options = {}) {
             document.getElementById('fileQueue').style.display = 'block';
-            const id = 'file_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+            const id = 'file_' + (++demoUploadIdSeq) + '_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
             const safeName = escapeHtml(fileLike.name || 'unknown-file');
             const type = getFileType(fileLike.name || '');
             const iconData = getFileIcon(type);
             const record = {
                 id,
-                file: {
-                    name: fileLike.name || 'unknown-file',
-                    size: Number(fileLike.size || 0)
-                },
+                file: { name: fileLike.name || 'unknown-file', size: Number(fileLike.size || 0) },
                 type,
                 status: 'queued',
                 chunks: 0,
@@ -2499,176 +2658,129 @@
                 <div style="flex:1;min-width:0;">
                     <div class="file-item-name" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="${safeName}">${safeName}</div>
                     <div class="file-item-meta">${formatBytes(record.file.size)}${record.source === 'github' ? ' · GitHub' : ''}</div>
-                    <div class="progress-thin">
-                        <div class="progress-bar-fill" id="prog_${id}" style="width:0%;"></div>
-                    </div>
+                    <div class="progress-thin"><div class="progress-bar-fill" id="prog_${id}" style="width:5%;"></div></div>
                 </div>
-                <span class="file-status status-queued" id="status_${id}">Queued</span>
+                <span class="file-status status-parsing" id="status_${id}">Uploading…</span>
             `;
             document.getElementById('fileList').appendChild(item);
-
-            simulateParsing(record);
+            return record;
         }
 
-        function simulateParsing(record) {
-            const prog = document.getElementById('prog_' + record.id);
-            const statusEl = document.getElementById('status_' + record.id);
-
-            // Short stagger only — full parse is simulated client-side (no real I/O wait).
-            const startDelay = Math.random() * 60;
-
-            setTimeout(() => {
-                statusEl.className = 'file-status status-parsing';
-                statusEl.textContent = 'Parsing…';
-                let pct = 0;
-                const tickMs = 42;
-                const iv = setInterval(() => {
-                    pct += Math.random() * 28 + 18;
-                    if (pct >= 100) {
-                        pct = 100;
-                        clearInterval(iv);
-                        void finishParsing(record, prog, statusEl);
-                    }
-                    prog.style.width = pct + '%';
-                }, tickMs);
-            }, startDelay);
-        }
-
-        async function finishParsing(record, prog, statusEl) {
-            statusEl.className = 'file-status status-indexed';
-            statusEl.textContent = 'Indexed';
-            record.status = 'indexed';
-
-            const chunks = Math.floor(Math.random() * 24) + 4;
-            record.chunks = chunks;
-
-            // Update type counts
-            typeCounts[record.type] = (typeCounts[record.type] || 0) + 1;
-
-            const dbEntry = addToDatabase(record);
-            updateCounters();
-            await ingestRecordToVector(record, dbEntry.preview, dbEntry.field);
-            if (!record.silentActivity) {
-                addActivity(`<strong>${record.file.name}</strong> parsed — ${chunks} chunks indexed`);
-            }
-        }
-
-        async function ingestRecordToVector(record, previewText, fieldName) {
+        async function uploadAndParseFiles(files, records) {
+            const form = new FormData();
+            files.forEach(f => form.append('files[]', f));
             try {
-                const text = `File: ${record.file.name}\nType: ${record.type}\nField: ${fieldName || 'Content'}\nPreview: ${previewText || ''}`;
-                const res = await fetch(VECTOR_INGEST_ENDPOINT, {
+                const res = await fetch(UPLOAD_PARSE_ENDPOINT, {
                     method: 'POST',
                     credentials: 'same-origin',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        documents: [{
-                            id: record.id,
-                            title: record.file.name,
-                            text,
-                            metadata: { type: record.type, source: 'upload' }
-                        }]
-                    })
+                    body: form
                 });
-                if (res.ok) {
-                    await refreshVectorStatus();
-                    return true;
+                const json = await res.json();
+                if (!res.ok || !json.ok || !Array.isArray(json.items)) {
+                    throw new Error((json && json.error) ? String(json.error) : 'Upload failed');
                 }
-            } catch (e) {
-                // Keep demo flow alive if vector ingest endpoint is unavailable.
+
+                let acceptedCount = 0;
+                let rejectedCount = 0;
+                json.items.forEach((item, idx) => {
+                    const record = records[idx];
+                    if (!record) return;
+                    const prog = document.getElementById('prog_' + record.id);
+                    const statusEl = document.getElementById('status_' + record.id);
+                    if (item.status !== 'indexed') {
+                        rejectedCount++;
+                        record.status = 'error';
+                        if (statusEl) { statusEl.className = 'file-status status-queued'; statusEl.textContent = 'Error'; }
+                        if (prog) prog.style.width = '100%';
+                        return;
+                    }
+                    acceptedCount++;
+                    record.status = 'indexed';
+                    record.chunks = Number(item.chunks || 1);
+                    if (item.id) record.id = String(item.id);
+                    if (item.type) record.type = String(item.type);
+
+                    if (statusEl) { statusEl.className = 'file-status status-indexed'; statusEl.textContent = 'Indexed'; }
+                    if (prog) prog.style.width = '100%';
+
+                    typeCounts[record.type] = (typeCounts[record.type] || 0) + 1;
+                    const dbEntry = addToDatabase(record, {
+                        field: item.field || 'Content',
+                        preview: item.preview || 'Parsed and indexed document.'
+                    });
+                    updateCounters();
+                    if (!record.silentActivity) {
+                        addActivity(`<strong>${escapeHtml(record.file.name)}</strong> uploaded and indexed — ${record.chunks} chunks`);
+                    }
+                });
+
+                setUploadDiagnostics('success', acceptedCount, rejectedCount, 'Last API response: ok=' + String(!!json.ok) + ', accepted=' + String(acceptedCount) + ', rejected=' + String(rejectedCount) + '.');
+                await refreshVectorStatus();
+            } catch (err) {
+                records.forEach(record => {
+                    const statusEl = document.getElementById('status_' + record.id);
+                    if (statusEl) { statusEl.className = 'file-status status-queued'; statusEl.textContent = 'Error'; }
+                });
+                setUploadDiagnostics('error', 0, records.length, 'Last API response: upload failed. Check session, file size, and PHP upload limits.');
+                addActivity('<strong>Upload failed</strong> — verify session and file size limits.');
             }
-            return false;
         }
 
-        function addToDatabase(record) {
+        function addToDatabase(record, overrides) {
+            const opts = overrides || {};
+            const tbody = document.getElementById('dataTableBody');
+            if (!tbody) {
+                const field = opts.field || 'Content';
+                const preview = opts.preview || 'Extracted content preview...';
+                parsedRecords.push({ record, field, preview });
+                return { field, preview };
+            }
             const fieldMap = {
-                pdf:  ['Section', 'Paragraph', 'Heading', 'Caption'],
+                pdf: ['Section', 'Paragraph', 'Heading', 'Caption'],
                 xlsx: ['Row Data', 'Column Header', 'Cell Value', 'Sheet Name'],
                 docx: ['Paragraph', 'Heading', 'Table Cell', 'List Item'],
-                csv:  ['Row', 'Field', 'Value', 'Column'],
-                img:  ['OCR Text', 'Caption', 'Detected Object', 'Label'],
+                csv: ['Row', 'Field', 'Value', 'Column'],
+                img: ['OCR Text', 'Caption', 'Detected Object', 'Label'],
                 code: ['File Path', 'Code Block', 'Function', 'Configuration'],
             };
             const fields = fieldMap[record.type] || ['Content'];
             const previewMap = {
-                pdf:  ['Extracted text content from document section...', 'Policy details for section 3.2...', 'Financial summary Q4 2024...'],
+                pdf: ['Extracted text content from document section...', 'Policy details for section 3.2...', 'Financial summary Q4 2024...'],
                 xlsx: ['=SUM(B2:B50) → $142,500', 'Sales Region: North America | Q3', 'Customer ID: 10042 | Status: Active'],
                 docx: ['Executive summary: revenue increased by 18%...', 'Action items from meeting on 14 Mar...', 'Appendix A — Technical Specifications...'],
-                csv:  ['John Smith, 42, San Francisco, Engineer', 'Product SKU: VV-1024 | Units: 350', 'Date: 2024-11-01 | Value: $8,200'],
-                img:  ['OCR: "Total Invoice Amount: $4,820"', 'Detected label: organizational chart', 'OCR: "Confidential — Internal Use Only"'],
+                csv: ['John Smith, 42, San Francisco, Engineer', 'Product SKU: MM-1024 | Units: 350', 'Date: 2024-11-01 | Value: $8,200'],
+                img: ['OCR: "Total Invoice Amount: $4,820"', 'Detected label: organizational chart', 'OCR: "Confidential — Internal Use Only"'],
                 code: ['Repository file indexed for semantic code search...', 'Configuration file parsed for key settings...', 'Function signatures and comments extracted...'],
             };
             const previews = previewMap[record.type] || ['Extracted content preview...'];
 
-            const tbody = document.getElementById('dataTableBody');
-            // Clear placeholder row if present
             if (tbody.querySelector('[colspan]')) tbody.innerHTML = '';
 
             const rowNum = parsedRecords.length + 1;
-            const field = fields[Math.floor(Math.random() * fields.length)];
-            const preview = previews[Math.floor(Math.random() * previews.length)];
+            const field = opts.field || fields[Math.floor(Math.random() * fields.length)];
+            const preview = opts.preview || previews[Math.floor(Math.random() * previews.length)];
             const now = new Date().toLocaleTimeString();
 
             parsedRecords.push({ record, field, preview });
 
             const row = document.createElement('tr');
+            const safeFileName = escapeHtml(record.file.name);
+            const safePreview = escapeHtml(preview);
             row.innerHTML = `
                 <td style="color:#aaa;font-size:0.75rem;">${rowNum}</td>
-                <td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${record.file.name}">${record.file.name}</td>
+                <td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${safeFileName}">${safeFileName}</td>
                 <td><span class="tag-badge tag-${record.type}">${record.type}</span></td>
-                <td>${field}</td>
-                <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#888;" title="${preview}">${preview}</td>
+                <td>${escapeHtml(field)}</td>
+                <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#888;" title="${safePreview}">${safePreview}</td>
                 <td style="text-align:center;font-weight:600;color:#1363C6;">${record.chunks}</td>
                 <td style="color:#888;font-size:0.75rem;">${now}</td>
                 <td>
-                    <button onclick="previewRecord(this)" class="btn-ghost-sm" style="padding:4px 10px;font-size:0.72rem;" data-preview="${encodeURIComponent(preview)}">
-                        <i class="bi bi-eye me-1"></i>View
-                    </button>
+                    <button onclick="previewRecord(this)" class="btn-ghost-sm" style="padding:4px 10px;font-size:0.72rem;" data-preview="${encodeURIComponent(safePreview)}"><i class="bi bi-eye me-1"></i>View</button>
                 </td>
             `;
             tbody.appendChild(row);
-
             updateTypeBreakdown();
-
             return { field, preview };
-        }
-
-        function updateCounters() {
-            const indexed = uploadedFiles.filter(f => f.status === 'indexed');
-            const totalChunks = indexed.reduce((a, f) => a + f.chunks, 0);
-
-            document.getElementById('stat-docs').textContent     = indexed.length;
-            document.getElementById('stat-records').textContent  = parsedRecords.length;
-            document.getElementById('dp-docs').textContent       = indexed.length;
-            document.getElementById('dp-chunks').textContent     = totalChunks;
-            document.getElementById('idx-docs').textContent      = indexed.length;
-            document.getElementById('idx-chunks').textContent    = totalChunks;
-            document.getElementById('pill-docs').textContent     = indexed.length + ' doc' + (indexed.length !== 1 ? 's' : '');
-            document.getElementById('pill-chunks').textContent   = totalChunks;
-        }
-
-        function updateTypeBreakdown() {
-            const container = document.getElementById('typeBreakdown');
-            const total = Object.values(typeCounts).reduce((a,b) => a+b, 0);
-            if (total === 0) return;
-
-            const colors = { pdf:'#c0392b', xlsx:'#1a7a3e', docx:'#1363C6', csv:'#6b21a8', img:'#b85c00' };
-            let html = '';
-            for (const [type, count] of Object.entries(typeCounts)) {
-                const pct = Math.round((count / total) * 100);
-                const color = colors[type] || '#888';
-                html += `
-                    <div style="margin-bottom:12px;">
-                        <div style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:4px;">
-                            <span style="font-weight:600;text-transform:uppercase;color:#444;">${type}</span>
-                            <span style="color:#888;">${count} file${count>1?'s':''} &middot; ${pct}%</span>
-                        </div>
-                        <div style="height:8px;background:#f0f3fb;border-radius:4px;overflow:hidden;">
-                            <div style="height:100%;width:${pct}%;background:${color};border-radius:4px;transition:width 0.4s;"></div>
-                        </div>
-                    </div>
-                `;
-            }
-            container.innerHTML = html;
         }
 
         function clearQueue() {
@@ -3072,6 +3184,16 @@
             return new URLSearchParams(window.location.search).get(name);
         }
 
+        /** Ensures Services/Products capability rows and section headers work when clicks land on icons; fixes marketing Links to site root. */
+        function initDemoSidebarClickHandlers() {
+            var nav = document.querySelector('.sidebar-nav');
+            if (!nav) return;
+            nav.querySelectorAll('a[data-demo-cap]').forEach(function (a) {
+                a.removeAttribute('onclick');
+            });
+            // Keep native navigation for secure detail pages.
+        }
+
         function initDemoMode() {
             const capability = queryParam('capability');
             if (capability && capabilityCatalog[capability]) {
@@ -3087,8 +3209,14 @@
         }
 
         // Initialize capability panel defaults
+        initDemoSidebarClickHandlers();
         initDemoMode();
+        refreshCapabilityPresetOptions();
+        loadPhaseOnePartials();
+        renderUploadDiagnostics();
     </script>
+    <script defer src="/js/demo-presets.js"></script>
+    <script defer src="/js/demo-renderers.js"></script>
 
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f43066cf480b4383abeb276c44747bbb"}'></script><!-- End Cloudflare Web Analytics -->
 </body>

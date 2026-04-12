@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Service Detail | Model Signal Demo</title>
+  <style>
+    body{font-family:Arial,sans-serif;margin:0;background:#f6f8ff;color:#1b2140}
+    .wrap{max-width:1100px;margin:0 auto;padding:24px}
+    .layout{display:grid;grid-template-columns:280px 1fr;gap:14px}
+    .card{background:#fff;border:1px solid #e3eafc;border-radius:12px;padding:18px}
+    .pill{display:inline-block;background:#eef3ff;color:#2a3c78;border-radius:999px;padding:4px 10px;font-size:.75rem;font-weight:700}
+    h1{margin:.4rem 0 1rem}
+    p{line-height:1.5;color:#4b5578}
+    .row{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{border:1px solid #cdd8f6;background:#fff;color:#1a1f3a;padding:8px 12px;border-radius:10px;text-decoration:none;font-weight:600}
+    .mini-nav h2{margin:0 0 10px;font-size:.92rem;color:#2a3c78}
+    .mini-nav a{display:block;padding:8px 10px;border-radius:8px;color:#2d3a63;text-decoration:none;font-size:.88rem}
+    .mini-nav a:hover,.mini-nav a.active{background:#eef3ff;color:#1c2f68;font-weight:700}
+    @media (max-width: 920px){.layout{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="layout">
+  <aside class="card mini-nav">
+    <h2>Services list</h2>
+    <div id="miniNav"></div>
+  </aside>
+  <div class="card">
+    <div class="pill">Secure demo service page</div>
+    <h1 id="title">Loading service…</h1>
+    <p id="what"></p>
+    <p id="why"></p>
+    <div class="row">
+      <a class="btn" href="/demo/services.html">Back to Services</a>
+      <a class="btn" href="/demo/products.html">Products</a>
+      <a class="btn" href="/demo.html">Demo Home</a>
+    </div>
+  </div>
+  </div>
+</div>
+<script>
+const content = {
+  "retrieval-quality-engineering": {
+    title: "Retrieval Quality Engineering",
+    what: "What it does: optimizes chunking, hybrid retrieval, and reranking so model responses are grounded in the highest-signal evidence.",
+    why: "Why companies use it: improves answer accuracy, reduces hallucination risk, and increases confidence in AI-assisted decisions."
+  },
+  "guardrail-policy-engineering": {
+    title: "Guardrail Policy Engineering",
+    what: "What it does: converts legal, privacy, and security policy into runtime controls with deterministic pass/fail checks.",
+    why: "Why companies use it: enforces governance consistently and provides clear audit artifacts for regulators and internal review."
+  },
+  "private-finetuning-ops": {
+    title: "Private Fine-Tuning Ops",
+    what: "What it does: orchestrates private fine-tune pipelines with data curation, eval gates, release controls, and rollback readiness.",
+    why: "Why companies use it: ships model improvements safely while preserving lineage, reproducibility, and compliance posture."
+  },
+  "model-reliability-sre": {
+    title: "Model Reliability SRE",
+    what: "What it does: implements SLOs, failover strategies, and observability for model endpoints and retrieval dependencies.",
+    why: "Why companies use it: protects uptime and response quality when providers degrade, latency spikes, or quotas are exhausted."
+  }
+};
+async function guardAndRender() {
+  try {
+    const res = await fetch('/api/demo-session.php', { credentials: 'same-origin' });
+    const json = await res.json();
+    if (!json.authenticated) { window.location.href = '/login.html'; return; }
+    const slug = new URLSearchParams(window.location.search).get('slug') || '';
+    const c = content[slug];
+    if (!c) { window.location.href = '/demo/services.html'; return; }
+    var nav = document.getElementById('miniNav');
+    Object.keys(content).forEach(function (k) {
+      var a = document.createElement('a');
+      a.href = '/demo/services/' + k + '.html';
+      a.textContent = content[k].title;
+      if (k === slug) a.className = 'active';
+      nav.appendChild(a);
+    });
+    document.title = c.title + ' | Model Signal Demo';
+    document.getElementById('title').textContent = c.title;
+    document.getElementById('what').textContent = c.what;
+    document.getElementById('why').textContent = c.why;
+  } catch (_e) { window.location.href = '/login.html'; }
+}
+guardAndRender();
+</script>
+</body>
+</html>
