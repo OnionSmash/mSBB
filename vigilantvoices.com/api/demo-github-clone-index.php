@@ -137,6 +137,8 @@ if ($resolvedBranch === '' || $resolvedBranch === 'HEAD') {
 }
 
 $maxFiles = 60;
+/** Skip huge blobs when sampling the repo for the demo (saves disk + keeps ingest fast). */
+$maxFileBytes = 512 * 1024;
 $files = [];
 $iterator = new RecursiveIteratorIterator(
     new RecursiveDirectoryIterator($targetDir, FilesystemIterator::SKIP_DOTS)
@@ -155,9 +157,14 @@ foreach ($iterator as $fileInfo) {
         continue;
     }
 
+    $byteSize = max(0, (int)$fileInfo->getSize());
+    if ($byteSize > $maxFileBytes) {
+        continue;
+    }
+
     $files[] = [
         'name' => $relPathNormalized,
-        'size' => max(0, (int)$fileInfo->getSize()),
+        'size' => $byteSize,
     ];
 
     if (count($files) >= $maxFiles) {
@@ -186,6 +193,7 @@ echo json_encode([
     'files' => $files,
     'file_count' => count($files),
     'limit' => $maxFiles,
+    'max_file_bytes' => $maxFileBytes,
 ]);
 
 function rrmdir(string $dir): void

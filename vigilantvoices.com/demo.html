@@ -607,6 +607,23 @@
             transition: width 0.4s ease;
         }
 
+        .upload-batch-progress .progress-thin {
+            height: 8px;
+            margin-top: 0;
+        }
+
+        .progress-bar-fill.is-indeterminate {
+            width: 100% !important;
+            background: linear-gradient(90deg, #c8d9f5 0%, var(--primary) 45%, var(--secondary) 55%, #c8d9f5 100%);
+            background-size: 180% 100%;
+            animation: uploadBatchShimmer 1.1s linear infinite;
+        }
+
+        @keyframes uploadBatchShimmer {
+            0% { background-position: 100% 0; }
+            100% { background-position: -100% 0; }
+        }
+
         .file-status {
             font-size: 0.72rem;
             font-weight: 600;
@@ -1428,30 +1445,40 @@
                         <div class="section-card-header">
                             <div>
                                 <h5><i class="bi bi-cloud-arrow-up me-2" style="color:#1363C6;"></i>Drop Files to Index</h5>
-                                <p>Supported: documents, images, code, plus infra/dev files (Terraform, Docker, Compose, env/config).</p>
+                                <p>Supported: documents, images, code, plus <strong>Terraform (.tf)</strong>, <strong>Dockerfile</strong>, <strong>Compose</strong>, env/config, and repo-style files.</p>
                             </div>
                         </div>
                         <div class="section-card-body">
                             <div class="upload-zone" id="uploadZone">
-                                <input type="file" id="fileInput" multiple accept=".pdf,.xlsx,.xls,.docx,.doc,.csv,.png,.jpg,.jpeg,.tiff,.txt,.md,.json,.yaml,.yml,.xml,.sql,.js,.jsx,.ts,.tsx,.py,.php,.java,.c,.cpp,.cs,.go,.rs,.rb,.swift,.kt,.html,.css,.scss,.sh,.tf,.tfvars,.hcl,.toml,.ini,.conf,.env,.properties,.dockerfile" onchange="handleFiles(this.files)">
+                                <input type="file" id="fileInput" multiple onchange="handleFiles(this.files)">
                                 <div class="upload-icon"><i class="bi bi-cloud-arrow-up"></i></div>
                                 <h5 style="font-size:1rem;font-weight:700;color:#14183E;margin-bottom:6px;">Drag &amp; drop files here</h5>
                                 <p style="font-size:0.82rem;color:#888;margin-bottom:12px;">or click anywhere in this area to browse</p>
                                 <div class="file-type-badges">
                                     <span>PDF</span>
+                                    <span>TF</span>
+                                    <span>Dockerfile</span>
+                                    <span>Compose</span>
                                     <span>XLSX</span>
                                     <span>DOCX</span>
                                     <span>CSV</span>
                                     <span>PNG</span>
                                     <span>JPG</span>
-                                    <span>TIFF</span>
                                 </div>
+                                <p style="font-size:0.72rem;color:#97a3bc;margin-top:8px;margin-bottom:0;">Any file type allowed (repos, infra, configs). Extensionless <code style="font-size:0.7rem;">Dockerfile</code> is supported.</p>
                             </div>
 
                             <div class="file-queue" id="fileQueue" style="display:none;">
                                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
                                     <div style="font-size:0.82rem;font-weight:700;color:#14183E;">Processing Queue</div>
                                     <button class="btn-ghost-sm" onclick="clearQueue()" style="font-size:0.72rem;padding:5px 12px;">Clear All</button>
+                                </div>
+                                <div id="uploadBatchProgressWrap" class="upload-batch-progress" style="display:none;margin-bottom:12px;">
+                                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;font-size:0.74rem;color:#4f5d75;">
+                                        <span id="uploadBatchProgressLabel">Uploading…</span>
+                                        <span id="uploadBatchProgressPct" style="font-variant-numeric:tabular-nums;">0%</span>
+                                    </div>
+                                    <div class="progress-thin"><div class="progress-bar-fill" id="uploadBatchProgressBar" style="width:0%;"></div></div>
                                 </div>
                                 <div id="fileList"></div>
                             </div>
@@ -1463,8 +1490,8 @@
                                 </div>
                                 <div style="font-size:0.74rem;color:var(--phase1-muted,#667);line-height:1.45;">
                                     <div>Accepted: <strong id="diagAccepted">0</strong> · Rejected: <strong id="diagRejected">0</strong></div>
-                                    <div style="margin-top:4px;">Guidance: keep individual files under typical PHP limits (often 2M-10M unless server-configured higher).</div>
-                                    <div id="diagStorageMode" style="margin-top:6px;color:#4f5d75;">Storage: checking...</div>
+                                    <div style="margin-top:4px;">Guidance: demo rejects files over <strong>6&nbsp;MiB</strong> each; PHP may also cap uploads (often 2–10&nbsp;MiB via <code style="font-size:0.7rem;">upload_max_filesize</code> / <code style="font-size:0.7rem;">post_max_size</code>).</div>
+                                    <div id="diagStorageMode" style="margin-top:6px;color:#4f5d75;">Storage: …</div>
                                     <div id="diagLastMsg" style="margin-top:6px;color:#4f5d75;">Last API response: none yet.</div>
                                 </div>
                             </div>
@@ -2025,7 +2052,8 @@
                 currentUser = json.user || 'vvadmin';
                 document.getElementById('sidebarUser').textContent = currentUser;
                 document.getElementById('topbarUser').textContent = currentUser;
-                refreshVectorStatus();
+                renderUploadDiagnostics();
+                syncRagState();
             } catch (e) {
                 window.location.href = 'login.html';
             }
@@ -2041,14 +2069,13 @@
         let queryCount      = 0;
         let selectedModel   = 'Auto (Mesh)';
         let typeCounts      = {};
-        let uploadDiagState = { accepted: 0, rejected: 0, lastMessage: "Last API response: none yet.", status: "idle", backend: "checking..." };
-        let uploadDiagHealthInFlight = false;
+        let uploadDiagState = { accepted: 0, rejected: 0, lastMessage: "Last API response: none yet.", status: "idle", backend: "…" };
+        let ragSyncInFlight = false;
         const MAX_REPO_FILES = 60;
         const VECTOR_INGEST_ENDPOINT = '/api/demo-vector-ingest.php';
         const VECTOR_SEARCH_ENDPOINT = '/api/demo-vector-search.php';
-        const VECTOR_STATUS_ENDPOINT = '/api/demo-vector-status.php';
+        const RAG_STATE_ENDPOINT = '/api/demo-rag-state.php';
         const VECTOR_CLEAR_ENDPOINT = '/api/demo-vector-clear.php';
-        const VECTOR_HEALTH_ENDPOINT = '/api/demo-vector-health.php';
         const CAPABILITY_RUN_ENDPOINT = '/api/demo-capability-run.php';
         const UPLOAD_PARSE_ENDPOINT = '/api/demo-upload-parse.php';
         const DEMO_PRODUCT_NAME = 'Vigilant Voices';
@@ -2435,41 +2462,99 @@ function refreshCapabilityPresetOptions() {
             });
         }
 
-        async function refreshVectorStatus() {
+        /**
+         * One round-trip after login, upload, clear, or rebuild: storage backend label + vector counts.
+         */
+        async function syncRagState() {
+            if (ragSyncInFlight) return;
+            ragSyncInFlight = true;
+            uploadDiagState.backend = '…';
+            renderUploadDiagnostics();
+            const ms = 4000;
             try {
-                const res = await fetch(VECTOR_STATUS_ENDPOINT, {
-                    method: 'GET',
-                    credentials: 'same-origin'
-                });
-                const json = await res.json();
-                if (!res.ok || !json.ok) return;
-
-                document.getElementById('vec-docs').textContent = String(json.documents ?? 0);
-                document.getElementById('vec-chunks').textContent = String(json.chunks ?? 0);
-                document.getElementById('vec-updated').textContent = json.last_updated
-                    ? new Date(json.last_updated).toLocaleTimeString()
+                const response = await Promise.race([
+                    fetch(RAG_STATE_ENDPOINT, {
+                        method: 'GET',
+                        credentials: 'same-origin',
+                        headers: { 'Accept': 'application/json', 'Cache-Control': 'no-store' }
+                    }),
+                    new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), ms))
+                ]);
+                const text = await response.text();
+                let json = {};
+                try { json = text ? JSON.parse(text) : {}; } catch (e) { json = {}; }
+                if (response.status === 401) {
+                    uploadDiagState.backend = 'login required';
+                    uploadDiagState.lastMessage = 'RAG sync: session not authenticated — refresh or log in again.';
+                    return;
+                }
+                if (!response.ok || !json.ok) {
+                    uploadDiagState.backend = 'unavailable';
+                    return;
+                }
+                const mode = String((json.storage && json.storage.mode) || '').toLowerCase();
+                uploadDiagState.backend = mode === 'pgvector' ? 'pgvector (Postgres)' : (mode === 'json_fallback' ? 'JSON file (fallback)' : String(json.storage.mode || 'ok'));
+                const v = json.vector || {};
+                document.getElementById('vec-docs').textContent = String(v.documents ?? 0);
+                document.getElementById('vec-chunks').textContent = String(v.chunks ?? 0);
+                document.getElementById('vec-updated').textContent = v.last_updated
+                    ? new Date(v.last_updated).toLocaleTimeString()
                     : '—';
-            } catch (e) {
-                // Silent for demo UX.
+            } catch (_) {
+                uploadDiagState.backend = 'unavailable (timeout or network)';
+            } finally {
+                ragSyncInFlight = false;
+                renderUploadDiagnostics();
             }
+        }
+
+        function recalcTypeCounts() {
+            typeCounts = {};
+            uploadedFiles.filter(function (f) { return f.status === 'indexed'; }).forEach(function (f) {
+                typeCounts[f.type] = (typeCounts[f.type] || 0) + 1;
+            });
+        }
+
+        function markUploadedFilesVectorCleared() {
+            uploadedFiles.forEach(function (f) {
+                if (f.status !== 'indexed') return;
+                f.status = 'cleared';
+                const statusEl = document.getElementById('status_' + f.id);
+                if (statusEl) {
+                    statusEl.className = 'file-status status-queued';
+                    statusEl.textContent = 'Cleared';
+                }
+            });
+            recalcTypeCounts();
         }
 
         async function clearVectorIndex() {
             try {
                 const res = await fetch(VECTOR_CLEAR_ENDPOINT, {
                     method: 'POST',
-                    credentials: 'same-origin'
+                    credentials: 'same-origin',
+                    headers: { 'Accept': 'application/json', 'Cache-Control': 'no-store' }
                 });
-                const json = await res.json();
-                if (!res.ok || !json.ok) {
-                    alert('Unable to clear vector index right now.');
+                const raw = await res.text();
+                let json = {};
+                try { json = raw ? JSON.parse(raw) : {}; } catch (e) {
+                    setUploadDiagnostics('error', uploadDiagState.accepted, uploadDiagState.rejected, 'Clear vector: server did not return JSON — ' + raw.slice(0, 120));
                     return;
                 }
-                setUploadDiagnostics('success', uploadDiagState.accepted, uploadDiagState.rejected, 'Last API response: vector index cleared for current session.');
-                await refreshVectorStatus();
+                if (res.status === 401) {
+                    setUploadDiagnostics('error', uploadDiagState.accepted, uploadDiagState.rejected, 'Clear vector: not logged in — refresh the page and sign in again.');
+                    return;
+                }
+                if (!res.ok || !json.ok) {
+                    setUploadDiagnostics('error', uploadDiagState.accepted, uploadDiagState.rejected, 'Clear vector failed: ' + String(json.error || res.status));
+                    return;
+                }
+                markUploadedFilesVectorCleared();
+                setUploadDiagnostics('success', uploadDiagState.accepted, uploadDiagState.rejected, 'Last API response: vector index cleared for this session (Postgres + file fallback).');
+                await syncRagState();
                 addActivity('<strong>Vector index</strong> cleared for current demo session');
             } catch (e) {
-                alert('Unable to clear vector index right now.');
+                setUploadDiagnostics('error', uploadDiagState.accepted, uploadDiagState.rejected, 'Clear vector: ' + (e && e.message ? String(e.message) : 'network error'));
             }
         }
 
@@ -2498,21 +2583,43 @@ function refreshCapabilityPresetOptions() {
                 const res = await fetch(VECTOR_INGEST_ENDPOINT, {
                     method: 'POST',
                     credentials: 'same-origin',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                     body: JSON.stringify({ documents })
                 });
-                const json = await res.json();
-
-                if (!res.ok || !json.ok) {
-                    alert('Rebuild failed. Please try again.');
+                const raw = await res.text();
+                let json = {};
+                try { json = raw ? JSON.parse(raw) : {}; } catch (e) {
+                    setUploadDiagnostics('error', uploadDiagState.accepted, uploadDiagState.rejected, 'Rebuild: server did not return JSON.');
                     return;
                 }
 
-                setUploadDiagnostics('success', uploadDiagState.accepted, uploadDiagState.rejected, 'Last API response: vector rebuild completed from parsed records (' + documents.length + ').');
-                await refreshVectorStatus();
-                addActivity(`<strong>Vector rebuild</strong> completed from parsed table (${documents.length} records)`);
+                if (res.status === 401) {
+                    setUploadDiagnostics('error', uploadDiagState.accepted, uploadDiagState.rejected, 'Rebuild: not logged in.');
+                    return;
+                }
+                if (!res.ok || !json.ok) {
+                    setUploadDiagnostics('error', uploadDiagState.accepted, uploadDiagState.rejected, 'Rebuild failed: ' + String(json.error || res.status));
+                    return;
+                }
+
+                documents.forEach(function (doc) {
+                    const uf = uploadedFiles.find(function (u) { return u.id === doc.id; });
+                    if (uf) {
+                        uf.status = 'indexed';
+                        const statusEl = document.getElementById('status_' + uf.id);
+                        if (statusEl) {
+                            statusEl.className = 'file-status status-indexed';
+                            statusEl.textContent = 'Indexed';
+                        }
+                    }
+                });
+                recalcTypeCounts();
+
+                setUploadDiagnostics('success', uploadDiagState.accepted, uploadDiagState.rejected, 'Last API response: vector rebuild ok, chunks=' + String(json.total_chunks != null ? json.total_chunks : '?') + '.');
+                await syncRagState();
+                addActivity('<strong>Vector rebuild</strong> completed from parsed table (' + documents.length + ' records)');
             } catch (e) {
-                alert('Rebuild failed. Please try again.');
+                setUploadDiagnostics('error', uploadDiagState.accepted, uploadDiagState.rejected, 'Rebuild: ' + (e && e.message ? String(e.message) : 'network error'));
             }
         }
 
@@ -2612,7 +2719,7 @@ function refreshCapabilityPresetOptions() {
             const pill = document.getElementById('diagStatusPill');
             if (acceptedEl) acceptedEl.textContent = String(uploadDiagState.accepted || 0);
             if (rejectedEl) rejectedEl.textContent = String(uploadDiagState.rejected || 0);
-            if (storageEl) storageEl.textContent = 'Storage: ' + String(uploadDiagState.backend || 'checking...');
+            if (storageEl) storageEl.textContent = 'Storage: ' + String(uploadDiagState.backend || '…');
             if (msgEl) msgEl.textContent = String(uploadDiagState.lastMessage || 'Last API response: none yet.');
             if (pill) {
                 const st = String(uploadDiagState.status || 'idle');
@@ -2639,36 +2746,6 @@ function refreshCapabilityPresetOptions() {
             if (typeof rejected === 'number') uploadDiagState.rejected = rejected;
             if (message) uploadDiagState.lastMessage = message;
             renderUploadDiagnostics();
-        }
-
-        async function refreshUploadStorageMode() {
-            if (uploadDiagHealthInFlight) return;
-            uploadDiagHealthInFlight = true;
-            try {
-                const controller = new AbortController();
-                const timeout = window.setTimeout(() => controller.abort(), 1800);
-                const response = await fetch(VECTOR_HEALTH_ENDPOINT, {
-                    method: 'GET',
-                    credentials: 'same-origin',
-                    headers: { 'Accept': 'application/json' },
-                    signal: controller.signal
-                });
-                window.clearTimeout(timeout);
-                const json = await response.json().catch(() => ({}));
-                const backend = String((json && json.backend) || '').toLowerCase();
-                if (backend === 'pgvector') {
-                    uploadDiagState.backend = 'pgvector';
-                } else if (backend) {
-                    uploadDiagState.backend = 'fallback';
-                } else {
-                    uploadDiagState.backend = 'unknown';
-                }
-            } catch (_) {
-                uploadDiagState.backend = 'fallback';
-            } finally {
-                uploadDiagHealthInFlight = false;
-                renderUploadDiagnostics();
-            }
         }
 
         function handleFiles(files) {
@@ -2719,17 +2796,89 @@ function refreshCapabilityPresetOptions() {
             return record;
         }
 
+        function postMultipartWithUploadProgress(url, formData, onUploadProgress) {
+            return new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', url);
+                xhr.withCredentials = true;
+                xhr.setRequestHeader('Accept', 'application/json');
+                xhr.setRequestHeader('Cache-Control', 'no-store');
+                xhr.upload.addEventListener('progress', (e) => {
+                    onUploadProgress({
+                        lengthComputable: e.lengthComputable,
+                        loaded: e.loaded,
+                        total: e.total
+                    });
+                });
+                xhr.addEventListener('load', () => {
+                    resolve({ status: xhr.status, responseText: xhr.responseText || '' });
+                });
+                xhr.addEventListener('error', () => reject(new Error('Network error')));
+                xhr.addEventListener('abort', () => reject(new Error('Aborted')));
+                xhr.send(formData);
+            });
+        }
+
+        function setUploadBatchProgressVisible(visible) {
+            const wrap = document.getElementById('uploadBatchProgressWrap');
+            const bar = document.getElementById('uploadBatchProgressBar');
+            if (wrap) wrap.style.display = visible ? 'block' : 'none';
+            if (!visible && bar) {
+                bar.classList.remove('is-indeterminate');
+                bar.style.width = '0%';
+            }
+        }
+
+        function updateUploadProgressUI(records, ev) {
+            const bar = document.getElementById('uploadBatchProgressBar');
+            const pctEl = document.getElementById('uploadBatchProgressPct');
+            const labelEl = document.getElementById('uploadBatchProgressLabel');
+            if (!bar || !pctEl || !labelEl) return;
+            const canPct = ev.lengthComputable && ev.total > 0;
+            const pct = canPct ? Math.min(100, Math.round((ev.loaded / ev.total) * 100)) : 0;
+            bar.classList.toggle('is-indeterminate', !canPct);
+            if (canPct) {
+                bar.style.width = pct + '%';
+                pctEl.textContent = pct + '%';
+                labelEl.textContent = pct >= 100 ? 'Processing on server…' : ('Uploading… ' + pct + '%');
+            } else {
+                bar.style.width = '100%';
+                pctEl.textContent = '…';
+                labelEl.textContent = 'Uploading…';
+            }
+            const rowW = canPct ? pct : 28;
+            records.forEach((r) => {
+                const prog = document.getElementById('prog_' + r.id);
+                if (prog) prog.style.width = rowW + '%';
+            });
+        }
+
         async function uploadAndParseFiles(files, records) {
             const form = new FormData();
             files.forEach(f => form.append('files[]', f));
+            setUploadBatchProgressVisible(true);
+            const bar = document.getElementById('uploadBatchProgressBar');
+            if (bar) {
+                bar.classList.remove('is-indeterminate');
+                bar.style.width = '0%';
+            }
+            const pctEl = document.getElementById('uploadBatchProgressPct');
+            const labelEl = document.getElementById('uploadBatchProgressLabel');
+            if (pctEl) pctEl.textContent = '0%';
+            if (labelEl) labelEl.textContent = 'Uploading… 0%';
             try {
-                const res = await fetch(UPLOAD_PARSE_ENDPOINT, {
-                    method: 'POST',
-                    credentials: 'same-origin',
-                    body: form
+                const res = await postMultipartWithUploadProgress(UPLOAD_PARSE_ENDPOINT, form, (ev) => {
+                    updateUploadProgressUI(records, ev);
                 });
-                const json = await res.json();
-                if (!res.ok || !json.ok || !Array.isArray(json.items)) {
+                const raw = res.responseText;
+                let json = {};
+                try { json = raw ? JSON.parse(raw) : {}; } catch (e) {
+                    throw new Error('Server returned non-JSON (check PHP errors or upload size limits).');
+                }
+                if (res.status === 401) {
+                    throw new Error('Not authenticated — open demo in this tab after logging in.');
+                }
+                if (res.status < 200 || res.status >= 300 || !json.ok || !Array.isArray(json.items)) {
                     throw new Error((json && json.error) ? String(json.error) : 'Upload failed');
                 }
 
@@ -2768,14 +2917,18 @@ function refreshCapabilityPresetOptions() {
                 });
 
                 setUploadDiagnostics('success', acceptedCount, rejectedCount, 'Last API response: ok=' + String(!!json.ok) + ', accepted=' + String(acceptedCount) + ', rejected=' + String(rejectedCount) + '.');
-                await refreshVectorStatus();
+                await syncRagState();
             } catch (err) {
                 records.forEach(record => {
                     const statusEl = document.getElementById('status_' + record.id);
                     if (statusEl) { statusEl.className = 'file-status status-queued'; statusEl.textContent = 'Error'; }
                 });
-                setUploadDiagnostics('error', 0, records.length, 'Last API response: upload failed. Check session, file size, and PHP upload limits.');
-                addActivity('<strong>Upload failed</strong> — verify session and file size limits.');
+                const detail = err && err.message ? String(err.message) : 'Upload failed';
+                setUploadDiagnostics('error', 0, records.length, 'Last API response: ' + detail);
+                addActivity('<strong>Upload failed</strong> — ' + escapeHtml(detail));
+                syncRagState();
+            } finally {
+                setUploadBatchProgressVisible(false);
             }
         }
 
@@ -2952,6 +3105,7 @@ function refreshCapabilityPresetOptions() {
         }
 
         function clearQueue() {
+            setUploadBatchProgressVisible(false);
             document.getElementById('fileList').innerHTML = '';
             document.getElementById('fileQueue').style.display = 'none';
         }
@@ -3382,7 +3536,6 @@ function refreshCapabilityPresetOptions() {
         refreshCapabilityPresetOptions();
         loadPhaseOnePartials();
         renderUploadDiagnostics();
-        refreshUploadStorageMode();
     </script>
     <script defer src="/js/demo-presets.js"></script>
     <script defer src="/js/demo-renderers.js"></script>

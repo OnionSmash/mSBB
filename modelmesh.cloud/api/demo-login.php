@@ -36,6 +36,7 @@ if ($username === '' || $password === '') {
     exit;
 }
 
+// Check if Turnstile is configured; if so, verify the token.
 $secret = getenv('TURNSTILE_SECRET_KEY') ?: '';
 if ($secret !== '') {
     if ($turnstileToken === '') {
@@ -71,6 +72,7 @@ if ($secret !== '') {
     }
 }
 
+// Validate credentials against environment or defaults.
 $validUser = getenv('DEMO_LOGIN_USER') ?: 'vvadmin';
 $validPass = getenv('DEMO_LOGIN_PASSWORD') ?: 'GenAiR0ck!';
 
@@ -80,6 +82,7 @@ if (!hash_equals($validUser, $username) || !hash_equals($validPass, $password)) 
     exit;
 }
 
+// Success: create session.
 session_regenerate_id(true);
 $_SESSION['vv_auth'] = 1;
 $_SESSION['vv_user'] = $username;

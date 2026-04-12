@@ -26,11 +26,12 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'GET') {
 
 require_once __DIR__ . '/demo-vector-lib.php';
 
-$status = demoVectorStatus(session_id());
+$state = demoVectorRagState(session_id());
+$v = $state['vector'];
 
 echo json_encode([
     'ok' => true,
-    'documents' => (int)($status['documents'] ?? 0),
-    'chunks' => (int)($status['chunks'] ?? 0),
-    'last_updated' => $status['last_updated'] ?? null,
+    'documents' => (int)($v['documents'] ?? 0),
+    'chunks' => (int)($v['chunks'] ?? 0),
+    'last_updated' => $v['last_updated'] ?? null,
 ]);

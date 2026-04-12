@@ -32,6 +32,9 @@ if (!isset($_FILES['files'])) {
 
 require_once __DIR__ . '/demo-vector-lib.php';
 
+/** Per-file cap for the demo (keep ≤ PHP upload_max_filesize / post_max_size). */
+const DEMO_UPLOAD_MAX_FILE_BYTES = 6 * 1024 * 1024;
+
 function vvTypeFromName(string $name): string {
     $lower = strtolower(basename($name));
     if ($lower === 'dockerfile' || str_ends_with($lower, '.dockerfile')) {
@@ -126,11 +129,29 @@ for ($i = 0; $i < count($names); $i++) {
     $err = (int)($errors[$i] ?? UPLOAD_ERR_NO_FILE);
 
     if ($err !== UPLOAD_ERR_OK || $tmp === '' || !is_uploaded_file($tmp)) {
+        $errMsg = 'Upload failed';
+        if ($err === UPLOAD_ERR_INI_SIZE || $err === UPLOAD_ERR_FORM_SIZE) {
+            $errMsg = 'File exceeds PHP upload limit (upload_max_filesize / post_max_size).';
+        } elseif ($err === UPLOAD_ERR_PARTIAL) {
+            $errMsg = 'Upload interrupted (partial file).';
+        } elseif ($err === UPLOAD_ERR_NO_FILE) {
+            $errMsg = 'No file received.';
+        }
         $items[] = [
             'name' => $name,
             'size' => $size,
             'status' => 'error',
-            'error' => 'Upload failed',
+            'error' => $errMsg,
+        ];
+        continue;
+    }
+
+    if ($size > DEMO_UPLOAD_MAX_FILE_BYTES) {
+        $items[] = [
+            'name' => $name,
+            'size' => $size,
+            'status' => 'error',
+            'error' => 'File exceeds demo limit (' . (string)round(DEMO_UPLOAD_MAX_FILE_BYTES / (1024 * 1024), 1) . ' MiB per file).',
         ];
         continue;
     }

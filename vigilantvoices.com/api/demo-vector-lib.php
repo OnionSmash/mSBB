@@ -262,9 +262,8 @@ function demoVectorClearStore(string $sessionId): void
         try {
             demoVectorDbEnsureSchema($pdo);
             $pdo->prepare('DELETE FROM demo_vector_chunks WHERE session_id = :sid')->execute([':sid' => $sessionId]);
-            return;
         } catch (Throwable $e) {
-            // fallback below
+            // Continue to JSON cleanup so hybrid/fallback state cannot leave stale files.
         }
     }
     $path = demoVectorIndexPath($sessionId);
@@ -379,6 +378,33 @@ function demoVectorBackendMode(): string
     } catch (Throwable $e) {
         return 'json_fallback';
     }
+}
+
+/** Increment when GET /api/demo-rag-state.php payload shape or semantics change (clients may log or key caches). */
+function demoRagStateResponseVersion(): string
+{
+    return '1';
+}
+
+/**
+ * Single snapshot for demo ingestion UI: storage backend + per-session vector counts.
+ *
+ * @return array{storage: array{mode: string}, vector: array{documents: int, chunks: int, last_updated: string|null}}
+ */
+function demoVectorRagState(string $sessionId): array
+{
+    $status = demoVectorStatus($sessionId);
+
+    return [
+        'storage' => [
+            'mode' => demoVectorBackendMode(),
+        ],
+        'vector' => [
+            'documents' => (int)($status['documents'] ?? 0),
+            'chunks' => (int)($status['chunks'] ?? 0),
+            'last_updated' => isset($status['last_updated']) ? (string)$status['last_updated'] : null,
+        ],
+    ];
 }
 
 function demoVectorNormalizeText(string $text): string
