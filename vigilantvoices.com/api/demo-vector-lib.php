@@ -23,14 +23,14 @@ function demoVectorIndexPath(string $sessionId): string
 
 function demoVectorDbDsn(): ?string
 {
-    $dsn = getenv('DEMO_VECTOR_PG_DSN');
+    $dsn = demoVectorEnv('DEMO_VECTOR_PG_DSN');
     if (is_string($dsn) && trim($dsn) !== '') {
         return trim($dsn);
     }
 
-    $host = getenv('DEMO_VECTOR_PG_HOST') ?: '127.0.0.1';
-    $port = getenv('DEMO_VECTOR_PG_PORT') ?: '5432';
-    $db = getenv('DEMO_VECTOR_PG_DB') ?: '';
+    $host = demoVectorEnv('DEMO_VECTOR_PG_HOST') ?: '127.0.0.1';
+    $port = demoVectorEnv('DEMO_VECTOR_PG_PORT') ?: '5432';
+    $db = demoVectorEnv('DEMO_VECTOR_PG_DB') ?: '';
     if ($db === '') {
         return null;
     }
@@ -39,12 +39,25 @@ function demoVectorDbDsn(): ?string
 
 function demoVectorDbUser(): string
 {
-    return (string)(getenv('DEMO_VECTOR_PG_USER') ?: '');
+    return (string)(demoVectorEnv('DEMO_VECTOR_PG_USER') ?: '');
 }
 
 function demoVectorDbPass(): string
 {
-    return (string)(getenv('DEMO_VECTOR_PG_PASS') ?: '');
+    return (string)(demoVectorEnv('DEMO_VECTOR_PG_PASS') ?: '');
+}
+
+function demoVectorEnv(string $key): ?string
+{
+    $serverValue = $_SERVER[$key] ?? null;
+    if (is_string($serverValue) && trim($serverValue) !== '') {
+        return trim($serverValue);
+    }
+    $envValue = getenv($key);
+    if (is_string($envValue) && trim($envValue) !== '') {
+        return trim($envValue);
+    }
+    return null;
 }
 
 function demoVectorPdo(): ?PDO
@@ -310,6 +323,21 @@ function demoVectorStatus(string $sessionId): array
         }
     }
     return ['documents' => count($docSet), 'chunks' => count($items), 'last_updated' => $lastUpdated];
+}
+
+function demoVectorBackendMode(): string
+{
+    $pdo = demoVectorPdo();
+    if (!($pdo instanceof PDO)) {
+        return 'json_fallback';
+    }
+
+    try {
+        demoVectorDbEnsureSchema($pdo);
+        return 'pgvector';
+    } catch (Throwable $e) {
+        return 'json_fallback';
+    }
 }
 
 function demoVectorNormalizeText(string $text): string

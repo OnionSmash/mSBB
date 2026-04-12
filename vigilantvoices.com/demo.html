@@ -1464,6 +1464,7 @@
                                 <div style="font-size:0.74rem;color:var(--phase1-muted,#667);line-height:1.45;">
                                     <div>Accepted: <strong id="diagAccepted">0</strong> · Rejected: <strong id="diagRejected">0</strong></div>
                                     <div style="margin-top:4px;">Guidance: keep individual files under typical PHP limits (often 2M-10M unless server-configured higher).</div>
+                                    <div id="diagStorageMode" style="margin-top:6px;color:#4f5d75;">Storage: checking...</div>
                                     <div id="diagLastMsg" style="margin-top:6px;color:#4f5d75;">Last API response: none yet.</div>
                                 </div>
                             </div>
@@ -2008,6 +2009,9 @@
                     credentials: 'same-origin'
                 });
                 const json = await res.json();
+                // #region agent log
+                fetch('http://localhost:7608/ingest/4d5cf5e7-2c7a-4f5a-a2d9-e65237a8a079',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'4b17d0'},body:JSON.stringify({sessionId:'4b17d0',runId:'run1',hypothesisId:'H1',location:'vigilantvoices.com/demo.html:2012',message:'bootstrapAuth session response',data:{ok:res.ok,status:res.status,authenticated:!!json.authenticated,hasUser:!!json.user},timestamp:Date.now()})}).catch(()=>{});
+                // #endregion
                 if (!json.authenticated) {
                     window.location.href = 'login.html';
                     return;
@@ -2032,12 +2036,14 @@
         let queryCount      = 0;
         let selectedModel   = 'Auto (Mesh)';
         let typeCounts      = {};
-        let uploadDiagState = { accepted: 0, rejected: 0, lastMessage: "Last API response: none yet.", status: "idle" };
+        let uploadDiagState = { accepted: 0, rejected: 0, lastMessage: "Last API response: none yet.", status: "idle", backend: "checking..." };
+        let uploadDiagHealthInFlight = false;
         const MAX_REPO_FILES = 60;
         const VECTOR_INGEST_ENDPOINT = '/api/demo-vector-ingest.php';
         const VECTOR_SEARCH_ENDPOINT = '/api/demo-vector-search.php';
         const VECTOR_STATUS_ENDPOINT = '/api/demo-vector-status.php';
         const VECTOR_CLEAR_ENDPOINT = '/api/demo-vector-clear.php';
+        const VECTOR_HEALTH_ENDPOINT = '/api/demo-vector-health.php';
         const CAPABILITY_RUN_ENDPOINT = '/api/demo-capability-run.php';
         const UPLOAD_PARSE_ENDPOINT = '/api/demo-upload-parse.php';
         const DEMO_PRODUCT_NAME = 'Vigilant Voices';
@@ -2175,6 +2181,9 @@
 
         function showPanel(name, linkEl) {
             const panelEl = document.getElementById('panel-' + name);
+            // #region agent log
+            fetch('http://localhost:7608/ingest/4d5cf5e7-2c7a-4f5a-a2d9-e65237a8a079',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'4b17d0'},body:JSON.stringify({sessionId:'4b17d0',runId:'run1',hypothesisId:'H2',location:'vigilantvoices.com/demo.html:2181',message:'showPanel invoked',data:{panel:name,found:!!panelEl,linkHref:linkEl&&linkEl.getAttribute?linkEl.getAttribute('href'):null},timestamp:Date.now()})}).catch(()=>{});
+            // #endregion
             if (!panelEl) return;
             document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
             panelEl.classList.add('active');
@@ -2587,9 +2596,11 @@ function refreshCapabilityPresetOptions() {
             const acceptedEl = document.getElementById('diagAccepted');
             const rejectedEl = document.getElementById('diagRejected');
             const msgEl = document.getElementById('diagLastMsg');
+            const storageEl = document.getElementById('diagStorageMode');
             const pill = document.getElementById('diagStatusPill');
             if (acceptedEl) acceptedEl.textContent = String(uploadDiagState.accepted || 0);
             if (rejectedEl) rejectedEl.textContent = String(uploadDiagState.rejected || 0);
+            if (storageEl) storageEl.textContent = 'Storage: ' + String(uploadDiagState.backend || 'checking...');
             if (msgEl) msgEl.textContent = String(uploadDiagState.lastMessage || 'Last API response: none yet.');
             if (pill) {
                 const st = String(uploadDiagState.status || 'idle');
@@ -2616,9 +2627,42 @@ function refreshCapabilityPresetOptions() {
             if (typeof rejected === 'number') uploadDiagState.rejected = rejected;
             if (message) uploadDiagState.lastMessage = message;
             renderUploadDiagnostics();
+            refreshUploadStorageMode();
+        }
+
+        async function refreshUploadStorageMode() {
+            if (uploadDiagHealthInFlight) return;
+            uploadDiagHealthInFlight = true;
+            try {
+                const response = await fetch(VECTOR_HEALTH_ENDPOINT, {
+                    method: 'GET',
+                    credentials: 'same-origin',
+                    headers: { 'Accept': 'application/json' }
+                });
+                const json = await response.json().catch(() => ({}));
+                const backend = String((json && json.backend) || '').toLowerCase();
+                // #region agent log
+                fetch('http://localhost:7608/ingest/4d5cf5e7-2c7a-4f5a-a2d9-e65237a8a079',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'4b17d0'},body:JSON.stringify({sessionId:'4b17d0',runId:'run1',hypothesisId:'H3',location:'vigilantvoices.com/demo.html:2638',message:'vector health response',data:{ok:response.ok,status:response.status,backend:backend||null},timestamp:Date.now()})}).catch(()=>{});
+                // #endregion
+                if (backend === 'pgvector') {
+                    uploadDiagState.backend = 'pgvector';
+                } else if (backend) {
+                    uploadDiagState.backend = 'fallback';
+                } else {
+                    uploadDiagState.backend = 'unknown';
+                }
+            } catch (_) {
+                uploadDiagState.backend = 'fallback';
+            } finally {
+                uploadDiagHealthInFlight = false;
+                renderUploadDiagnostics();
+            }
         }
 
         function handleFiles(files) {
+            // #region agent log
+            fetch('http://localhost:7608/ingest/4d5cf5e7-2c7a-4f5a-a2d9-e65237a8a079',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'4b17d0'},body:JSON.stringify({sessionId:'4b17d0',runId:'run1',hypothesisId:'H6',location:'vigilantvoices.com/demo.html:2663',message:'handleFiles invoked',data:{count:files&&typeof files.length==='number'?files.length:null,firstName:files&&files[0]?String(files[0].name||''):null,firstType:files&&files[0]?String(files[0].type||''):null,firstSize:files&&files[0]?Number(files[0].size||0):null},timestamp:Date.now()})}).catch(()=>{});
+            // #endregion
             if (!files || !files.length) return;
             document.getElementById('fileQueue').style.display = 'block';
             const records = Array.from(files).map(file => enqueueFileRecord(file));
@@ -2676,6 +2720,9 @@ function refreshCapabilityPresetOptions() {
                     body: form
                 });
                 const json = await res.json();
+                // #region agent log
+                fetch('http://localhost:7608/ingest/4d5cf5e7-2c7a-4f5a-a2d9-e65237a8a079',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'4b17d0'},body:JSON.stringify({sessionId:'4b17d0',runId:'run1',hypothesisId:'H4',location:'vigilantvoices.com/demo.html:2712',message:'upload parse response',data:{ok:res.ok,status:res.status,apiOk:!!json.ok,itemCount:Array.isArray(json.items)?json.items.length:null,error:json&&json.error?String(json.error):null},timestamp:Date.now()})}).catch(()=>{});
+                // #endregion
                 if (!res.ok || !json.ok || !Array.isArray(json.items)) {
                     throw new Error((json && json.error) ? String(json.error) : 'Upload failed');
                 }
@@ -2717,6 +2764,9 @@ function refreshCapabilityPresetOptions() {
                 setUploadDiagnostics('success', acceptedCount, rejectedCount, 'Last API response: ok=' + String(!!json.ok) + ', accepted=' + String(acceptedCount) + ', rejected=' + String(rejectedCount) + '.');
                 await refreshVectorStatus();
             } catch (err) {
+                // #region agent log
+                fetch('http://localhost:7608/ingest/4d5cf5e7-2c7a-4f5a-a2d9-e65237a8a079',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'4b17d0'},body:JSON.stringify({sessionId:'4b17d0',runId:'run1',hypothesisId:'H7',location:'vigilantvoices.com/demo.html:2764',message:'uploadAndParseFiles catch',data:{error:err&&err.message?String(err.message):'unknown',recordCount:Array.isArray(records)?records.length:null,fileCount:Array.isArray(files)?files.length:null},timestamp:Date.now()})}).catch(()=>{});
+                // #endregion
                 records.forEach(record => {
                     const statusEl = document.getElementById('status_' + record.id);
                     if (statusEl) { statusEl.className = 'file-status status-queued'; statusEl.textContent = 'Error'; }
@@ -2968,6 +3018,9 @@ function refreshCapabilityPresetOptions() {
                     body: JSON.stringify({ query: q, top_k: RETRIEVAL_TOP_K })
                 });
                 const json = await res.json();
+                // #region agent log
+                fetch('http://localhost:7608/ingest/4d5cf5e7-2c7a-4f5a-a2d9-e65237a8a079',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'4b17d0'},body:JSON.stringify({sessionId:'4b17d0',runId:'run1',hypothesisId:'H5',location:'vigilantvoices.com/demo.html:3003',message:'vector search response',data:{ok:res.ok,status:res.status,apiOk:!!json.ok,resultCount:Array.isArray(json.results)?json.results.length:null},timestamp:Date.now()})}).catch(()=>{});
+                // #endregion
                 if (res.ok && json.ok && Array.isArray(json.results) && json.results.length) {
                     const sources = json.results.map(r => ({
                         title: r.title || 'Document chunk',
@@ -3214,6 +3267,7 @@ function refreshCapabilityPresetOptions() {
         refreshCapabilityPresetOptions();
         loadPhaseOnePartials();
         renderUploadDiagnostics();
+        refreshUploadStorageMode();
     </script>
     <script defer src="/js/demo-presets.js"></script>
     <script defer src="/js/demo-renderers.js"></script>
