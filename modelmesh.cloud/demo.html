@@ -2538,6 +2538,13 @@ function refreshCapabilityPresetOptions() {
 
         // ── File upload handling ──
         const uploadZone = document.getElementById('uploadZone');
+        const fileInputEl = document.getElementById('fileInput');
+        if (fileInputEl && !fileInputEl.dataset.boundChangeHandler) {
+            fileInputEl.addEventListener('change', function () {
+                handleFiles(this.files);
+            });
+            fileInputEl.dataset.boundChangeHandler = '1';
+        }
         if (uploadZone) {
             uploadZone.addEventListener('click', (e) => {
                 const fi = document.getElementById('fileInput');
@@ -2635,18 +2642,21 @@ function refreshCapabilityPresetOptions() {
             if (typeof rejected === 'number') uploadDiagState.rejected = rejected;
             if (message) uploadDiagState.lastMessage = message;
             renderUploadDiagnostics();
-            refreshUploadStorageMode();
         }
 
         async function refreshUploadStorageMode() {
             if (uploadDiagHealthInFlight) return;
             uploadDiagHealthInFlight = true;
             try {
+                const controller = new AbortController();
+                const timeout = window.setTimeout(() => controller.abort(), 1800);
                 const response = await fetch(VECTOR_HEALTH_ENDPOINT, {
                     method: 'GET',
                     credentials: 'same-origin',
-                    headers: { 'Accept': 'application/json' }
+                    headers: { 'Accept': 'application/json' },
+                    signal: controller.signal
                 });
+                window.clearTimeout(timeout);
                 const json = await response.json().catch(() => ({}));
                 const backend = String((json && json.backend) || '').toLowerCase();
                 // #region agent log
