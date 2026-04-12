@@ -33,6 +33,10 @@ if (!isset($_FILES['files'])) {
 require_once __DIR__ . '/demo-vector-lib.php';
 
 function vvTypeFromName(string $name): string {
+    $lower = strtolower(basename($name));
+    if ($lower === 'dockerfile' || str_ends_with($lower, '.dockerfile')) {
+        return 'code';
+    }
     $ext = strtolower(pathinfo($name, PATHINFO_EXTENSION));
     $map = [
         'pdf' => 'pdf', 'xlsx' => 'xlsx', 'xls' => 'xlsx',
@@ -44,14 +48,20 @@ function vvTypeFromName(string $name): string {
         'cs' => 'code', 'php' => 'code', 'go' => 'code', 'rs' => 'code',
         'rb' => 'code', 'swift' => 'code', 'kt' => 'code', 'html' => 'code',
         'css' => 'code', 'scss' => 'code', 'json' => 'code', 'yml' => 'code',
-        'yaml' => 'code', 'sh' => 'code', 'sql' => 'code'
+        'yaml' => 'code', 'sh' => 'code', 'sql' => 'code',
+        'tf' => 'code', 'tfvars' => 'code', 'hcl' => 'code', 'toml' => 'code',
+        'ini' => 'code', 'conf' => 'code', 'env' => 'code', 'properties' => 'code'
     ];
     return $map[$ext] ?? 'docx';
 }
 
 function vvReadPreview(string $tmpPath, string $filename): string {
     $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-    $textLike = ['txt','csv','json','md','log','xml','html','yml','yaml','sql','js','ts','py','php'];
+    $lower = strtolower(basename($filename));
+    $textLike = ['txt','csv','json','md','log','xml','html','yml','yaml','sql','js','ts','py','php','tf','tfvars','hcl','toml','ini','conf','env','properties','dockerfile'];
+    if ($lower === 'dockerfile' || str_ends_with($lower, '.dockerfile')) {
+        $ext = 'dockerfile';
+    }
     if (!in_array($ext, $textLike, true)) {
         return 'Uploaded binary file. Parsed metadata and index entry created for retrieval workflows.';
     }

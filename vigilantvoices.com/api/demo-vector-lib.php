@@ -57,6 +57,42 @@ function demoVectorEnv(string $key): ?string
     if (is_string($envValue) && trim($envValue) !== '') {
         return trim($envValue);
     }
+    static $fileDefaults = null;
+    if ($fileDefaults === null) {
+        $fileDefaults = [];
+        $secretsPath = '/etc/demo-rag-db-secrets';
+        if (is_file($secretsPath)) {
+            $lines = file($secretsPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            if (is_array($lines)) {
+                $raw = [];
+                foreach ($lines as $line) {
+                    $parts = explode('=', (string)$line, 2);
+                    if (count($parts) !== 2) {
+                        continue;
+                    }
+                    $raw[trim($parts[0])] = trim($parts[1]);
+                }
+                $isVigilant = str_contains(__DIR__, 'vigilantvoices.com');
+                $prefix = $isVigilant ? 'VV_' : 'MM_';
+                $mapped = [
+                    'DEMO_VECTOR_PG_DB' => $raw[$prefix . 'DB'] ?? null,
+                    'DEMO_VECTOR_PG_USER' => $raw[$prefix . 'USER'] ?? null,
+                    'DEMO_VECTOR_PG_PASS' => $raw[$prefix . 'PASS'] ?? null,
+                    'DEMO_VECTOR_PG_HOST' => 'localhost',
+                    'DEMO_VECTOR_PG_PORT' => '5432',
+                ];
+                foreach ($mapped as $mk => $mv) {
+                    if (is_string($mv) && $mv !== '') {
+                        $fileDefaults[$mk] = $mv;
+                    }
+                }
+            }
+        }
+    }
+    $fallback = $fileDefaults[$key] ?? null;
+    if (is_string($fallback) && trim($fallback) !== '') {
+        return trim($fallback);
+    }
     return null;
 }
 
@@ -83,7 +119,7 @@ function demoVectorPdo(): ?PDO
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         ]);
-        $conn->exec('SET TIME ZONE "UTC"');
+        $conn->exec("SET TIME ZONE 'UTC'");
         $pdo = $conn;
         return $conn;
     } catch (Throwable $e) {
@@ -103,7 +139,12 @@ function demoVectorDbEnsureSchema(PDO $pdo): void
     static $ready = false;
     if ($ready) return;
 
-    $pdo->exec('CREATE EXTENSION IF NOT EXISTS vector');
+    try {
+        // Extension is installed during server bootstrap; app role may not have CREATE privilege.
+        $pdo->exec('CREATE EXTENSION IF NOT EXISTS vector');
+    } catch (Throwable $e) {
+        // Safe to continue when extension already exists but role cannot create extensions.
+    }
     $pdo->exec("CREATE TABLE IF NOT EXISTS demo_vector_chunks (
         session_id TEXT NOT NULL,
         id TEXT NOT NULL,

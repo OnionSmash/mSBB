@@ -1428,12 +1428,12 @@
                         <div class="section-card-header">
                             <div>
                                 <h5><i class="bi bi-cloud-arrow-up me-2" style="color:#1363C6;"></i>Drop Files to Index</h5>
-                                <p>Supported: PDF, XLSX, XLS, DOCX, DOC, CSV, PNG, JPG, JPEG, TIFF</p>
+                                <p>Supported: documents, images, code, plus infra/dev files (Terraform, Docker, Compose, env/config).</p>
                             </div>
                         </div>
                         <div class="section-card-body">
                             <div class="upload-zone" id="uploadZone">
-                                <input type="file" id="fileInput" multiple accept=".pdf,.xlsx,.xls,.docx,.doc,.csv,.png,.jpg,.jpeg,.tiff,.txt" onchange="handleFiles(this.files)">
+                                <input type="file" id="fileInput" multiple accept=".pdf,.xlsx,.xls,.docx,.doc,.csv,.png,.jpg,.jpeg,.tiff,.txt,.md,.json,.yaml,.yml,.xml,.sql,.js,.jsx,.ts,.tsx,.py,.php,.java,.c,.cpp,.cs,.go,.rs,.rb,.swift,.kt,.html,.css,.scss,.sh,.tf,.tfvars,.hcl,.toml,.ini,.conf,.env,.properties,.dockerfile" onchange="handleFiles(this.files)">
                                 <div class="upload-icon"><i class="bi bi-cloud-arrow-up"></i></div>
                                 <h5 style="font-size:1rem;font-weight:700;color:#14183E;margin-bottom:6px;">Drag &amp; drop files here</h5>
                                 <p style="font-size:0.82rem;color:#888;margin-bottom:12px;">or click anywhere in this area to browse</p>
@@ -1467,6 +1467,14 @@
                                     <div id="diagStorageMode" style="margin-top:6px;color:#4f5d75;">Storage: checking...</div>
                                     <div id="diagLastMsg" style="margin-top:6px;color:#4f5d75;">Last API response: none yet.</div>
                                 </div>
+                            </div>
+
+                            <div id="infraVisualCard" style="margin-top:12px;border:1px solid var(--phase1-border,#e4eaf7);border-radius:10px;background:#fff;padding:10px 12px;">
+                                <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px;">
+                                    <strong style="font-size:0.78rem;color:var(--phase1-text,#14183E);">Infra Visualizer</strong>
+                                    <span style="font-size:0.68rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;background:#eef3ff;color:#2a3c78;padding:3px 8px;border-radius:999px;">Docker/Terraform</span>
+                                </div>
+                                <div id="infraVisualHost" style="font-size:0.74rem;color:var(--phase1-muted,#667);line-height:1.45;">Upload Terraform or Docker files to generate an infra flow preview.</div>
                             </div>
 
                             <div style="margin-top:16px;padding:14px;border:1px solid #e4eaf7;border-radius:10px;background:#f8faff;">
@@ -2009,9 +2017,6 @@
                     credentials: 'same-origin'
                 });
                 const json = await res.json();
-                // #region agent log
-                fetch('http://localhost:7608/ingest/4d5cf5e7-2c7a-4f5a-a2d9-e65237a8a079',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'4b17d0'},body:JSON.stringify({sessionId:'4b17d0',runId:'run1',hypothesisId:'H1',location:'vigilantvoices.com/demo.html:2012',message:'bootstrapAuth session response',data:{ok:res.ok,status:res.status,authenticated:!!json.authenticated,hasUser:!!json.user},timestamp:Date.now()})}).catch(()=>{});
-                // #endregion
                 if (!json.authenticated) {
                     window.location.href = 'login.html';
                     return;
@@ -2181,9 +2186,6 @@
 
         function showPanel(name, linkEl) {
             const panelEl = document.getElementById('panel-' + name);
-            // #region agent log
-            fetch('http://localhost:7608/ingest/4d5cf5e7-2c7a-4f5a-a2d9-e65237a8a079',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'4b17d0'},body:JSON.stringify({sessionId:'4b17d0',runId:'run1',hypothesisId:'H2',location:'vigilantvoices.com/demo.html:2181',message:'showPanel invoked',data:{panel:name,found:!!panelEl,linkHref:linkEl&&linkEl.getAttribute?linkEl.getAttribute('href'):null},timestamp:Date.now()})}).catch(()=>{});
-            // #endregion
             if (!panelEl) return;
             document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
             panelEl.classList.add('active');
@@ -2543,7 +2545,9 @@ function refreshCapabilityPresetOptions() {
         }
 
         function getFileType(name) {
-            const ext = name.split('.').pop().toLowerCase();
+            const lower = String(name || '').toLowerCase();
+            if (lower === 'dockerfile' || lower.endsWith('/dockerfile') || lower.endsWith('.dockerfile')) return 'code';
+            const ext = lower.includes('.') ? lower.split('.').pop().toLowerCase() : '';
             const map = {
                 pdf: 'pdf', xlsx: 'xlsx', xls: 'xlsx',
                 docx: 'docx', doc: 'docx', csv: 'csv',
@@ -2553,7 +2557,8 @@ function refreshCapabilityPresetOptions() {
                 java: 'code', c: 'code', cpp: 'code', cs: 'code', php: 'code',
                 go: 'code', rs: 'code', rb: 'code', swift: 'code', kt: 'code',
                 html: 'code', css: 'code', scss: 'code', json: 'code', yml: 'code', yaml: 'code',
-                sh: 'code', sql: 'code'
+                sh: 'code', sql: 'code', tf: 'code', tfvars: 'code', hcl: 'code', toml: 'code',
+                ini: 'code', conf: 'code', env: 'code', properties: 'code'
             };
             return map[ext] || 'docx';
         }
@@ -2651,9 +2656,6 @@ function refreshCapabilityPresetOptions() {
                 window.clearTimeout(timeout);
                 const json = await response.json().catch(() => ({}));
                 const backend = String((json && json.backend) || '').toLowerCase();
-                // #region agent log
-                fetch('http://localhost:7608/ingest/4d5cf5e7-2c7a-4f5a-a2d9-e65237a8a079',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'4b17d0'},body:JSON.stringify({sessionId:'4b17d0',runId:'run1',hypothesisId:'H3',location:'vigilantvoices.com/demo.html:2638',message:'vector health response',data:{ok:response.ok,status:response.status,backend:backend||null},timestamp:Date.now()})}).catch(()=>{});
-                // #endregion
                 if (backend === 'pgvector') {
                     uploadDiagState.backend = 'pgvector';
                 } else if (backend) {
@@ -2670,9 +2672,6 @@ function refreshCapabilityPresetOptions() {
         }
 
         function handleFiles(files) {
-            // #region agent log
-            fetch('http://localhost:7608/ingest/4d5cf5e7-2c7a-4f5a-a2d9-e65237a8a079',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'4b17d0'},body:JSON.stringify({sessionId:'4b17d0',runId:'run1',hypothesisId:'H6',location:'vigilantvoices.com/demo.html:2663',message:'handleFiles invoked',data:{count:files&&typeof files.length==='number'?files.length:null,firstName:files&&files[0]?String(files[0].name||''):null,firstType:files&&files[0]?String(files[0].type||''):null,firstSize:files&&files[0]?Number(files[0].size||0):null},timestamp:Date.now()})}).catch(()=>{});
-            // #endregion
             if (!files || !files.length) return;
             document.getElementById('fileQueue').style.display = 'block';
             const records = Array.from(files).map(file => enqueueFileRecord(file));
@@ -2730,9 +2729,6 @@ function refreshCapabilityPresetOptions() {
                     body: form
                 });
                 const json = await res.json();
-                // #region agent log
-                fetch('http://localhost:7608/ingest/4d5cf5e7-2c7a-4f5a-a2d9-e65237a8a079',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'4b17d0'},body:JSON.stringify({sessionId:'4b17d0',runId:'run1',hypothesisId:'H4',location:'vigilantvoices.com/demo.html:2712',message:'upload parse response',data:{ok:res.ok,status:res.status,apiOk:!!json.ok,itemCount:Array.isArray(json.items)?json.items.length:null,error:json&&json.error?String(json.error):null},timestamp:Date.now()})}).catch(()=>{});
-                // #endregion
                 if (!res.ok || !json.ok || !Array.isArray(json.items)) {
                     throw new Error((json && json.error) ? String(json.error) : 'Upload failed');
                 }
@@ -2774,9 +2770,6 @@ function refreshCapabilityPresetOptions() {
                 setUploadDiagnostics('success', acceptedCount, rejectedCount, 'Last API response: ok=' + String(!!json.ok) + ', accepted=' + String(acceptedCount) + ', rejected=' + String(rejectedCount) + '.');
                 await refreshVectorStatus();
             } catch (err) {
-                // #region agent log
-                fetch('http://localhost:7608/ingest/4d5cf5e7-2c7a-4f5a-a2d9-e65237a8a079',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'4b17d0'},body:JSON.stringify({sessionId:'4b17d0',runId:'run1',hypothesisId:'H7',location:'vigilantvoices.com/demo.html:2764',message:'uploadAndParseFiles catch',data:{error:err&&err.message?String(err.message):'unknown',recordCount:Array.isArray(records)?records.length:null,fileCount:Array.isArray(files)?files.length:null},timestamp:Date.now()})}).catch(()=>{});
-                // #endregion
                 records.forEach(record => {
                     const statusEl = document.getElementById('status_' + record.id);
                     if (statusEl) { statusEl.className = 'file-status status-queued'; statusEl.textContent = 'Error'; }
@@ -2840,7 +2833,122 @@ function refreshCapabilityPresetOptions() {
             `;
             tbody.appendChild(row);
             updateTypeBreakdown();
+            renderInfraVisual();
             return { field, preview };
+        }
+
+        function infraNodeColor(label) {
+            const lower = String(label || '').toLowerCase();
+            if (lower.startsWith('aws_')) return { bg: '#fff3e6', border: '#ffd4a6', fg: '#8a4b00' };
+            if (lower.startsWith('azurerm_')) return { bg: '#ebf5ff', border: '#c6defd', fg: '#1257a0' };
+            if (lower.startsWith('google_')) return { bg: '#ecf9f1', border: '#bce9cf', fg: '#1f6d3b' };
+            if (lower.startsWith('kubernetes_')) return { bg: '#efeefe', border: '#d8d3ff', fg: '#4c3da3' };
+            if (lower.includes('docker') || lower.includes('compose')) return { bg: '#eef7ff', border: '#cfe6ff', fg: '#1f5ea8' };
+            return { bg: '#f6f7f9', border: '#dde2ea', fg: '#3e4a60' };
+        }
+
+        function extractTerraformGraph(records) {
+            const tfEntries = (records || []).filter(entry => {
+                const fileName = String((entry && entry.record && entry.record.file && entry.record.file.name) || '').toLowerCase();
+                return fileName.endsWith('.tf') || fileName.endsWith('.tfvars') || fileName.endsWith('.hcl');
+            });
+            const nodesById = {};
+            const edges = [];
+            const referenceRegex = /\b([a-zA-Z0-9_]+)\.([a-zA-Z0-9_-]+)\b/g;
+
+            tfEntries.forEach((entry, idx) => {
+                const preview = String((entry && entry.preview) || '');
+                const fileName = String((entry && entry.record && entry.record.file && entry.record.file.name) || ('tf-file-' + idx));
+                const combined = preview;
+                const resourceRegex = /resource\s+"([^"]+)"\s+"([^"]+)"/g;
+                let match;
+                while ((match = resourceRegex.exec(combined)) !== null) {
+                    const type = match[1];
+                    const name = match[2];
+                    const id = type + '.' + name;
+                    if (!nodesById[id]) {
+                        nodesById[id] = { id, label: type, name, fileName };
+                    }
+                }
+            });
+
+            Object.keys(nodesById).forEach((id) => {
+                const [type, name] = id.split('.');
+                tfEntries.forEach((entry) => {
+                    const text = String((entry && entry.preview) || '');
+                    if (!text.includes(name) && !text.includes(type)) return;
+                    const dependsRegex = new RegExp('depends_on\\s*=\\s*\\[[^\\]]*' + type.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\.' + name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '[^\\]]*\\]', 'i');
+                    if (dependsRegex.test(text)) {
+                        const sourceTypeNameRegex = /depends_on\s*=\s*\[([^\]]+)\]/i;
+                        const m = text.match(sourceTypeNameRegex);
+                        if (m && m[1]) {
+                            const refs = m[1].match(/\b([a-zA-Z0-9_]+\.[a-zA-Z0-9_-]+)\b/g) || [];
+                            refs.forEach((ref) => {
+                                if (ref !== id && nodesById[ref]) edges.push({ from: ref, to: id, reason: 'depends_on' });
+                            });
+                        }
+                    }
+                    let refMatch;
+                    while ((refMatch = referenceRegex.exec(text)) !== null) {
+                        const ref = refMatch[1] + '.' + refMatch[2];
+                        if (ref !== id && nodesById[ref] && text.includes(id)) {
+                            edges.push({ from: ref, to: id, reason: 'reference' });
+                        }
+                    }
+                });
+            });
+
+            const dedup = {};
+            const cleanEdges = edges.filter((e) => {
+                const key = e.from + '->' + e.to;
+                if (dedup[key]) return false;
+                dedup[key] = true;
+                return true;
+            });
+
+            return { nodes: Object.values(nodesById), edges: cleanEdges };
+        }
+
+        function renderInfraVisual() {
+            const host = document.getElementById('infraVisualHost');
+            if (!host) return;
+            if (!parsedRecords.length) {
+                host.textContent = 'Upload Terraform or Docker files to generate an infra flow preview.';
+                return;
+            }
+
+            const names = parsedRecords.map(entry => String((entry && entry.record && entry.record.file && entry.record.file.name) || '').toLowerCase());
+            const hasTerraform = names.some(n => n.endsWith('.tf') || n.endsWith('.tfvars') || n.endsWith('.hcl'));
+            const hasDockerfile = names.some(n => n.endsWith('dockerfile') || n.endsWith('.dockerfile'));
+            const hasCompose = names.some(n => n.includes('docker-compose') || n.includes('compose.yml') || n.includes('compose.yaml'));
+
+            const graph = extractTerraformGraph(parsedRecords);
+            const nodeChips = graph.nodes.slice(0, 18).map((node) => {
+                const theme = infraNodeColor(node.label);
+                return '<span style="padding:4px 8px;border:1px solid ' + theme.border + ';border-radius:8px;background:' + theme.bg + ';color:' + theme.fg + ';font-size:0.72rem;">' + escapeHtml(node.id) + '</span>';
+            });
+            const edgeRows = graph.edges.slice(0, 14).map((edge) => {
+                return '<div style="font-size:0.72rem;color:#4f5d75;">' + escapeHtml(edge.from) + ' <span style="color:#7a88a6;">→</span> ' + escapeHtml(edge.to) + ' <span style="color:#97a3bc;">(' + escapeHtml(edge.reason) + ')</span></div>';
+            });
+
+            const dockerLine = (hasDockerfile || hasCompose)
+                ? '<div style="margin-top:8px;font-size:0.72rem;color:#4f5d75;">Source <span style="color:#7a88a6;">→</span> Dockerfile <span style="color:#7a88a6;">→</span> Image' + (hasCompose ? ' <span style="color:#7a88a6;">→</span> Compose services' : '') + '</div>'
+                : '';
+
+            if (!hasTerraform && !hasDockerfile && !hasCompose) {
+                host.textContent = 'No Docker/Terraform patterns detected yet. Try uploading Dockerfile, compose, or .tf files.';
+                return;
+            }
+
+            const summary = '<div style="font-size:0.72rem;color:#4f5d75;margin-bottom:6px;">Detected <strong>' + graph.nodes.length + '</strong> Terraform resource node(s) and <strong>' + graph.edges.length + '</strong> dependency edge(s).</div>';
+            const nodesSection = graph.nodes.length
+                ? '<div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;">' + nodeChips.join('') + '</div>'
+                : '<div style="font-size:0.72rem;color:#7a88a6;">Terraform files found, but no explicit resource blocks were detected in current previews.</div>';
+            const edgesSection = graph.edges.length
+                ? '<div style="margin-top:8px;padding-top:8px;border-top:1px dashed #e4eaf7;">' + edgeRows.join('') + '</div>'
+                : '';
+
+            host.innerHTML = summary + nodesSection + edgesSection + dockerLine;
         }
 
         function clearQueue() {
@@ -3028,9 +3136,6 @@ function refreshCapabilityPresetOptions() {
                     body: JSON.stringify({ query: q, top_k: RETRIEVAL_TOP_K })
                 });
                 const json = await res.json();
-                // #region agent log
-                fetch('http://localhost:7608/ingest/4d5cf5e7-2c7a-4f5a-a2d9-e65237a8a079',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'4b17d0'},body:JSON.stringify({sessionId:'4b17d0',runId:'run1',hypothesisId:'H5',location:'vigilantvoices.com/demo.html:3003',message:'vector search response',data:{ok:res.ok,status:res.status,apiOk:!!json.ok,resultCount:Array.isArray(json.results)?json.results.length:null},timestamp:Date.now()})}).catch(()=>{});
-                // #endregion
                 if (res.ok && json.ok && Array.isArray(json.results) && json.results.length) {
                     const sources = json.results.map(r => ({
                         title: r.title || 'Document chunk',
