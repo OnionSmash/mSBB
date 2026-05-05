@@ -1,1051 +1,1612 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Stack Lume | AI Threat Visibility and Response Platform</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Stack Lume, Model Signal, AI security platform, IAM agent, PAM stale accounts, SIEM first line defense, AI model mesh, private data intelligence, Randall Scott Avenell, Randall Avenell, Randy Avenell, Randy Scott Avenell, Randall-Scott-Avenell, McKenzie Renee Avenell, Kenzie Avenell, enterprise AI security, identity threat detection, SIEM AI, SOC automation" name="keywords">
-    <meta content="Stack Lume helps teams see and respond to AI risk across identity drift, SIEM pressure, model activity, and private data exposure in one operator view." name="description">
-    <meta property="og:title" content="Stack Lume | AI Threat Visibility and Response Platform">
-    <meta property="og:description" content="See AI risk clearly and respond faster across identity, SOC workflows, model activity, and private data exposure with Stack Lume.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://stacklume.cloud/">
-    <meta property="og:image" content="https://stacklume.cloud/img/hero-network-16x9.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Stack Lume | AI Threat Visibility and Response Platform">
-    <meta name="twitter:description" content="Stack Lume turns identity drift, SOC pressure, model activity, and private data risk into clear operator signal and faster response.">
-    <meta name="twitter:image" content="https://stacklume.cloud/img/hero-network-16x9.png">
-    <link rel="canonical" href="https://stacklume.cloud/">
-    <meta name="author" content="Randall Scott Avenell (Founder, Chaos Champion), Model Signal">
-    <meta name="creator" content="Randall Scott Avenell">
-    <meta name="robots" content="index, follow">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Stack Lume",
-      "applicationCategory": "SecurityApplication",
-      "operatingSystem": "Web, Cloud, Self-Hosted",
-      "description": "AI-powered security and data intelligence platform combining autonomous IAM/PAM identity hygiene, SIEM front-line defense, and private RAG data intelligence.",
-      "url": "https://stacklume.cloud",
-      "author": { "@type": "Person", "name": "Randall Scott Avenell", "jobTitle": "Founder, Chaos Champion" },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Model Signal",
-        "url": "https://stacklume.cloud",
-        "email": "hello@stacklume.cloud",
-        "founder": { "@type": "Person", "name": "Randall Scott Avenell", "jobTitle": "Founder, Chaos Champion" }
-      },
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Free demo available. Enterprise pricing on request." }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Randall Scott Avenell",
-        "alternateName": ["Randall Avenell","Randy Avenell","Randy Scott Avenell","Randall-Scott-Avenell"],
-        "jobTitle": "Founder, Chaos Champion",
-        "url": "https://stacklume.cloud/randall-scott-avenell.html",
-        "worksFor": { "@type": "Organization", "name": "Model Signal" }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "McKenzie Renee Avenell",
-        "alternateName": ["Kenzie Avenell"],
-        "affiliation": { "@type": "Organization", "name": "Model Signal" },
-        "relatedTo": { "@type": "Person", "name": "Randall Scott Avenell" }
-    }
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stack Lume — Theme Factory Showcase</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=DM+Serif+Display:ital@0;1&family=Playfair+Display:wght@700;800&family=Raleway:wght@300;400;600;700&family=Josefin+Sans:wght@300;400;600&family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;600;700&family=Lora:wght@400;600&family=Oxanium:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <link href="/favicon.ico" rel="icon" type="image/x-icon">
-    <link rel="preload" as="image" href="img/hero-network-16x9.webp" type="image/webp" fetchpriority="high">
+<style>
+/* =============================================
+   THEME VARIABLES — all 10 Theme Factory themes
+   ============================================= */
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Ubuntu:wght@500;700&display=swap" rel="stylesheet">
+/* 1. Ocean Depths */
+[data-theme="ocean-depths"] {
+  --bg:          #1a2332;
+  --bg2:         #1f2d40;
+  --bg3:         #162030;
+  --surface:     #243347;
+  --border:      rgba(45,139,139,0.2);
+  --border-glow: rgba(168,218,220,0.4);
+  --accent:      #2d8b8b;
+  --accent2:     #a8dadc;
+  --text:        #f1faee;
+  --muted:       #8aacb3;
+  --subtle:      #5c8a94;
+  --tag-bg:      rgba(45,139,139,0.15);
+  --tag-color:   #a8dadc;
+  --hf:          'Syne', sans-serif;
+  --bf:          'Raleway', sans-serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --is-dark:     1;
+}
 
-    <!-- Bootstrap Icons -->
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"></noscript>
+/* 2. Sunset Boulevard */
+[data-theme="sunset-boulevard"] {
+  --bg:          #264653;
+  --bg2:         #2e5566;
+  --bg3:         #1d3a45;
+  --surface:     #2a4f60;
+  --border:      rgba(231,111,81,0.22);
+  --border-glow: rgba(244,162,97,0.45);
+  --accent:      #e76f51;
+  --accent2:     #f4a261;
+  --text:        #f8f4eb;
+  --muted:       #b0cdd4;
+  --subtle:      #7aafbc;
+  --tag-bg:      rgba(231,111,81,0.15);
+  --tag-color:   #f4a261;
+  --hf:          'DM Serif Display', serif;
+  --bf:          'Raleway', sans-serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --is-dark:     1;
+}
 
-    <!-- Animate.css for scroll animations -->
-    <link rel="preload" href="lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="lib/animate/animate.min.css" rel="stylesheet"></noscript>
+/* 3. Forest Canopy */
+[data-theme="forest-canopy"] {
+  --bg:          #faf9f6;
+  --bg2:         #f0ede5;
+  --bg3:         #e8e4d9;
+  --surface:     #ffffff;
+  --border:      rgba(45,74,43,0.14);
+  --border-glow: rgba(164,172,134,0.5);
+  --accent:      #2d4a2b;
+  --accent2:     #7d8471;
+  --text:        #2d4a2b;
+  --muted:       #6b7060;
+  --subtle:      #8a9080;
+  --tag-bg:      rgba(45,74,43,0.08);
+  --tag-color:   #2d4a2b;
+  --hf:          'Playfair Display', serif;
+  --bf:          'Lora', serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --is-dark:     0;
+}
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: { DEFAULT: '#1363C6', 50: '#EEF4FF', 100: '#DDEEFF' },
-                        secondary: '#15ACE1',
-                        brand: '#14183E',
-                    },
-                    fontFamily: {
-                        sans: ['"Open Sans"', 'system-ui', 'sans-serif'],
-                        heading: ['"Ubuntu"', 'system-ui', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
+/* 4. Modern Minimalist */
+[data-theme="modern-minimalist"] {
+  --bg:          #ffffff;
+  --bg2:         #f5f5f5;
+  --bg3:         #ebebeb;
+  --surface:     #ffffff;
+  --border:      rgba(54,69,79,0.12);
+  --border-glow: rgba(112,128,144,0.35);
+  --accent:      #36454f;
+  --accent2:     #708090;
+  --text:        #1a1a1a;
+  --muted:       #708090;
+  --subtle:      #9aacb2;
+  --tag-bg:      rgba(54,69,79,0.06);
+  --tag-color:   #36454f;
+  --hf:          'Josefin Sans', sans-serif;
+  --bf:          'Montserrat', sans-serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --is-dark:     0;
+}
 
-    <!-- Alpine.js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+/* 5. Golden Hour */
+[data-theme="golden-hour"] {
+  --bg:          #4a403a;
+  --bg2:         #584e47;
+  --bg3:         #3d3530;
+  --surface:     #524840;
+  --border:      rgba(244,169,0,0.2);
+  --border-glow: rgba(212,184,150,0.4);
+  --accent:      #f4a900;
+  --accent2:     #d4b896;
+  --text:        #faf6f0;
+  --muted:       #c0a888;
+  --subtle:      #9a8070;
+  --tag-bg:      rgba(244,169,0,0.12);
+  --tag-color:   #f4c040;
+  --hf:          'Playfair Display', serif;
+  --bf:          'Lora', serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --is-dark:     1;
+}
 
-    <!-- Custom styles (component CSS + spinner/back-to-top) -->
-    <link href="css/style.css" rel="stylesheet">
+/* 6. Arctic Frost */
+[data-theme="arctic-frost"] {
+  --bg:          #fafafa;
+  --bg2:         #f0f5fb;
+  --bg3:         #e4edf7;
+  --surface:     #ffffff;
+  --border:      rgba(74,111,165,0.14);
+  --border-glow: rgba(74,111,165,0.35);
+  --accent:      #4a6fa5;
+  --accent2:     #d4e4f7;
+  --text:        #1c2a3a;
+  --muted:       #607896;
+  --subtle:      #8aa4c0;
+  --tag-bg:      rgba(74,111,165,0.08);
+  --tag-color:   #4a6fa5;
+  --hf:          'Syne', sans-serif;
+  --bf:          'Montserrat', sans-serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --is-dark:     0;
+}
 
-    <style>
-        h1, h2, h3, h4, h5, h6 { font-family: 'Ubuntu', system-ui, sans-serif; }
-        body { font-family: 'Open Sans', system-ui, sans-serif; }
-        /* Spinner */
-        #spinner { opacity:0; visibility:hidden; transition:opacity .5s ease-out,visibility 0s linear .5s; z-index:99999; }
-        #spinner.show { opacity:1; visibility:visible; transition:opacity .5s ease-out,visibility 0s linear 0s; }
-        /* Back to top */
-        .back-to-top { position:fixed; right:45px; bottom:45px; z-index:99; opacity:0; visibility:hidden; transform:translateY(8px); transition:opacity .25s ease,transform .25s ease,visibility 0s linear .25s; }
-        .back-to-top.show { opacity:1; visibility:visible; transform:translateY(0); }
-        /* Nav active state */
-        #site-navbar [data-nav-key].active { color:#fff !important; }
-        /* Case overlay (keep existing complex hover) */
-        .case-item { position:relative; overflow:hidden; border-radius:.75rem; }
-        .case-item img { transition:.5s; width:100%; display:block; }
-        .case-item:hover img { transform:scale(1.08); }
-        .case-overlay { position:absolute; padding:24px; width:100%; height:100%; top:0; left:0; display:flex; flex-direction:column; justify-content:flex-end; background:linear-gradient(to top,rgba(20,24,62,.85) 0%,rgba(20,24,62,.2) 60%,transparent 100%); }
-        .case-overlay small { display:inline-block; padding:3px 14px; color:#fff; background:rgba(20,24,62,.6); border-radius:20px; font-size:.72rem; font-weight:600; margin-bottom:10px; width:fit-content; }
-        /* Scroll reveal */
-        .reveal { opacity:0; transform:translateY(24px); transition:opacity .6s ease,transform .6s ease; }
-        .reveal.visible { opacity:1; transform:none; }
-    </style>
+/* 7. Desert Rose */
+[data-theme="desert-rose"] {
+  --bg:          #fdf8f4;
+  --bg2:         #f5ede6;
+  --bg3:         #ede0d6;
+  --surface:     #ffffff;
+  --border:      rgba(93,46,70,0.12);
+  --border-glow: rgba(184,125,109,0.35);
+  --accent:      #5d2e46;
+  --accent2:     #b87d6d;
+  --text:        #3a1e2c;
+  --muted:       #9a6878;
+  --subtle:      #c4a0a8;
+  --tag-bg:      rgba(93,46,70,0.07);
+  --tag-color:   #5d2e46;
+  --hf:          'Cormorant Garamond', serif;
+  --bf:          'Lora', serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --is-dark:     0;
+}
+
+/* 8. Tech Innovation */
+[data-theme="tech-innovation"] {
+  --bg:          #0a0a0a;
+  --bg2:         #111111;
+  --bg3:         #060606;
+  --surface:     #141414;
+  --border:      rgba(0,102,255,0.2);
+  --border-glow: rgba(0,255,255,0.35);
+  --accent:      #0066ff;
+  --accent2:     #00ffff;
+  --text:        #ffffff;
+  --muted:       #6688aa;
+  --subtle:      #445566;
+  --tag-bg:      rgba(0,102,255,0.1);
+  --tag-color:   #00ffff;
+  --hf:          'Oxanium', sans-serif;
+  --bf:          'Josefin Sans', sans-serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --is-dark:     1;
+}
+
+/* 9. Botanical Garden */
+[data-theme="botanical-garden"] {
+  --bg:          #f5f3ed;
+  --bg2:         #ece9e0;
+  --bg3:         #e0dcd0;
+  --surface:     #ffffff;
+  --border:      rgba(74,124,89,0.15);
+  --border-glow: rgba(249,166,32,0.4);
+  --accent:      #4a7c59;
+  --accent2:     #f9a620;
+  --text:        #2a3d2f;
+  --muted:       #7a9080;
+  --subtle:      #a0b0a5;
+  --tag-bg:      rgba(74,124,89,0.08);
+  --tag-color:   #3d6649;
+  --hf:          'DM Serif Display', serif;
+  --bf:          'Lora', serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --is-dark:     0;
+}
+
+/* 10. Midnight Galaxy */
+[data-theme="midnight-galaxy"] {
+  --bg:          #1a1226;
+  --bg2:         #221840;
+  --bg3:         #130d1e;
+  --surface:     #261c3a;
+  --border:      rgba(74,78,143,0.25);
+  --border-glow: rgba(164,144,194,0.4);
+  --accent:      #a490c2;
+  --accent2:     #e6e6fa;
+  --text:        #e6e6fa;
+  --muted:       #9080b0;
+  --subtle:      #60506e;
+  --tag-bg:      rgba(74,78,143,0.18);
+  --tag-color:   #c4b0e0;
+  --hf:          'Cormorant Garamond', serif;
+  --bf:          'Raleway', sans-serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --is-dark:     1;
+}
+
+/* =============================================
+   RESET & BASE
+   ============================================= */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--bf);
+  min-height: 100vh;
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+/* =============================================
+   THEME SWITCHER BAR (fixed top)
+   ============================================= */
+/* =============================================
+   THEME DROPDOWN (in nav)
+   ============================================= */
+.theme-dd {
+  position: relative;
+  display: inline-block;
+}
+
+/* Trigger matches the accent "Try Demo" CTA — outlined accent pill */
+.theme-dd-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 1rem 0.45rem 0.85rem;
+  background: transparent;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 0.73rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent);
+  transition: all 0.2s;
+}
+
+.theme-dd-trigger:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.theme-dd-trigger:hover .swatch {
+  box-shadow: 0 0 0 1px var(--bg);
+}
+
+.theme-dd-trigger .swatch {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1px var(--border);
+}
+
+.theme-dd-trigger .caret {
+  font-size: 9px;
+  opacity: 0.6;
+  margin-left: 0.15rem;
+  transition: transform 0.2s;
+}
+
+.theme-dd.open .theme-dd-trigger .caret {
+  transform: rotate(180deg);
+}
+
+.theme-dd-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 220px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.4rem;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.25), 0 0 0 1px var(--border);
+  display: none;
+  z-index: 200;
+  max-height: 360px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.theme-dd.open .theme-dd-menu { display: block; }
+
+.theme-opt {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: 100%;
+  padding: 0.45rem 0.65rem;
+  background: transparent;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+  text-align: left;
+  transition: background 0.15s, color 0.15s;
+}
+
+.theme-opt:hover {
+  background: var(--bg2);
+  color: var(--text);
+}
+
+.theme-opt.active {
+  background: var(--tag-bg);
+  color: var(--text);
+}
+
+.theme-opt .swatch {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.08);
+}
+
+.theme-opt .check {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--accent);
+  opacity: 0;
+}
+
+.theme-opt.active .check { opacity: 1; }
+
+.theme-dd-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--subtle);
+  padding: 0.5rem 0.65rem 0.4rem;
+}
+
+/* =============================================
+   NAV
+   ============================================= */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 3rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  transition: background 0.35s, border-color 0.35s;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--hf);
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.brand-icon {
+  width: 32px; height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* Stack Lume mark — three stacked bars; top bar 'lights' with accent2 glow.
+   Uses currentColor (set to var(--accent)) so it follows the theme. */
+.brand-icon svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.brand-icon .lm-stack { color: var(--accent); }
+.brand-icon .lm-glow  { color: var(--accent2); }
+.brand-icon .lm-bar { fill: currentColor; }
+.brand-icon .lm-top {
+  fill: var(--accent2);
+  filter: drop-shadow(0 0 4px var(--border-glow));
+}
+
+.nav-brand-wordmark {
+  font-family: var(--hf);
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  display: inline-flex;
+  align-items: baseline;
+}
+.nav-brand-wordmark .wm-stack { font-weight: 800; }
+.nav-brand-wordmark .wm-lume  { font-weight: 800; color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  list-style: none;
+}
+
+/* Top-level nav item (button) */
+.nav-item {
+  position: relative;
+}
+
+.nav-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.85rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: color 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+  position: relative;
+}
+
+.nav-trigger .ni-icon {
+  font-size: 13px;
+  color: var(--subtle);
+  transition: color 0.18s ease, transform 0.18s ease;
+}
+
+.nav-trigger .ni-caret {
+  font-size: 9px;
+  opacity: 0.5;
+  margin-left: 0.1rem;
+  transition: transform 0.2s ease, opacity 0.18s ease;
+}
+
+/* Underline accent on hover/open — enterprise feel */
+.nav-trigger::after {
+  content: '';
+  position: absolute;
+  left: 0.85rem;
+  right: 0.85rem;
+  bottom: 0.32rem;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.25s ease;
+}
+
+.nav-item:hover .nav-trigger,
+.nav-item.open .nav-trigger {
+  color: var(--text);
+  background: var(--bg2);
+  border-color: var(--border);
+}
+
+.nav-item:hover .nav-trigger .ni-icon,
+.nav-item.open .nav-trigger .ni-icon {
+  color: var(--accent);
+}
+
+.nav-item:hover .nav-trigger::after,
+.nav-item.open .nav-trigger::after {
+  transform: scaleX(1);
+}
+
+.nav-item:hover .nav-trigger .ni-caret,
+.nav-item.open .nav-trigger .ni-caret {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* Dropdown menu */
+.nav-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 240px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.4rem;
+  box-shadow: 0 18px 48px rgba(0,0,0,0.32), 0 0 0 1px var(--border);
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 200;
+}
+
+.nav-item:hover .nav-menu,
+.nav-item.open .nav-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.nav-menu-label {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--subtle);
+  padding: 0.55rem 0.7rem 0.45rem;
+}
+
+.nav-menu a {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 3px;
+  color: var(--muted);
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: background 0.15s ease, color 0.15s ease, padding-left 0.18s ease;
+  position: relative;
+}
+
+.nav-menu a .nm-icon {
+  font-size: 14px;
+  color: var(--subtle);
+  width: 18px;
+  flex-shrink: 0;
+  transition: color 0.15s ease;
+}
+
+.nav-menu a:hover {
+  background: var(--bg2);
+  color: var(--text);
+  padding-left: 0.95rem;
+}
+
+.nav-menu a:hover .nm-icon {
+  color: var(--accent);
+}
+
+.nav-menu a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px; bottom: 8px;
+  width: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  transform: scaleY(0);
+  transition: transform 0.18s ease;
+}
+
+.nav-menu a:hover::before { transform: scaleY(1); }
+
+.nav-cta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1.15rem;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.73rem;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  letter-spacing: 0.03em;
+  background: transparent;
+}
+
+.nav-cta:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* =============================================
+   HERO
+   ============================================= */
+.hero {
+  position: relative;
+  padding: 5rem 3rem 4.5rem;
+  overflow: hidden;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 30%, transparent 100%);
+  transition: all 0.35s;
+}
+
+.hero-glow {
+  position: absolute;
+  top: -120px; left: 50%;
+  transform: translateX(-50%);
+  width: 700px; height: 420px;
+  background: radial-gradient(ellipse, var(--tag-bg) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.85rem;
+  background: var(--tag-bg);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--accent2);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.live-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #34d399;
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+h1 {
+  font-family: var(--hf);
+  font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 1.4rem;
+}
+
+h1 .accent { color: var(--accent); }
+
+.hero-sub {
+  font-size: 0.97rem;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 580px;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 4rem;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.72rem 1.6rem;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: var(--hf);
+  font-weight: 700;
+  font-size: 0.82rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover { opacity: 0.88; }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.72rem 1.6rem;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--hf);
+  font-weight: 600;
+  font-size: 0.82rem;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-ghost:hover { color: var(--text); border-color: var(--border-glow); }
+
+/* STAT STRIP */
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--border);
+}
+
+.stat-cell {
+  background: var(--bg2);
+  padding: 1.3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  transition: background 0.35s;
+}
+
+.stat-value {
+  font-family: var(--hf);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.04em;
+}
+
+.stat-value .unit { color: var(--accent); font-size: 1.1rem; }
+
+.stat-label {
+  font-family: var(--mono);
+  font-size: 0.67rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* =============================================
+   SECTIONS
+   ============================================= */
+.divider {
+  height: 1px;
+  background: var(--border);
+  transition: background 0.35s;
+}
+
+.section {
+  padding: 4.5rem 3rem;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 22px; height: 1px;
+  background: var(--accent);
+}
+
+h2 {
+  font-family: var(--hf);
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin-bottom: 0.65rem;
+}
+
+.section-desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 540px;
+  margin-bottom: 2.75rem;
+  font-weight: 300;
+}
+
+/* =============================================
+   SERVICE CARDS
+   ============================================= */
+.card-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.svc-card {
+  background: var(--bg2);
+  padding: 1.9rem 1.75rem;
+  transition: background 0.2s;
+  cursor: default;
+}
+
+.svc-card:hover { background: var(--surface); }
+
+.svc-icon {
+  width: 42px; height: 42px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  margin-bottom: 1.15rem;
+  background: var(--tag-bg);
+  color: var(--accent);
+  transition: background 0.35s;
+}
+
+.svc-card h3 {
+  font-family: var(--hf);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.svc-card p {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+.card-link {
+  margin-top: 1.2rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.svc-card:hover .card-link { opacity: 1; }
+
+/* =============================================
+   PRODUCT SHELF
+   ============================================= */
+.shelf-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.prod-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: border-color 0.2s;
+}
+
+.prod-card:hover { border-color: var(--border-glow); }
+
+.prod-icon {
+  font-size: 22px;
+  color: var(--accent);
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.prod-card h4 {
+  font-family: var(--hf);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.28rem;
+}
+
+.prod-card p {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.55;
+  font-weight: 300;
+}
+
+.prod-tag {
+  display: inline-block;
+  margin-top: 0.55rem;
+  padding: 0.15rem 0.55rem;
+  font-family: var(--mono);
+  font-size: 0.61rem;
+  letter-spacing: 0.06em;
+  border-radius: 2px;
+  text-transform: uppercase;
+  background: var(--tag-bg);
+  color: var(--tag-color);
+}
+
+/* =============================================
+   TERMINAL
+   ============================================= */
+.terminal {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.term-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 1rem;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+}
+
+.td { width: 10px; height: 10px; border-radius: 50%; }
+.td-r { background: #f87171; }
+.td-a { background: #fbbf24; }
+.td-g { background: #34d399; }
+
+.term-title {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  margin-left: 0.5rem;
+  letter-spacing: 0.04em;
+}
+
+.term-body {
+  padding: 1.4rem 1.75rem;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  line-height: 1.85;
+}
+
+.tl-m { color: var(--muted); }
+.tl-a { color: var(--accent); }
+.tl-a2 { color: var(--accent2); }
+.tl-g { color: #34d399; }
+.tl-r { color: #f87171; }
+.tl-t { color: var(--text); }
+
+/* =============================================
+   BLOG
+   ============================================= */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.blog-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: border-color 0.2s;
+}
+
+.blog-card:hover { border-color: var(--border-glow); }
+
+.blog-meta {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.blog-tag {
+  padding: 0.1rem 0.48rem;
+  border-radius: 2px;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  background: var(--tag-bg);
+  color: var(--tag-color);
+}
+
+.blog-card h4 {
+  font-family: var(--hf);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.35;
+}
+
+.blog-card p {
+  font-size: 0.77rem;
+  color: var(--muted);
+  line-height: 1.6;
+  font-weight: 300;
+  flex: 1;
+}
+
+.blog-link {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  text-decoration: none;
+}
+
+/* =============================================
+   CTA BANNER
+   ============================================= */
+.cta-wrap {
+  padding: 0 3rem 3rem;
+}
+
+.cta-banner {
+  padding: 3.25rem 3rem;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-banner::after {
+  content: '';
+  position: absolute;
+  right: -60px; top: -60px;
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  background: var(--tag-bg);
+  pointer-events: none;
+}
+
+.cta-banner h2 { font-size: 1.65rem; margin-bottom: 0.4rem; }
+
+.cta-banner p {
+  font-size: 0.87rem;
+  color: var(--subtle);
+  font-weight: 300;
+}
+
+.cta-actions { display: flex; gap: 0.75rem; flex-shrink: 0; position: relative; z-index: 1; }
+
+/* =============================================
+   FOOTER
+   ============================================= */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  transition: border-color 0.35s;
+}
+
+.footer-brand {
+  font-family: var(--hf);
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.6rem;
+  list-style: none;
+}
+
+.footer-links a {
+  font-size: 0.73rem;
+  color: var(--muted);
+  text-decoration: none;
+  font-family: var(--mono);
+  letter-spacing: 0.03em;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--accent); }
+
+.footer-copy {
+  font-family: var(--mono);
+  font-size: 0.63rem;
+  color: var(--subtle);
+  letter-spacing: 0.04em;
+}
+
+/* =============================================
+   TRANSITIONS
+   ============================================= */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+</style>
 </head>
+<body data-theme="ocean-depths">
 
-<body class="bg-white text-slate-800">
 
-    <!-- Spinner -->
-    <div id="spinner" class="show fixed inset-0 w-full h-screen bg-white flex items-center justify-center">
-        <svg class="animate-spin h-12 w-12 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
-        </svg>
+
+<!-- PAGE -->
+<div id="page">
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <div class="brand-icon">
+      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-label="Stack Lume">
+        <!-- Stacked bars: bottom (subtle), middle (accent), top (lume / glowing accent2) -->
+        <rect class="lm-bar lm-stack" x="6"  y="22" width="14" height="3.2" rx="1.2" opacity="0.55"></rect>
+        <rect class="lm-bar lm-stack" x="6"  y="15.6" width="20" height="3.2" rx="1.2" opacity="0.85"></rect>
+        <rect class="lm-bar lm-top"   x="6"  y="9.2"  width="11" height="3.2" rx="1.2"></rect>
+        <!-- Lume spark: small dot offset from top bar -->
+        <circle class="lm-bar lm-top" cx="22" cy="10.8" r="1.9"></circle>
+      </svg>
     </div>
-
-    <!-- ── NAVBAR ── -->
-    <div id="site-navbar" x-data="{ mobileOpen:false }" class="sticky top-0 z-50 bg-brand/95 backdrop-blur-md shadow-md transition-all">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-
-                <!-- Logo -->
-                <a href="/index.html" class="flex items-center gap-2.5 shrink-0" data-nav-key="home">
-                    <img src="/img/stacklume-logo.svg" alt="Stack Lume Logo" class="h-9 w-auto">
-                    <span class="text-white font-bold text-xl" style="font-family:'Ubuntu',sans-serif;">Stack Lume</span>
-                </a>
-
-                <!-- Desktop nav -->
-                <div class="hidden lg:flex items-center gap-0.5">
-                    <a href="/index.html" data-nav-key="home" class="text-white/75 hover:text-white px-3 py-2 text-sm font-medium rounded-lg hover:bg-white/10 transition-colors">Home</a>
-                    <a href="/about.html" data-nav-key="about" class="text-white/75 hover:text-white px-3 py-2 text-sm font-medium rounded-lg hover:bg-white/10 transition-colors">About</a>
-
-                    <!-- Services -->
-                    <div x-data="{ open:false }" class="relative" @mouseenter="open=true" @mouseleave="open=false">
-                        <button data-nav-key="services" class="flex items-center gap-1 text-white/75 hover:text-white px-3 py-2 text-sm font-medium rounded-lg hover:bg-white/10 transition-colors">
-                            Services <i class="bi bi-chevron-down text-[10px] mt-0.5"></i>
-                        </button>
-                        <div x-show="open" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 -translate-y-1" x-transition:enter-end="opacity-100 translate-y-0"
-                             class="absolute left-0 top-full mt-1 w-64 bg-white rounded-xl shadow-xl border border-slate-100 py-2 z-50">
-                            <p class="px-4 pt-1 pb-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Service Portfolio</p>
-                            <a href="/services/services.html" data-nav-key="services" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">All Services</a>
-                            <a href="/services/retrieval-quality-engineering.html" data-nav-key="services" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">Retrieval Quality Engineering</a>
-                            <a href="/services/model-reliability-sre.html" data-nav-key="services" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">Model Reliability SRE</a>
-                            <a href="/services/guardrail-policy-engineering.html" data-nav-key="services" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">Guardrail Policy Engineering</a>
-                            <a href="/services/private-finetuning-ops.html" data-nav-key="services" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">Private Fine-Tuning Ops</a>
-                            <div class="my-1.5 border-t border-slate-100"></div>
-                            <p class="px-4 pt-1 pb-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Technical Guides</p>
-                            <a href="/ai-siem-automation.html" data-nav-key="services" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">AI SIEM Automation</a>
-                            <a href="/ai-iam-pam-agent.html" data-nav-key="services" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">AI IAM &amp; PAM Agent</a>
-                            <a href="/private-ai-data-intelligence.html" data-nav-key="services" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">Private AI Data Intelligence</a>
-                            <a href="/model-mesh-routing.html" data-nav-key="services" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">AI Model Mesh Routing</a>
-                        </div>
-                    </div>
-
-                    <!-- Products -->
-                    <div x-data="{ open:false }" class="relative" @mouseenter="open=true" @mouseleave="open=false">
-                        <button data-nav-key="products" class="flex items-center gap-1 text-white/75 hover:text-white px-3 py-2 text-sm font-medium rounded-lg hover:bg-white/10 transition-colors">
-                            Products <i class="bi bi-chevron-down text-[10px] mt-0.5"></i>
-                        </button>
-                        <div x-show="open" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 -translate-y-1" x-transition:enter-end="opacity-100 translate-y-0"
-                             class="absolute left-0 top-full mt-1 w-60 bg-white rounded-xl shadow-xl border border-slate-100 py-2 z-50">
-                            <a href="/products/product.html" data-nav-key="products" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">Product Portfolio</a>
-                            <a href="/products/compliance-guardian.html" data-nav-key="products" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">Compliance Guardian</a>
-                            <a href="/products/authenticity-chain-vault.html" data-nav-key="products" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">Authenticity Chain Vault</a>
-                            <a href="/products/adaptive-ai-honeymesh.html" data-nav-key="products" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">Adaptive AI Honeymesh</a>
-                            <a href="/products/policy-compiler-studio.html" data-nav-key="products" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">Policy Compiler Studio</a>
-                            <div class="my-1.5 border-t border-slate-100"></div>
-                            <a href="/products/promptshield-nexus.html" data-nav-key="products" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">PromptShield Nexus</a>
-                            <a href="/products/vectorpulse-sentinel.html" data-nav-key="products" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">VectorPulse Sentinel</a>
-                            <a href="/products/agentchain-commander.html" data-nav-key="products" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">AgentChain Commander</a>
-                            <a href="/products/hallucination-forensics-studio.html" data-nav-key="products" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">Hallucination Forensics Studio</a>
-                        </div>
-                    </div>
-
-                    <a href="/project.html" data-nav-key="projects" class="text-white/75 hover:text-white px-3 py-2 text-sm font-medium rounded-lg hover:bg-white/10 transition-colors">Projects</a>
-
-                    <!-- Blog -->
-                    <div x-data="{ open:false }" class="relative" @mouseenter="open=true" @mouseleave="open=false">
-                        <button data-nav-key="blog" class="flex items-center gap-1 text-white/75 hover:text-white px-3 py-2 text-sm font-medium rounded-lg hover:bg-white/10 transition-colors">
-                            Blog <i class="bi bi-chevron-down text-[10px] mt-0.5"></i>
-                        </button>
-                        <div x-show="open" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 -translate-y-1" x-transition:enter-end="opacity-100 translate-y-0"
-                             class="absolute left-0 top-full mt-1 w-72 bg-white rounded-xl shadow-xl border border-slate-100 py-2 z-50">
-                            <a href="/blog/index.html" data-nav-key="blog" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">All Articles</a>
-                            <div class="my-1.5 border-t border-slate-100"></div>
-                            <a href="/blog/gen-ai-topologies-enterprise-2026.html" data-nav-key="blog" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">GenAI Topologies for 2026</a>
-                            <a href="/blog/agentic-rag-governance-playbook.html" data-nav-key="blog" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">Agentic RAG Governance Playbook</a>
-                            <a href="/blog/ai-tools-claude-fortinet-fortigate.html" data-nav-key="blog" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">AI Tools, Claude &amp; Fortinet FortiGate</a>
-                            <a href="/blog/iranian-plc-critical-infrastructure.html" data-nav-key="blog" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">Iranian Hackers Target PLCs</a>
-                            <a href="/blog/llm-jacking-how-hackers-are-exploiting-large-language-models.html" data-nav-key="blog" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">LLM Jacking: How Hackers Exploit LLMs</a>
-                        </div>
-                    </div>
-
-                    <!-- Contact -->
-                    <div x-data="{ open:false }" class="relative" @mouseenter="open=true" @mouseleave="open=false">
-                        <button data-nav-key="contact" class="flex items-center gap-1 text-white/75 hover:text-white px-3 py-2 text-sm font-medium rounded-lg hover:bg-white/10 transition-colors">
-                            Contact <i class="bi bi-chevron-down text-[10px] mt-0.5"></i>
-                        </button>
-                        <div x-show="open" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 -translate-y-1" x-transition:enter-end="opacity-100 translate-y-0"
-                             class="absolute left-0 top-full mt-1 w-44 bg-white rounded-xl shadow-xl border border-slate-100 py-2 z-50">
-                            <a href="/contact.html" data-nav-key="contact" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">Contact Us</a>
-                            <a href="/careers.html" data-nav-key="contact" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors">Work With Us</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CTA + mobile toggle -->
-                <div class="flex items-center gap-3">
-                    <a href="/login.html" data-nav-key="demo" class="hidden lg:inline-flex items-center bg-white text-primary font-semibold text-sm px-4 py-2 rounded-full hover:bg-slate-100 transition-colors shadow-sm">
-                        Try Demo
-                    </a>
-                    <button @click="mobileOpen=!mobileOpen" class="lg:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors">
-                        <i class="bi text-xl" :class="mobileOpen ? 'bi-x-lg' : 'bi-list'"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile menu -->
-        <div x-show="mobileOpen" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
-             class="lg:hidden bg-brand border-t border-white/10 px-4 pb-5 pt-3 space-y-1">
-            <a href="/index.html" class="block text-white/80 hover:text-white hover:bg-white/10 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">Home</a>
-            <a href="/about.html" class="block text-white/80 hover:text-white hover:bg-white/10 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">About</a>
-            <a href="/services/services.html" class="block text-white/80 hover:text-white hover:bg-white/10 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">Services</a>
-            <a href="/products/product.html" class="block text-white/80 hover:text-white hover:bg-white/10 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">Products</a>
-            <a href="/project.html" class="block text-white/80 hover:text-white hover:bg-white/10 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">Projects</a>
-            <a href="/blog/index.html" class="block text-white/80 hover:text-white hover:bg-white/10 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">Blog</a>
-            <a href="/contact.html" class="block text-white/80 hover:text-white hover:bg-white/10 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">Contact</a>
-            <div class="pt-2">
-                <a href="/login.html" class="block w-full text-center bg-white text-primary font-semibold text-sm px-4 py-2.5 rounded-full hover:bg-slate-100 transition-colors">Try Demo</a>
-            </div>
-        </div>
-    </div>
-    <!-- ── END NAVBAR ── -->
-
-
-    <!-- ── HERO ── -->
-    <section class="bg-gradient-to-br from-brand via-[#1a2456] to-primary overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div class="text-center lg:text-left">
-                    <span class="inline-block border border-white/30 text-white text-xs font-semibold px-4 py-1.5 rounded-full mb-5">AI Threat Visibility Platform</span>
-                    <p class="text-white/55 text-sm font-semibold mb-4">
-                        <i class="bi bi-stars mr-1.5"></i>New in April 2026: the StackLume workspace app is now live as part of the StackLume product family.
-                    </p>
-                    <h1 class="text-4xl md:text-5xl text-white font-bold mb-6 leading-tight">
-                        See AI threats clearly.<br>Respond with confidence.
-                    </h1>
-                    <p class="text-white/75 text-lg mb-8 leading-relaxed">
-                        Stack Lume brings AI security signal into one operator view across identity risk, SIEM pressure, model activity, and private data exposure—so teams can detect what matters and move faster.
-                    </p>
-                    <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
-                        <a href="about.html" class="inline-flex items-center bg-white text-primary font-semibold px-6 py-3 rounded-full hover:bg-white/90 transition-colors shadow-lg">
-                            See how Stack Lume works
-                        </a>
-                        <a href="login.html" class="inline-flex items-center border-2 border-white/50 text-white font-semibold px-6 py-3 rounded-full hover:bg-white/10 transition-colors">
-                            Try Demo
-                        </a>
-                    </div>
-                </div>
-                <div class="flex items-end justify-center lg:justify-end">
-                    <picture>
-                        <source srcset="img/hero-network-16x9.webp" type="image/webp">
-                        <img src="img/hero-network-16x9.png" class="w-full max-w-xl lg:max-w-none rounded-xl shadow-2xl" width="1600" height="900" loading="eager" fetchpriority="high" alt="Abstract blue data network visual representing the Stack Lume platform" decoding="async">
-                    </picture>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ── END HERO ── -->
-
-
-    <!-- ── RELEASE CARDS ── -->
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-7 gap-6">
-                <!-- Main card -->
-                <div class="lg:col-span-4 bg-white rounded-2xl border border-slate-200 p-8 shadow-sm hover:shadow-lg transition-all duration-300 reveal">
-                    <span class="inline-block border border-primary/30 text-primary text-xs font-semibold px-4 py-1.5 rounded-full mb-5">New Release</span>
-                    <h2 class="text-2xl font-bold text-slate-900 mb-4 leading-snug">The new StackLume workspace app is here — and it now joins the StackLume product family.</h2>
-                    <p class="text-slate-600 mb-3 leading-relaxed">The new StackLume app gives infrastructure, security, and launch teams a secure workspace for authenticated access, rollout direction, visual launch planning, and operational handoff. It pairs naturally with Stack Lume by turning detection and response insight into a cleaner delivery and workspace layer.</p>
-                    <p class="text-slate-600 mb-7 leading-relaxed">That means teams can move from AI threat visibility into a governed operator workspace without bouncing between scattered tools, ad hoc admin pages, and fragile launch flow.</p>
-                    <div class="flex flex-wrap gap-3">
-                        <a href="https://stacklume.cloud/" class="inline-flex items-center bg-primary text-white font-semibold px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors">Explore StackLume</a>
-                        <a href="https://app.stacklume.cloud/" class="inline-flex items-center border-2 border-primary text-primary font-semibold px-5 py-2.5 rounded-full hover:bg-primary/5 transition-colors">Open Workspace App</a>
-                    </div>
-                </div>
-                <!-- Features card -->
-                <div class="lg:col-span-3 bg-slate-50 rounded-2xl border border-slate-200 p-8 shadow-sm reveal">
-                    <p class="text-primary text-xs font-bold uppercase tracking-widest mb-2">What Ships With It</p>
-                    <h3 class="text-xl font-bold text-slate-900 mb-7">A launch surface built for real operators.</h3>
-                    <ul class="space-y-5">
-                        <li class="flex items-start gap-4">
-                            <span class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="bi bi-person-check text-primary"></i>
-                            </span>
-                            <span class="text-slate-600 text-sm leading-relaxed">Protected sign-in for demo, operator, and customer workspace access.</span>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <span class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="bi bi-window-sidebar text-primary"></i>
-                            </span>
-                            <span class="text-slate-600 text-sm leading-relaxed">A dedicated workspace front end for launch flow, environments, and runbooks.</span>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <span class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="bi bi-bar-chart-line text-primary"></i>
-                            </span>
-                            <span class="text-slate-600 text-sm leading-relaxed">Stronger operational visibility across release readiness and delivery status.</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ── END RELEASE CARDS ── -->
-
-
-    <!-- ── SECURITY INSIGHTS ── -->
-    <section class="py-20 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-10 max-w-2xl">
-                <span class="inline-block border border-primary/30 text-primary text-xs font-semibold px-4 py-1.5 rounded-full mb-4">Latest Security Insights</span>
-                <h2 class="text-3xl font-bold text-slate-900 mb-3">Fresh coverage on AI threat operations and critical infrastructure risk.</h2>
-                <p class="text-slate-600">Stay ahead with the newest Stack Lume briefings on AI-assisted Fortinet attacks, Iranian-linked PLC targeting, and the rise of LLM Jacking.</p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-6">
-                <article class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group flex flex-col reveal">
-                    <span class="text-primary text-xs font-bold uppercase tracking-widest mb-3">April 2026</span>
-                    <h3 class="font-bold text-lg text-slate-900 mb-3 group-hover:text-primary transition-colors leading-snug">AI Tools, Claude, and Fortinet FortiGate Attacks</h3>
-                    <p class="text-slate-600 text-sm mb-5 flex-1 leading-relaxed">How AI-assisted threat actors are scaling attacks against Fortinet firewalls and exposed management interfaces.</p>
-                    <a href="blog/ai-tools-claude-fortinet-fortigate.html" class="inline-flex items-center gap-1.5 text-primary text-sm font-semibold group-hover:gap-3 transition-all">
-                        Read article <i class="bi bi-arrow-right"></i>
-                    </a>
-                </article>
-                <article class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group flex flex-col reveal">
-                    <span class="text-primary text-xs font-bold uppercase tracking-widest mb-3">April 2026</span>
-                    <h3 class="font-bold text-lg text-slate-900 mb-3 group-hover:text-primary transition-colors leading-snug">Iranian Hackers Target PLCs and PCM Boards</h3>
-                    <p class="text-slate-600 text-sm mb-5 flex-1 leading-relaxed">A joint advisory warns Iranian-linked actors are exploiting internet-exposed PLCs in critical infrastructure.</p>
-                    <a href="blog/iranian-plc-critical-infrastructure.html" class="inline-flex items-center gap-1.5 text-primary text-sm font-semibold group-hover:gap-3 transition-all">
-                        Read article <i class="bi bi-arrow-right"></i>
-                    </a>
-                </article>
-                <article class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group flex flex-col reveal">
-                    <span class="text-primary text-xs font-bold uppercase tracking-widest mb-3">April 2026</span>
-                    <h3 class="font-bold text-lg text-slate-900 mb-3 group-hover:text-primary transition-colors leading-snug">LLM Jacking: How Hackers Exploit LLMs</h3>
-                    <p class="text-slate-600 text-sm mb-5 flex-1 leading-relaxed">What enterprises need to know about prompt and output manipulation in generative AI systems.</p>
-                    <a href="blog/llm-jacking-how-hackers-are-exploiting-large-language-models.html" class="inline-flex items-center gap-1.5 text-primary text-sm font-semibold group-hover:gap-3 transition-all">
-                        Read article <i class="bi bi-arrow-right"></i>
-                    </a>
-                </article>
-            </div>
-        </div>
-    </section>
-    <!-- ── END SECURITY INSIGHTS ── -->
-
-
-    <!-- ── ABOUT ── -->
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="reveal">
-                    <div class="relative rounded-2xl overflow-hidden shadow-xl">
-                        <img src="img/about-img.jpg" class="w-full object-cover" width="696" height="696" loading="lazy" decoding="async" alt="About Model Signal">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-brand/20 to-transparent pointer-events-none"></div>
-                    </div>
-                </div>
-                <div class="reveal">
-                    <span class="inline-block border border-primary/30 text-primary text-xs font-semibold px-4 py-1.5 rounded-full mb-5">About Us</span>
-                    <h2 class="text-3xl font-bold text-slate-900 mb-5">Where AI Meets Security and Data Intelligence</h2>
-                    <p class="text-slate-600 mb-4 leading-relaxed">Model Signal built Stack Lume because the two hardest problems in enterprise AI are trust and security. We solve both. Our platform autonomously hunts stale and over-privileged identities, acts as the AI-powered first responder in your SIEM pipeline, and gives your teams the ability to query their own private data through any AI model — all hosted inside your own infrastructure.</p>
-                    <p class="text-slate-600 mb-7 leading-relaxed">No SaaS vendor holding your data. No shared model endpoints. No black-box alerts. Just clear, agentic intelligence working 24/7 inside your perimeter.</p>
-                    <div class="grid sm:grid-cols-2 gap-3 mb-8">
-                        <div class="flex items-center gap-2 text-slate-700 text-sm font-medium"><i class="bi bi-check-circle-fill text-primary"></i>IAM &amp; PAM Agent</div>
-                        <div class="flex items-center gap-2 text-slate-700 text-sm font-medium"><i class="bi bi-check-circle-fill text-primary"></i>Private Data Intelligence</div>
-                        <div class="flex items-center gap-2 text-slate-700 text-sm font-medium"><i class="bi bi-check-circle-fill text-primary"></i>SIEM First-Line Response</div>
-                        <div class="flex items-center gap-2 text-slate-700 text-sm font-medium"><i class="bi bi-check-circle-fill text-primary"></i>Self-Hosted Infrastructure</div>
-                    </div>
-                    <div class="flex flex-wrap items-center gap-3">
-                        <a href="about.html" class="inline-flex items-center bg-primary text-white font-semibold px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors">About Model Signal &amp; Stack Lume</a>
-                        <a href="https://twitter.com/ModelSignal" class="w-10 h-10 rounded-full border-2 border-slate-200 flex items-center justify-center text-slate-500 hover:border-primary hover:text-primary transition-colors"><i class="bi bi-twitter-x text-sm"></i></a>
-                        <a href="" class="w-10 h-10 rounded-full border-2 border-slate-200 flex items-center justify-center text-slate-500 hover:border-primary hover:text-primary transition-colors"><i class="bi bi-linkedin text-sm"></i></a>
-                        <a href="" class="w-10 h-10 rounded-full border-2 border-slate-200 flex items-center justify-center text-slate-500 hover:border-primary hover:text-primary transition-colors"><i class="bi bi-github text-sm"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ── END ABOUT ── -->
-
-
-    <!-- ── SERVICES ── -->
-    <section class="py-20 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-12 gap-12 items-start">
-                <div class="lg:col-span-4 reveal">
-                    <span class="inline-block border border-primary/30 text-primary text-xs font-semibold px-4 py-1.5 rounded-full mb-5">Our Services</span>
-                    <h2 class="text-3xl font-bold text-slate-900 mb-5">Security, Data, and AI — Unified in One Platform</h2>
-                    <p class="text-slate-600 mb-7 leading-relaxed">Stack Lume combines autonomous identity hygiene, SIEM first-response agents, private data intelligence (RAG), and multi-model AI routing into a single platform — deployed entirely inside your own infrastructure so your data never leaves the perimeter.</p>
-                    <a href="services/services.html" class="inline-flex items-center bg-primary text-white font-semibold px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors">View All Services</a>
-                </div>
-                <div class="lg:col-span-8">
-                    <div class="grid sm:grid-cols-2 gap-5">
-                        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-lg hover:border-primary/30 hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center group reveal">
-                            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary transition-colors duration-300">
-                                <i class="bi bi-diagram-3 text-2xl text-primary group-hover:text-white transition-colors duration-300"></i>
-                            </div>
-                            <h3 class="font-bold text-slate-900 mb-2">Adaptive Model Fabric</h3>
-                            <p class="text-slate-600 text-sm mb-4 flex-1 leading-relaxed">Continuously orchestrates model choice by intent, risk posture, latency budgets, and quality targets in real time.</p>
-                            <a href="services/services.html" class="text-primary text-sm font-semibold inline-flex items-center gap-1 hover:gap-2.5 transition-all">Learn more <i class="bi bi-arrow-right text-xs"></i></a>
-                        </div>
-                        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-lg hover:border-primary/30 hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center group reveal">
-                            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary transition-colors duration-300">
-                                <i class="bi bi-plug text-2xl text-primary group-hover:text-white transition-colors duration-300"></i>
-                            </div>
-                            <h3 class="font-bold text-slate-900 mb-2">OmniRoute API Gateway</h3>
-                            <p class="text-slate-600 text-sm mb-4 flex-1 leading-relaxed">One enterprise endpoint for every approved model, with policy enforcement, key governance, and zero-rewrite migration.</p>
-                            <a href="services/services.html" class="text-primary text-sm font-semibold inline-flex items-center gap-1 hover:gap-2.5 transition-all">Learn more <i class="bi bi-arrow-right text-xs"></i></a>
-                        </div>
-                        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-lg hover:border-primary/30 hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center group reveal">
-                            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary transition-colors duration-300">
-                                <i class="bi bi-shield-check text-2xl text-primary group-hover:text-white transition-colors duration-300"></i>
-                            </div>
-                            <h3 class="font-bold text-slate-900 mb-2">TrustTrace Audit Engine</h3>
-                            <p class="text-slate-600 text-sm mb-4 flex-1 leading-relaxed">Every AI response is scored, versioned, and policy-mapped so compliance and security teams can approve with confidence.</p>
-                            <a href="services/services.html" class="text-primary text-sm font-semibold inline-flex items-center gap-1 hover:gap-2.5 transition-all">Learn more <i class="bi bi-arrow-right text-xs"></i></a>
-                        </div>
-                        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-lg hover:border-primary/30 hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center group reveal">
-                            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary transition-colors duration-300">
-                                <i class="bi bi-graph-up-arrow text-2xl text-primary group-hover:text-white transition-colors duration-300"></i>
-                            </div>
-                            <h3 class="font-bold text-slate-900 mb-2">Token Economics Command</h3>
-                            <p class="text-slate-600 text-sm mb-4 flex-1 leading-relaxed">Live cost telemetry correlates spend with business outcomes, then recommends routing optimizations to protect margin.</p>
-                            <a href="services/services.html" class="text-primary text-sm font-semibold inline-flex items-center gap-1 hover:gap-2.5 transition-all">Learn more <i class="bi bi-arrow-right text-xs"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ── END SERVICES ── -->
-
-
-    <!-- ── BLOG ── -->
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-xl mx-auto mb-12 reveal">
-                <span class="inline-block border border-primary/30 text-primary text-xs font-semibold px-4 py-1.5 rounded-full mb-4">Latest from the Blog</span>
-                <h2 class="text-3xl font-bold text-slate-900 mb-3">Fresh GenAI Insights from Stack Lume</h2>
-                <p class="text-slate-600">Original content on enterprise GenAI architecture, AI security, and operational governance.</p>
-            </div>
-            <div class="grid lg:grid-cols-2 gap-6 mb-8">
-                <article class="bg-slate-50 rounded-2xl border border-slate-200 p-7 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group flex flex-col reveal">
-                    <span class="text-primary text-xs font-bold uppercase tracking-widest mb-3">April 2026</span>
-                    <h3 class="font-bold text-xl text-slate-900 mb-3 group-hover:text-primary transition-colors">GenAI Topologies for Enterprise Teams in 2026</h3>
-                    <p class="text-slate-600 text-sm mb-5 flex-1 leading-relaxed">A practical comparison of single-model and model-mesh patterns for reliability and scale.</p>
-                    <a href="blog/gen-ai-topologies-enterprise-2026.html" class="inline-flex items-center gap-1.5 text-primary text-sm font-semibold group-hover:gap-3 transition-all">
-                        Read article <i class="bi bi-arrow-right"></i>
-                    </a>
-                </article>
-                <article class="bg-slate-50 rounded-2xl border border-slate-200 p-7 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group flex flex-col reveal">
-                    <span class="text-primary text-xs font-bold uppercase tracking-widest mb-3">April 2026</span>
-                    <h3 class="font-bold text-xl text-slate-900 mb-3 group-hover:text-primary transition-colors">Agentic RAG Governance Playbook</h3>
-                    <p class="text-slate-600 text-sm mb-5 flex-1 leading-relaxed">How to enforce retrieval controls, policy checks, and observability in production RAG systems.</p>
-                    <a href="blog/agentic-rag-governance-playbook.html" class="inline-flex items-center gap-1.5 text-primary text-sm font-semibold group-hover:gap-3 transition-all">
-                        Read article <i class="bi bi-arrow-right"></i>
-                    </a>
-                </article>
-            </div>
-            <div class="text-center reveal">
-                <a href="blog/index.html" class="inline-flex items-center gap-2 bg-primary text-white font-semibold px-6 py-3 rounded-full hover:bg-primary/90 transition-colors">
-                    View All Blog Articles <i class="bi bi-arrow-right"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-    <!-- ── END BLOG ── -->
-
-
-    <!-- ── USE CASES ── -->
-    <section class="py-20 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-md mx-auto mb-12 reveal">
-                <span class="inline-block border border-primary/30 text-primary text-xs font-semibold px-4 py-1.5 rounded-full mb-4">Use Cases</span>
-                <h2 class="text-3xl font-bold text-slate-900">How Teams Are Using Stack Lume</h2>
-            </div>
-            <div class="grid lg:grid-cols-3 gap-6">
-                <div class="case-item reveal">
-                    <img src="img/project-1.jpg" width="600" height="700" loading="lazy" decoding="async" alt="Identity Threat Detection">
-                    <a class="case-overlay text-decoration-none" href="project.html">
-                        <small>Identity Security</small>
-                        <h4 class="text-white font-bold text-base leading-snug mb-3">Financial firm eliminates 1,400 stale accounts — closing a critical breach vector in 48 hours</h4>
-                        <span class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white"><i class="bi bi-arrow-right"></i></span>
-                    </a>
-                </div>
-                <div class="case-item reveal">
-                    <img src="img/project-2.jpg" width="600" height="700" loading="lazy" decoding="async" alt="SIEM AI Front Line">
-                    <a class="case-overlay text-decoration-none" href="project.html">
-                        <small>SIEM &amp; SOC Ops</small>
-                        <h4 class="text-white font-bold text-base leading-snug mb-3">Healthcare SOC reduces analyst alert queue by 78% after deploying Stack Lume front-line agent</h4>
-                        <span class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white"><i class="bi bi-arrow-right"></i></span>
-                    </a>
-                </div>
-                <div class="case-item reveal">
-                    <img src="img/project-3.jpg" width="600" height="700" loading="lazy" decoding="async" alt="Private Data Intelligence">
-                    <a class="case-overlay text-decoration-none" href="project.html">
-                        <small>Private Data Intelligence</small>
-                        <h4 class="text-white font-bold text-base leading-snug mb-3">Fortune 500 legal team queries 8 years of internal contracts through private AI — zero data leaves the VPC</h4>
-                        <span class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white"><i class="bi bi-arrow-right"></i></span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ── END USE CASES ── -->
-
-
-    <!-- ── SECURITY INTELLIGENCE / IAM ── -->
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
-                <span class="inline-block border border-primary/30 text-primary text-xs font-semibold px-4 py-1.5 rounded-full mb-4">Security Intelligence</span>
-                <h2 class="text-3xl font-bold text-slate-900 mb-4">Your AI-Powered First Line of Defense</h2>
-                <p class="text-slate-600 leading-relaxed">Stack Lume goes beyond AI routing. Our Identity Intelligence and SIEM-integrated agents continuously watch your environment — detecting stale accounts, anomalous access, and insider threats before they become incidents.</p>
-            </div>
-
-            <!-- IAM / PAM -->
-            <div class="grid lg:grid-cols-2 gap-14 items-start mb-20">
-                <div class="reveal">
-                    <span class="inline-block border border-primary/30 text-primary text-xs font-semibold px-4 py-1.5 rounded-full mb-5">IAM &amp; PAM Agent</span>
-                    <h2 class="text-3xl font-bold text-slate-900 mb-5">Autonomous Identity Hygiene</h2>
-                    <p class="text-slate-600 mb-7 leading-relaxed">Most breaches don't start with malware — they start with a forgotten service account or an employee who left six months ago. Stack Lume deploys an always-on IAM/PAM agent that continuously audits your identity landscape and acts autonomously.</p>
-                    <div class="grid sm:grid-cols-2 gap-5 mb-8">
-                        <div>
-                            <h4 class="font-bold text-slate-800 text-sm mb-1.5 flex items-center gap-2"><i class="bi bi-person-x text-primary"></i>Stale Account Detection</h4>
-                            <p class="text-slate-500 text-xs leading-relaxed">Flag and quarantine accounts with no activity over a configurable threshold. Human review queued automatically.</p>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-800 text-sm mb-1.5 flex items-center gap-2"><i class="bi bi-robot text-primary"></i>System Account Audit</h4>
-                            <p class="text-slate-500 text-xs leading-relaxed">Enumerate all non-human identities — service accounts, API keys, machine tokens — and surface over-privileged access.</p>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-800 text-sm mb-1.5 flex items-center gap-2"><i class="bi bi-key text-primary"></i>Privileged Access Review</h4>
-                            <p class="text-slate-500 text-xs leading-relaxed">Continuous PAM sweep validates that admin and privileged roles are justified, time-boxed, and actively monitored.</p>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-800 text-sm mb-1.5 flex items-center gap-2"><i class="bi bi-lightning-charge text-primary"></i>Autonomous First Response</h4>
-                            <p class="text-slate-500 text-xs leading-relaxed">Agent disables, quarantines, or escalates anomalous identities in real time — not after a ticket is opened.</p>
-                        </div>
-                    </div>
-                    <a href="services/services.html" class="inline-flex items-center bg-primary text-white font-semibold px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors">Explore IAM Agent</a>
-                </div>
-                <div class="space-y-4 reveal">
-                    <div class="bg-white rounded-2xl border-l-4 border-primary p-5 shadow-sm">
-                        <div class="flex items-center gap-3 mb-3">
-                            <span class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0"><i class="bi bi-search text-primary"></i></span>
-                            <h4 class="font-bold text-slate-900 text-sm">Continuous Discovery</h4>
-                        </div>
-                        <p class="text-slate-600 text-xs leading-relaxed">Every 15 minutes the agent re-scans your directory, cloud IAM, and SaaS connectors for new identities, role changes, and dormant accounts.</p>
-                    </div>
-                    <div class="bg-white rounded-2xl border-l-4 border-secondary p-5 shadow-sm">
-                        <div class="flex items-center gap-3 mb-3">
-                            <span class="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center flex-shrink-0"><i class="bi bi-shield-check text-secondary"></i></span>
-                            <h4 class="font-bold text-slate-900 text-sm">Risk Scoring Engine</h4>
-                        </div>
-                        <p class="text-slate-600 text-xs leading-relaxed">Each identity is scored across age, last login, privilege level, and peer-group deviation. High-risk accounts trigger immediate workflow actions.</p>
-                    </div>
-                    <div class="bg-white rounded-2xl border-l-4 border-emerald-500 p-5 shadow-sm">
-                        <div class="flex items-center gap-3 mb-3">
-                            <span class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center flex-shrink-0"><i class="bi bi-check-circle-fill text-emerald-500"></i></span>
-                            <h4 class="font-bold text-slate-900 text-sm">Compliance-Ready Reporting</h4>
-                        </div>
-                        <p class="text-slate-600 text-xs leading-relaxed">Auto-generated access review reports map to SOC 2, ISO 27001, HIPAA, and NIST 800-53 controls — ready for auditors on demand.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ── END SECURITY INTELLIGENCE ── -->
-
-
-    <!-- ── SIEM FIRST LINE ── -->
-    <section class="py-20 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-14 reveal">
-                <span class="inline-block border border-primary/30 text-primary text-xs font-semibold px-4 py-1.5 rounded-full mb-4">SIEM Integration</span>
-                <h2 class="text-3xl font-bold text-slate-900 mb-4">The AI Agent at the Front of Your SIEM</h2>
-                <p class="text-slate-600 leading-relaxed">Most SIEM platforms drown analysts in noise. Stack Lume acts as an intelligent pre-processor — triaging, correlating, and responding to signals before they ever reach a human queue.</p>
-            </div>
-
-            <!-- 4-column feature cards -->
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
-                <div class="bg-white rounded-2xl border border-slate-200 p-6 text-center shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group flex flex-col items-center reveal">
-                    <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary transition-colors duration-300">
-                        <i class="bi bi-funnel text-2xl text-primary group-hover:text-white transition-colors duration-300"></i>
-                    </div>
-                    <h3 class="font-bold text-slate-900 mb-2">Signal Triage</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">AI agent receives raw SIEM events, classifies threat type, severity, and asset criticality — reducing analyst alert queues by up to 80%.</p>
-                </div>
-                <div class="bg-white rounded-2xl border border-slate-200 p-6 text-center shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group flex flex-col items-center reveal">
-                    <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary transition-colors duration-300">
-                        <i class="bi bi-diagram-3 text-2xl text-primary group-hover:text-white transition-colors duration-300"></i>
-                    </div>
-                    <h3 class="font-bold text-slate-900 mb-2">Behavioral Correlation</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">Correlates identity events, network activity, and data access patterns to detect multi-stage attack chains invisible to rule-based SIEM.</p>
-                </div>
-                <div class="bg-white rounded-2xl border border-slate-200 p-6 text-center shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group flex flex-col items-center reveal">
-                    <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary transition-colors duration-300">
-                        <i class="bi bi-lightning-charge text-2xl text-primary group-hover:text-white transition-colors duration-300"></i>
-                    </div>
-                    <h3 class="font-bold text-slate-900 mb-2">Autonomous Response</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">For confirmed high-confidence threats, the agent executes first-response playbooks — isolating accounts, blocking tokens, and creating incidents automatically.</p>
-                </div>
-                <div class="bg-white rounded-2xl border border-slate-200 p-6 text-center shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group flex flex-col items-center reveal">
-                    <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary transition-colors duration-300">
-                        <i class="bi bi-clock-history text-2xl text-primary group-hover:text-white transition-colors duration-300"></i>
-                    </div>
-                    <h3 class="font-bold text-slate-900 mb-2">Full Audit Trail</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">Every autonomous action is logged with reasoning, confidence score, and rollback instructions — full explainability for compliance and post-mortems.</p>
-                </div>
-            </div>
-
-            <!-- Alert integrations -->
-            <div class="grid lg:grid-cols-2 gap-14 items-center">
-                <div class="reveal">
-                    <span class="inline-block border border-primary/30 text-primary text-xs font-semibold px-4 py-1.5 rounded-full mb-5">Alert Channels</span>
-                    <h2 class="text-3xl font-bold text-slate-900 mb-5">Alerts Where Your Team Already Works</h2>
-                    <p class="text-slate-600 mb-7 leading-relaxed">Security incidents don't wait for email. Stack Lume routes critical alerts to the channels your team lives in — with full context, severity, and one-click remediation links baked into every message.</p>
-                    <ul class="space-y-5 mb-8">
-                        <li class="flex items-start gap-4">
-                            <span class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i class="bi bi-chat-square-text text-primary"></i></span>
-                            <div>
-                                <strong class="text-slate-800 text-sm">SMS Alerts</strong>
-                                <p class="text-slate-500 text-xs mt-0.5 leading-relaxed">Carrier-grade SMS for critical P0/P1 events. Configurable escalation chains with acknowledgement tracking.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <span class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center flex-shrink-0 mt-0.5"><i class="bi bi-slack text-[#4A154B]"></i></span>
-                            <div>
-                                <strong class="text-slate-800 text-sm">Slack Integration</strong>
-                                <p class="text-slate-500 text-xs mt-0.5 leading-relaxed">Rich alert blocks with entity details, risk score, and inline Approve / Quarantine / Dismiss actions — no context switching required.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <span class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0 mt-0.5"><i class="bi bi-microsoft text-[#0078d4]"></i></span>
-                            <div>
-                                <strong class="text-slate-800 text-sm">Microsoft Teams</strong>
-                                <p class="text-slate-500 text-xs mt-0.5 leading-relaxed">Adaptive Cards delivered to SOC channels with full incident payload. Reply to the card to trigger remediation workflows.</p>
-                            </div>
-                        </li>
-                    </ul>
-                    <a href="contact.html" class="inline-flex items-center bg-primary text-white font-semibold px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors">Request Integration Demo</a>
-                </div>
-                <!-- Terminal mockup -->
-                <div class="reveal">
-                    <div class="bg-[#1a1a2e] rounded-2xl p-7 shadow-2xl font-mono">
-                        <div class="flex items-center gap-1.5 mb-5">
-                            <span class="w-3 h-3 bg-[#ff5f57] rounded-full"></span>
-                            <span class="w-3 h-3 bg-[#ffbd2e] rounded-full"></span>
-                            <span class="w-3 h-3 bg-[#28c840] rounded-full"></span>
-                            <span class="text-slate-500 text-xs ml-2">stack-lume-agent — SIEM Alert</span>
-                        </div>
-                        <div class="bg-[#ff4757] text-white rounded-lg px-4 py-2.5 text-xs mb-4 font-semibold">
-                            🚨 HIGH RISK — Stale Account Activity Detected
-                        </div>
-                        <div class="text-xs leading-7 space-y-0.5">
-                            <div><span class="text-slate-500">entity:   </span><span class="text-white">svc-legacy-billing@corp.com</span></div>
-                            <div><span class="text-slate-500">last_login:</span><span class="text-white"> 247 days ago</span></div>
-                            <div><span class="text-slate-500">action:   </span><span class="text-[#ff4757]">read:finance/payroll.db</span></div>
-                            <div><span class="text-slate-500">risk_score:</span><span class="text-[#ff4757]"> 94 / 100</span></div>
-                            <div><span class="text-slate-500">agent:    </span><span class="text-secondary">auto-quarantine initiated</span></div>
-                            <div><span class="text-slate-500">channels: </span><span class="text-white">📱 SMS · 💬 Slack #soc-alerts · 🟦 Teams</span></div>
-                        </div>
-                        <div class="flex gap-2.5 mt-5">
-                            <span class="bg-primary text-white rounded-lg px-3.5 py-1.5 text-xs cursor-pointer hover:bg-primary/80 transition-colors">✅ Confirm</span>
-                            <span class="bg-[#2d2d42] text-white rounded-lg px-3.5 py-1.5 text-xs cursor-pointer hover:bg-[#3d3d52] transition-colors">🔄 Restore</span>
-                            <span class="bg-[#2d2d42] text-slate-300 rounded-lg px-3.5 py-1.5 text-xs cursor-pointer hover:bg-[#3d3d52] transition-colors">📋 Full Report</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ── END SIEM ── -->
-
-
-    <!-- ── CONTACT FORM ── -->
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-md mx-auto mb-12 reveal">
-                <span class="inline-block border border-primary/30 text-primary text-xs font-semibold px-4 py-1.5 rounded-full mb-4">Contact Us</span>
-                <h2 class="text-3xl font-bold text-slate-900 mb-3">Ready to Bring AI Mesh to Your Stack?</h2>
-                <p class="text-slate-600 text-sm leading-relaxed">Whether you're evaluating Stack Lume for your team or want to discuss an enterprise deployment, reach out and we'll get back to you within one business day.</p>
-            </div>
-            <div class="max-w-2xl mx-auto reveal">
-                <form class="bg-slate-50 rounded-2xl border border-slate-200 p-8 shadow-sm space-y-5">
-                    <div class="grid sm:grid-cols-2 gap-5">
-                        <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-1.5" for="name">Your Name</label>
-                            <input type="text" id="name" placeholder="Jane Smith" class="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-primary/25 focus:border-primary outline-none transition text-slate-900 text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-1.5" for="email">Your Email</label>
-                            <input type="email" id="email" placeholder="jane@company.com" class="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-primary/25 focus:border-primary outline-none transition text-slate-900 text-sm">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1.5" for="subject">Subject</label>
-                        <input type="text" id="subject" placeholder="How can we help?" class="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-primary/25 focus:border-primary outline-none transition text-slate-900 text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1.5" for="message">Message</label>
-                        <textarea id="message" rows="5" placeholder="Tell us about your project..." class="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-primary/25 focus:border-primary outline-none transition text-slate-900 text-sm resize-none"></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-primary text-white font-semibold py-3.5 rounded-xl hover:bg-primary/90 transition-colors text-sm shadow-sm">
-                        Send Message
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-    <!-- ── END CONTACT ── -->
-
-
-    <!-- ── SEO RESOURCES ── -->
-    <section class="py-20 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12 reveal">
-                <span class="inline-block border border-primary/30 text-primary text-xs font-semibold px-4 py-1.5 rounded-full mb-4">Security AI Guides</span>
-                <h2 class="text-3xl font-bold text-slate-900 mb-4">Explore Enterprise AI Security Resources</h2>
-                <p class="text-slate-600">Use these technical guides and comparisons to evaluate AI SIEM automation, identity intelligence, private data AI, and model mesh architecture.</p>
-            </div>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <a href="ai-siem-automation.html" class="block bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md hover:border-primary/40 hover:-translate-y-0.5 transition-all group reveal">
-                    <h3 class="font-bold text-slate-900 text-sm mb-1.5 group-hover:text-primary transition-colors">AI SIEM Automation</h3>
-                    <p class="text-slate-500 text-xs leading-relaxed">Automate triage, correlation, and first response.</p>
-                </a>
-                <a href="ai-iam-pam-agent.html" class="block bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md hover:border-primary/40 hover:-translate-y-0.5 transition-all group reveal">
-                    <h3 class="font-bold text-slate-900 text-sm mb-1.5 group-hover:text-primary transition-colors">AI IAM &amp; PAM Agent</h3>
-                    <p class="text-slate-500 text-xs leading-relaxed">Reduce identity risk from stale and privileged accounts.</p>
-                </a>
-                <a href="private-ai-data-intelligence.html" class="block bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md hover:border-primary/40 hover:-translate-y-0.5 transition-all group reveal">
-                    <h3 class="font-bold text-slate-900 text-sm mb-1.5 group-hover:text-primary transition-colors">Private AI Data Intelligence</h3>
-                    <p class="text-slate-500 text-xs leading-relaxed">Ground AI on internal data with private RAG.</p>
-                </a>
-                <a href="model-mesh-routing.html" class="block bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md hover:border-primary/40 hover:-translate-y-0.5 transition-all group reveal">
-                    <h3 class="font-bold text-slate-900 text-sm mb-1.5 group-hover:text-primary transition-colors">AI Model Mesh Routing</h3>
-                    <p class="text-slate-500 text-xs leading-relaxed">Route prompts by quality, cost, and latency policy.</p>
-                </a>
-                <a href="ai-security-platform-soc.html" class="block bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md hover:border-primary/40 hover:-translate-y-0.5 transition-all group reveal">
-                    <h3 class="font-bold text-slate-900 text-sm mb-1.5 group-hover:text-primary transition-colors">AI Security Platform for SOC</h3>
-                    <p class="text-slate-500 text-xs leading-relaxed">Unify SIEM, IAM, and autonomous response workflows.</p>
-                </a>
-                <a href="private-rag-vs-public-llm.html" class="block bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md hover:border-primary/40 hover:-translate-y-0.5 transition-all group reveal">
-                    <h3 class="font-bold text-slate-900 text-sm mb-1.5 group-hover:text-primary transition-colors">Private RAG vs Public LLM</h3>
-                    <p class="text-slate-500 text-xs leading-relaxed">Comparison template for enterprise AI architecture.</p>
-                </a>
-                <a href="ai-siem-triage-vs-manual-soc.html" class="block bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md hover:border-primary/40 hover:-translate-y-0.5 transition-all group reveal">
-                    <h3 class="font-bold text-slate-900 text-sm mb-1.5 group-hover:text-primary transition-colors">AI SIEM Triage vs Manual SOC</h3>
-                    <p class="text-slate-500 text-xs leading-relaxed">Compare response speed, quality, and analyst load.</p>
-                </a>
-                <a href="model-mesh-vs-single-model.html" class="block bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md hover:border-primary/40 hover:-translate-y-0.5 transition-all group reveal">
-                    <h3 class="font-bold text-slate-900 text-sm mb-1.5 group-hover:text-primary transition-colors">Model Mesh vs Single Model</h3>
-                    <p class="text-slate-500 text-xs leading-relaxed">Select the right model architecture for scale.</p>
-                </a>
-            </div>
-        </div>
-    </section>
-    <!-- ── END SEO RESOURCES ── -->
-
-
-    <!-- ── FOOTER ── -->
-    <footer class="bg-brand pt-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12">
-                <!-- Brand -->
-                <div>
-                    <a href="index.html" class="inline-block mb-4">
-                        <span class="text-2xl font-bold text-white" style="font-family:'Ubuntu',sans-serif;">Stack <span class="text-secondary">Lume</span></span>
-                        <small class="block text-white/40 text-xs mt-0.5">by Model Signal</small>
-                    </a>
-                    <p class="text-white/50 text-sm leading-relaxed">Stack Lume is the AI-powered security and data intelligence platform by Model Signal — autonomous identity protection, SIEM front-line defense, and private AI for your enterprise data.</p>
-                </div>
-                <!-- Contact -->
-                <div>
-                    <h4 class="text-white font-bold mb-5 text-sm uppercase tracking-wider">Get In Touch</h4>
-                    <div class="space-y-2.5 text-white/50 text-sm">
-                        <p class="flex items-center gap-2.5"><i class="bi bi-geo-alt text-secondary"></i>San Francisco, CA</p>
-                        <p class="flex items-center gap-2.5"><i class="bi bi-envelope text-secondary"></i>hello@stacklume.cloud</p>
-                    </div>
-                    <div class="flex gap-2 mt-5">
-                        <a href="https://twitter.com/ModelSignal" class="w-9 h-9 rounded-lg border border-white/15 flex items-center justify-center text-white/50 hover:border-white/40 hover:text-white transition-colors"><i class="bi bi-twitter-x text-sm"></i></a>
-                        <a href="" class="w-9 h-9 rounded-lg border border-white/15 flex items-center justify-center text-white/50 hover:border-white/40 hover:text-white transition-colors"><i class="bi bi-linkedin text-sm"></i></a>
-                        <a href="" class="w-9 h-9 rounded-lg border border-white/15 flex items-center justify-center text-white/50 hover:border-white/40 hover:text-white transition-colors"><i class="bi bi-github text-sm"></i></a>
-                        <a href="" class="w-9 h-9 rounded-lg border border-white/15 flex items-center justify-center text-white/50 hover:border-white/40 hover:text-white transition-colors"><i class="bi bi-youtube text-sm"></i></a>
-                    </div>
-                </div>
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="text-white font-bold mb-5 text-sm uppercase tracking-wider">Quick Links</h4>
-                    <ul class="space-y-2.5">
-                        <li><a href="about.html" class="text-white/50 hover:text-white text-sm transition-colors flex items-center gap-1.5"><i class="bi bi-chevron-right text-xs text-secondary"></i>About Us</a></li>
-                        <li><a href="why-model-signal.html" class="text-white/50 hover:text-white text-sm transition-colors flex items-center gap-1.5"><i class="bi bi-chevron-right text-xs text-secondary"></i>Why Model Signal</a></li>
-                        <li><a href="contact.html" class="text-white/50 hover:text-white text-sm transition-colors flex items-center gap-1.5"><i class="bi bi-chevron-right text-xs text-secondary"></i>Contact Us</a></li>
-                        <li><a href="privacy-policy.html" class="text-white/50 hover:text-white text-sm transition-colors flex items-center gap-1.5"><i class="bi bi-chevron-right text-xs text-secondary"></i>Privacy Policy</a></li>
-                        <li><a href="terms-of-service.html" class="text-white/50 hover:text-white text-sm transition-colors flex items-center gap-1.5"><i class="bi bi-chevron-right text-xs text-secondary"></i>Terms of Service</a></li>
-                        <li><a href="careers.html" class="text-white/50 hover:text-white text-sm transition-colors flex items-center gap-1.5"><i class="bi bi-chevron-right text-xs text-secondary"></i>Careers</a></li>
-                    </ul>
-                </div>
-                <!-- Services -->
-                <div>
-                    <h4 class="text-white font-bold mb-5 text-sm uppercase tracking-wider">Our Services</h4>
-                    <ul class="space-y-2.5">
-                        <li><a href="services/services.html" class="text-white/50 hover:text-white text-sm transition-colors flex items-center gap-1.5"><i class="bi bi-chevron-right text-xs text-secondary"></i>Adaptive Model Fabric</a></li>
-                        <li><a href="services/services.html" class="text-white/50 hover:text-white text-sm transition-colors flex items-center gap-1.5"><i class="bi bi-chevron-right text-xs text-secondary"></i>TrustTrace Audit Engine</a></li>
-                        <li><a href="services/services.html" class="text-white/50 hover:text-white text-sm transition-colors flex items-center gap-1.5"><i class="bi bi-chevron-right text-xs text-secondary"></i>OmniRoute API Gateway</a></li>
-                        <li><a href="services/services.html" class="text-white/50 hover:text-white text-sm transition-colors flex items-center gap-1.5"><i class="bi bi-chevron-right text-xs text-secondary"></i>Token Economics Command</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Copyright bar -->
-            <div class="border-t border-white/10 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/40">
-                <p>&copy; <a href="index.html" class="hover:text-white transition-colors">stacklume.cloud</a>, All Rights Reserved. A product of <strong class="text-white/60">Model Signal</strong>.</p>
-                <div class="flex flex-wrap gap-x-5 gap-y-1 text-xs">
-                    <a href="index.html" class="hover:text-white transition-colors">Home</a>
-                    <a href="privacy-policy.html" class="hover:text-white transition-colors">Privacy Policy</a>
-                    <a href="why-model-signal.html" class="hover:text-white transition-colors">Why Model Signal</a>
-                    <a href="services/services.html" class="hover:text-white transition-colors">Platform Documentation</a>
-                    <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- ── END FOOTER ── -->
-
-
-    <!-- Back to Top -->
-    <a href="#" class="back-to-top w-12 h-12 bg-primary hover:bg-primary/90 text-white rounded-full inline-flex items-center justify-center shadow-lg transition-colors">
-        <i class="bi bi-arrow-up text-lg"></i>
-    </a>
-
-
-    <!-- ═══════════════════════════════════════
-         Sparky — Sales Chatbot Widget
-    ═══════════════════════════════════════ -->
-    <style>
-        #sparky-launcher { position:fixed; bottom:28px; right:118px; width:62px; height:62px; border-radius:50%; background:radial-gradient(circle at 30% 30%,#61d4ff 0%,#2a98f3 45%,#1363c6 100%); box-shadow:0 10px 28px rgba(19,99,198,.45),0 0 0 4px rgba(21,172,225,.2); border:1px solid rgba(255,255,255,.55); cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:9999; overflow:visible; transition:transform .2s,box-shadow .2s; }
-        #sparky-launcher::before { content:''; position:absolute; inset:-6px; border-radius:50%; background:radial-gradient(circle,rgba(97,212,255,.45) 0%,rgba(19,99,198,0) 70%); z-index:-1; filter:blur(5px); }
-        #sparky-launcher:hover { transform:scale(1.08) translateY(-1px); box-shadow:0 14px 34px rgba(19,99,198,.52),0 0 0 4px rgba(21,172,225,.28); }
-        #sparky-launcher i { font-size:1.24rem; color:#fff; line-height:1; display:block; }
-        #sparky-badge { position:absolute; top:-2px; right:-2px; width:18px; height:18px; background:#ff4757; border-radius:50%; border:2px solid #fff; font-size:.6rem; font-weight:700; color:#fff; display:flex; align-items:center; justify-content:center; }
-        #sparky-tooltip { position:fixed; bottom:100px; right:98px; background:#14183E; color:#fff; padding:10px 16px; border-radius:12px; font-size:.82rem; font-family:'Open Sans',sans-serif; font-weight:500; white-space:nowrap; z-index:9998; box-shadow:0 4px 16px rgba(0,0,0,.25); animation:sparky-pop .4s ease; }
-        #sparky-tooltip::after { content:''; position:absolute; bottom:-7px; right:22px; border:7px solid transparent; border-top-color:#14183E; border-bottom:0; }
-        #sparky-window { position:fixed; bottom:104px; right:28px; width:370px; max-height:560px; background:#fff; border-radius:18px; box-shadow:0 16px 56px rgba(0,0,0,.2); display:flex; flex-direction:column; z-index:9998; overflow:hidden; font-family:'Open Sans',sans-serif; animation:sparky-slide .3s cubic-bezier(.4,0,.2,1); }
-        @keyframes sparky-slide { from{opacity:0;transform:translateY(20px) scale(.97)} to{opacity:1;transform:translateY(0) scale(1)} }
-        @keyframes sparky-pop { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
-        .sparky-header { background:linear-gradient(135deg,#14183E 0%,#1363C6 100%); padding:16px 18px; display:flex; align-items:center; gap:12px; }
-        .sparky-avatar { width:42px; height:42px; border-radius:50%; background:rgba(255,255,255,.15); display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0; }
-        .sparky-header-info { flex:1; }
-        .sparky-header-info strong { display:block; color:#fff; font-size:.95rem; font-weight:700; }
-        .sparky-header-info span { font-size:.72rem; color:rgba(255,255,255,.65); }
-        .sparky-online { display:inline-block; width:7px; height:7px; background:#2ecc71; border-radius:50%; margin-right:5px; vertical-align:middle; }
-        .sparky-close { background:none; border:none; color:rgba(255,255,255,.7); font-size:1.1rem; cursor:pointer; padding:4px; line-height:1; }
-        .sparky-close:hover { color:#fff; }
-        .sparky-messages { flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:12px; background:#f8faff; max-height:340px; }
-        .sparky-msg { display:flex; gap:8px; max-width:92%; }
-        .sparky-msg.user { align-self:flex-end; flex-direction:row-reverse; }
-        .sparky-msg .s-avatar { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.75rem; font-weight:700; flex-shrink:0; margin-top:2px; }
-        .sparky-msg.bot .s-avatar { background:linear-gradient(135deg,#1363C6,#15ACE1); color:#fff; font-size:1rem; }
-        .sparky-msg.user .s-avatar { background:#e8f0fe; color:#1363C6; font-size:.65rem; }
-        .s-bubble { padding:10px 14px; border-radius:14px; font-size:.82rem; line-height:1.5; }
-        .sparky-msg.bot .s-bubble { background:#fff; border:1px solid #e4eaf7; border-radius:4px 14px 14px 14px; color:#333; }
-        .sparky-msg.user .s-bubble { background:linear-gradient(135deg,#1363C6,#15ACE1); color:#fff; border-radius:14px 4px 14px 14px; }
-        .sparky-chips { display:flex; flex-wrap:wrap; gap:6px; padding:10px 16px 0; }
-        .sparky-chip { background:#e8f0fe; color:#1363C6; border:none; border-radius:20px; padding:6px 13px; font-size:.74rem; font-weight:600; cursor:pointer; transition:background .15s; font-family:'Open Sans',sans-serif; }
-        .sparky-chip:hover { background:#d0dff7; }
-        .sparky-input-row { display:flex; gap:8px; padding:12px 14px; border-top:1px solid #f0f3fb; background:#fff; }
-        .sparky-input { flex:1; border:1.5px solid #d0dff7; border-radius:20px; padding:9px 16px; font-size:.82rem; font-family:'Open Sans',sans-serif; outline:none; transition:border-color .2s; }
-        .sparky-input:focus { border-color:#1363C6; }
-        .sparky-send { width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg,#1363C6,#15ACE1); border:none; color:#fff; font-size:.85rem; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:opacity .2s; }
-        .sparky-send:hover { opacity:.88; }
-        .sparky-typing span { display:inline-block; width:6px; height:6px; background:#aaa; border-radius:50%; margin:0 2px; animation:sbounce 1.2s infinite; }
-        .sparky-typing span:nth-child(2) { animation-delay:.2s; }
-        .sparky-typing span:nth-child(3) { animation-delay:.4s; }
-        @keyframes sbounce { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-5px)} }
-        @media(max-width:480px) { #sparky-window{width:calc(100vw - 20px);right:10px;bottom:90px} #sparky-launcher{right:88px;bottom:16px} #sparky-tooltip{right:56px} }
-    </style>
-
-    <div id="sparky-tooltip" style="display:none;">👋 Hi! I'm <strong>Sparky</strong> — ask me anything about Stack Lume!</div>
-
-    <button id="sparky-launcher" onclick="toggleSparky()" aria-label="Chat with Sparky">
-        <span id="sparky-badge">1</span>
-        <i class="bi bi-robot" aria-hidden="true"></i>
+    <span class="nav-brand-wordmark"><span class="wm-stack">Stack </span><span class="wm-lume">Lume</span></span>
+  </a>
+  <ul class="nav-links">
+    <li class="nav-item">
+      <button class="nav-trigger" data-nav="services">
+        <i class="bi bi-grid-1x2-fill ni-icon"></i>
+        Services
+        <i class="bi bi-chevron-down ni-caret"></i>
+      </button>
+      <div class="nav-menu">
+        <div class="nav-menu-label">Core Services</div>
+        <a href="#"><i class="bi bi-shield-shaded nm-icon"></i>IAM &amp; PAM Agent</a>
+        <a href="#"><i class="bi bi-speedometer2 nm-icon"></i>SIEM Triage</a>
+        <a href="#"><i class="bi bi-database-lock nm-icon"></i>Private Data Intel</a>
+        <a href="#"><i class="bi bi-diagram-3-fill nm-icon"></i>Model Mesh</a>
+        <a href="#"><i class="bi bi-eye-fill nm-icon"></i>Retrieval QA</a>
+        <a href="#"><i class="bi bi-patch-check-fill nm-icon"></i>Guardrail Policy</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <button class="nav-trigger" data-nav="products">
+        <i class="bi bi-boxes ni-icon"></i>
+        Products
+        <i class="bi bi-chevron-down ni-caret"></i>
+      </button>
+      <div class="nav-menu">
+        <div class="nav-menu-label">Product Suite</div>
+        <a href="#"><i class="bi bi-shield-lock-fill nm-icon"></i>PromptShield Nexus</a>
+        <a href="#"><i class="bi bi-broadcast-pin nm-icon"></i>VectorPulse Sentinel</a>
+        <a href="#"><i class="bi bi-node-plus-fill nm-icon"></i>AgentChain Commander</a>
+        <a href="#"><i class="bi bi-bug-fill nm-icon"></i>Hallucination Forensics</a>
+        <a href="#"><i class="bi bi-check2-circle nm-icon"></i>Compliance Guardian</a>
+        <a href="#"><i class="bi bi-hdd-network-fill nm-icon"></i>Adaptive Honeymesh</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <button class="nav-trigger" data-nav="projects">
+        <i class="bi bi-kanban-fill ni-icon"></i>
+        Projects
+        <i class="bi bi-chevron-down ni-caret"></i>
+      </button>
+      <div class="nav-menu">
+        <div class="nav-menu-label">Case Studies</div>
+        <a href="#"><i class="bi bi-bank2 nm-icon"></i>Financial Services</a>
+        <a href="#"><i class="bi bi-hospital-fill nm-icon"></i>Healthcare</a>
+        <a href="#"><i class="bi bi-cpu-fill nm-icon"></i>Critical Infrastructure</a>
+        <a href="#"><i class="bi bi-shield-fill-check nm-icon"></i>Federal &amp; Defense</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <button class="nav-trigger" data-nav="blog">
+        <i class="bi bi-journal-text ni-icon"></i>
+        Blog
+        <i class="bi bi-chevron-down ni-caret"></i>
+      </button>
+      <div class="nav-menu">
+        <div class="nav-menu-label">Latest Intelligence</div>
+        <a href="#"><i class="bi bi-radioactive nm-icon"></i>Threat Intel</a>
+        <a href="#"><i class="bi bi-bricks nm-icon"></i>Critical Infra</a>
+        <a href="#"><i class="bi bi-robot nm-icon"></i>AI Security</a>
+        <a href="#"><i class="bi bi-newspaper nm-icon"></i>Briefings</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <button class="nav-trigger" data-nav="about">
+        <i class="bi bi-buildings-fill ni-icon"></i>
+        About
+        <i class="bi bi-chevron-down ni-caret"></i>
+      </button>
+      <div class="nav-menu">
+        <div class="nav-menu-label">Company</div>
+        <a href="#"><i class="bi bi-info-circle-fill nm-icon"></i>Our Mission</a>
+        <a href="#"><i class="bi bi-people-fill nm-icon"></i>Leadership</a>
+        <a href="#"><i class="bi bi-briefcase-fill nm-icon"></i>Careers</a>
+        <a href="#"><i class="bi bi-envelope-fill nm-icon"></i>Contact</a>
+      </div>
+    </li>
+  </ul>
+  <div class="theme-dd" id="theme-dd">
+    <button class="theme-dd-trigger" id="theme-dd-trigger" aria-haspopup="listbox" aria-expanded="false">
+      <span class="swatch" id="theme-dd-swatch" style="background:#2d8b8b;"></span>
+      <span>Theme</span>
+      <span class="caret"><i class="bi bi-chevron-down"></i></span>
     </button>
+    <div class="theme-dd-menu" id="theme-dd-menu" role="listbox">
+      <div class="theme-dd-label">Choose a theme</div>
+      <button class="theme-opt active" data-t="ocean-depths"     data-c="#2d8b8b"><span class="swatch" style="background:#2d8b8b;"></span>Ocean Depths<i class="bi bi-check2 check"></i></button>
+      <button class="theme-opt"        data-t="sunset-boulevard" data-c="#e76f51"><span class="swatch" style="background:#e76f51;"></span>Sunset Boulevard<i class="bi bi-check2 check"></i></button>
+      <button class="theme-opt"        data-t="forest-canopy"    data-c="#2d4a2b"><span class="swatch" style="background:#2d4a2b;"></span>Forest Canopy<i class="bi bi-check2 check"></i></button>
+      <button class="theme-opt"        data-t="modern-minimalist" data-c="#708090"><span class="swatch" style="background:#708090;"></span>Modern Minimalist<i class="bi bi-check2 check"></i></button>
+      <button class="theme-opt"        data-t="golden-hour"      data-c="#f4a900"><span class="swatch" style="background:#f4a900;"></span>Golden Hour<i class="bi bi-check2 check"></i></button>
+      <button class="theme-opt"        data-t="arctic-frost"     data-c="#4a6fa5"><span class="swatch" style="background:#4a6fa5;"></span>Arctic Frost<i class="bi bi-check2 check"></i></button>
+      <button class="theme-opt"        data-t="desert-rose"      data-c="#b87d6d"><span class="swatch" style="background:#b87d6d;"></span>Desert Rose<i class="bi bi-check2 check"></i></button>
+      <button class="theme-opt"        data-t="tech-innovation"  data-c="#0066ff"><span class="swatch" style="background:#0066ff;"></span>Tech Innovation<i class="bi bi-check2 check"></i></button>
+      <button class="theme-opt"        data-t="botanical-garden" data-c="#4a7c59"><span class="swatch" style="background:#4a7c59;"></span>Botanical Garden<i class="bi bi-check2 check"></i></button>
+      <button class="theme-opt"        data-t="midnight-galaxy"  data-c="#a490c2"><span class="swatch" style="background:#a490c2;"></span>Midnight Galaxy<i class="bi bi-check2 check"></i></button>
+    </div>
+  </div>
 
-    <div id="sparky-window" style="display:none;">
-        <div class="sparky-header">
-            <div class="sparky-avatar">⚡</div>
-            <div class="sparky-header-info">
-                <strong>Model Mesh Sparky</strong>
-                <span><span class="sparky-online"></span>Online — Stack Lume Sales Assistant</span>
-            </div>
-            <button class="sparky-close" onclick="toggleSparky()">&#10005;</button>
-        </div>
-        <div class="sparky-messages" id="sparkyMessages"></div>
-        <div class="sparky-chips" id="sparkyChips">
-            <button class="sparky-chip" onclick="sparkyChip(this)">What is Stack Lume?</button>
-            <button class="sparky-chip" onclick="sparkyChip(this)">IAM &amp; PAM agent</button>
-            <button class="sparky-chip" onclick="sparkyChip(this)">SIEM integration</button>
-            <button class="sparky-chip" onclick="sparkyChip(this)">Alerts (SMS, Slack, Teams)</button>
-            <button class="sparky-chip" onclick="sparkyChip(this)">Can I use my own data?</button>
-            <button class="sparky-chip" onclick="sparkyChip(this)">Try the demo</button>
-        </div>
-        <div class="sparky-input-row">
-            <input type="text" class="sparky-input" id="sparkyInput" placeholder="Ask Sparky anything…" onkeydown="sparkyKey(event)">
-            <button class="sparky-send" onclick="sparkySend()"><i class="bi bi-send"></i></button>
-        </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+
+    <div class="hero-badge">
+      <div class="live-dot"></div>
+      Now Live — Stack Lume Workspace App · April 2026
     </div>
 
-    <script>
-        let sparkyOpen = false;
-        const sparkyKB = {
-            "what is stack lume": "**Stack Lume** is an AI-powered security and data intelligence platform by **Model Signal**.\n\nIt combines three core capabilities:\n• 🛡️ **Identity Security** — autonomous IAM/PAM agent that detects stale accounts, over-privileged service accounts, and unusual access patterns\n• 🚨 **SIEM First-Line Defense** — AI agent at the front of your SIEM that triages alerts and executes first-response playbooks autonomously\n• 🤖 **Private Data Intelligence** — connect your own documents, databases, and data sources so your team can query their own data through AI — all inside your private infrastructure",
-            "how does the ai mesh work": "The **AI model mesh** works like a smart traffic router for your AI requests:\n\n1. Your prompt arrives at the Stack Lume gateway\n2. The mesh scores the request for complexity, cost target, and required capabilities\n3. It dispatches to the optimal model from the connected pool\n4. If that model is unavailable or over budget, it auto-fails over to the next best option\n\nYou get consistent, high-quality outputs without writing any routing logic yourself.",
-            "iam": "The **IAM & PAM Agent** in Stack Lume runs continuously to:\n\n• Detect **stale accounts** — users or services with no login activity past your threshold\n• Audit **system and service accounts** for over-privileged access\n• Score every identity on risk (age, privilege level, peer-group deviation)\n• Automatically quarantine or escalate high-risk identities\n• Generate compliance reports for SOC 2, ISO 27001, HIPAA, and NIST 800-53\n\nMost breaches start with a forgotten account — Stack Lume closes that gap autonomously.",
-            "siem": "Stack Lume acts as an **AI layer at the front of your SIEM**:\n\n• Receives raw event streams and classifies threats by type and severity\n• Correlates identity events, network signals, and data access patterns to detect multi-stage attacks\n• Executes **autonomous first-response playbooks** for confirmed threats (account isolation, token revocation, incident creation)\n• Every action is logged with AI reasoning, confidence score, and rollback options\n\nThe result: up to 80% reduction in analyst alert queues.",
-            "alerts": "Stack Lume sends rich alerts to where your team already works:\n\n• 📱 **SMS** — carrier-grade for P0/P1 events with acknowledgement tracking\n• 💬 **Slack** — rich blocks with entity details, risk score, and inline Approve / Quarantine / Dismiss actions\n• 🟦 **Microsoft Teams** — Adaptive Cards with full incident payload, reply to trigger remediation workflows\n\nAll channels configurable per severity level and escalation chain.",
-            "can i use my own data": "Yes! Stack Lume supports **Private Data Intelligence**:\n\n• **RAG (Retrieval-Augmented Generation)** — upload PDFs, spreadsheets, Word docs, images, and CSVs. The platform chunks, embeds, and indexes them so your AI can answer questions grounded in your actual data.\n• **Fine-tuning pipelines** — train open-weight models on your domain data\n• **Semantic vector search** — natural language queries across all your indexed documents\n\nAll data stays inside your infrastructure — no external model provider ever touches it.",
-            "do you support private hosting": "Absolutely. Model Signal is **private-infrastructure-first**. We support:\n\n• **Self-hosted** on your own servers with Docker/Helm/Terraform\n• **Managed private VPC tenant** — we run it in your AWS, Azure, or GCP account, fully isolated\n• **Air-gapped deployments** for regulated environments\n\nNo data is shared with any third-party model provider without going through your controlled perimeter.",
-            "how much does it cost": "Pricing is usage-based and scales with your team. We offer:\n\n• **Starter** — great for small teams and evaluation\n• **Growth** — for production workloads with SLA\n• **Enterprise** — private deployment, dedicated support, custom SLAs, full IAM/SIEM integration\n\nContact us at hello@stacklume.cloud or hit the **Contact Us** link in the nav for a custom quote.",
-            "try the demo": "Love the enthusiasm! Head to our **interactive demo** to see the full platform in action:\n\n👉 [Try the Demo](login.html)\n\nUse these credentials:\n• **Username:** vvadmin\n• **Password:** GenAiR0ck!\n\nYou can upload files, see them parsed into the database, view data point metrics, and ask questions against your own data.",
-            "pricing": "Stack Lume is priced on a usage-based model. Plans start at a flat monthly fee that includes a token allowance, model routing, IAM agent, and observability dashboards. Enterprise pricing is custom. Email us at hello@stacklume.cloud for a quote.",
-            "what models": "Stack Lume currently has **15+ models** integrated in the mesh, including:\n\n• OpenAI GPT-4o and GPT-4 Turbo\n• Anthropic Claude 3.5 Sonnet & Opus\n• Google Gemini Pro and Gemini Flash\n• Mistral Large and Mixtral\n• Meta LLaMA 3 (self-hosted)\n• Cohere Command R+\n• And more added regularly\n\nThe mesh automatically picks the right one per request.",
-            "security": "Security and identity protection are the core of Stack Lume:\n\n• **Autonomous IAM/PAM Agent** hunting stale and over-privileged accounts 24/7\n• **SIEM front-line defense** with AI triage and autonomous response\n• **SOC 2 Type II** certified infrastructure\n• All traffic **mTLS encrypted**, PII scrubbing before indexing\n• Full audit logs with AI reasoning for every autonomous action\n• Supports air-gapped, zero-internet deployments",
-            "default": (q) => `That's a great question about "${q}".\n\nI'm Sparky, the Stack Lume sales assistant. I can help with:\n• 🛡️ IAM/PAM identity protection\n• 🚨 SIEM first-line defense\n• 📂 Private data intelligence (RAG)\n• 💬 Alert integrations (SMS, Slack, Teams)\n• 💰 Pricing and deployment options\n\nFor detailed technical questions, reach our team at **hello@stacklume.cloud**. We respond within one business day! ⚡`
-        };
-        function sparkyMatch(q) {
-            const lower = q.toLowerCase();
-            for (const [key, val] of Object.entries(sparkyKB)) {
-                if (key === 'default') continue;
-                if (lower.includes(key) || key.split(' ').some(w => w.length > 3 && lower.includes(w))) return typeof val === 'function' ? val(q) : val;
-            }
-            return sparkyKB.default(q);
-        }
-        function sparkyFormatText(t) {
-            return t.replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2" style="color:#1363C6;font-weight:600;">$1</a>').replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
-        }
-        function sparkyAddMsg(text, role) {
-            const wrap = document.getElementById('sparkyMessages');
-            const div = document.createElement('div');
-            div.className = `sparky-msg ${role}`;
-            div.innerHTML = `<div class="s-avatar">${role==='bot'?'⚡':'You'}</div><div class="s-bubble">${sparkyFormatText(text)}</div>`;
-            wrap.appendChild(div);
-            wrap.scrollTop = wrap.scrollHeight;
-        }
-        function sparkyTyping() {
-            const wrap = document.getElementById('sparkyMessages');
-            const div = document.createElement('div');
-            div.className = 'sparky-msg bot'; div.id = 'sparky-typing';
-            div.innerHTML = '<div class="s-avatar">⚡</div><div class="s-bubble sparky-typing"><span></span><span></span><span></span></div>';
-            wrap.appendChild(div); wrap.scrollTop = wrap.scrollHeight;
-        }
-        function sparkyRespond(q) {
-            sparkyTyping();
-            setTimeout(() => { document.getElementById('sparky-typing')?.remove(); sparkyAddMsg(sparkyMatch(q),'bot'); }, 700 + Math.random()*500);
-        }
-        function sparkySend() {
-            const input = document.getElementById('sparkyInput');
-            const q = input.value.trim(); if (!q) return;
-            input.value = '';
-            document.getElementById('sparkyChips').style.display = 'none';
-            sparkyAddMsg(q,'user'); sparkyRespond(q);
-        }
-        function sparkyKey(e) { if (e.key==='Enter') sparkySend(); }
-        function sparkyChip(btn) {
-            const q = btn.textContent;
-            document.getElementById('sparkyChips').style.display = 'none';
-            sparkyAddMsg(q,'user'); sparkyRespond(q);
-        }
-        function toggleSparky() {
-            sparkyOpen = !sparkyOpen;
-            const win = document.getElementById('sparky-window');
-            const tip = document.getElementById('sparky-tooltip');
-            const badge = document.getElementById('sparky-badge');
-            tip.style.display = 'none'; badge.style.display = 'none';
-            if (sparkyOpen) {
-                win.style.display = 'flex'; win.style.flexDirection = 'column';
-                if (document.getElementById('sparkyMessages').children.length === 0) {
-                    sparkyAddMsg("Hey there! 👋 I'm **Sparky** — the Model Signal sales assistant.\n\nStack Lume is our AI-powered **security and data intelligence** platform. I can tell you about:\n\n🛡️ IAM/PAM identity agent\n🚨 SIEM first-line defense\n📂 Private data intelligence\n💬 SMS, Slack & Teams alerts\n\nWhat can I help you with today?",'bot');
-                }
-                setTimeout(() => document.getElementById('sparkyInput').focus(), 100);
-            } else { win.style.display = 'none'; }
-        }
-        setTimeout(() => { if (!sparkyOpen) { const tip = document.getElementById('sparky-tooltip'); tip.style.display = 'block'; setTimeout(() => { tip.style.display = 'none'; }, 6000); } }, 10000);
-    </script>
-    <!-- End Sparky Widget -->
+    <h1>
+      See AI threats clearly.<br>
+      <span class="accent">Respond</span> with confidence.
+    </h1>
 
-    <!-- Scroll reveal -->
-    <script>
-        (function () {
-            var els = document.querySelectorAll('.reveal');
-            var io = new IntersectionObserver(function (entries) {
-                entries.forEach(function (e) {
-                    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-                });
-            }, { threshold: 0.1 });
-            els.forEach(function (el) { io.observe(el); });
+    <p class="hero-sub">
+      Stack Lume brings AI security signal into one operator view across identity risk, SIEM pressure, model activity, and private data exposure — so teams detect what matters and move faster.
+    </p>
 
-            // Spinner
-            var spinner = document.getElementById('spinner');
-            if (spinner) setTimeout(function () { spinner.classList.remove('show'); }, 1);
+    <div class="hero-actions">
+      <a href="#" class="btn-primary">
+        <i class="bi bi-play-circle-fill"></i>
+        See How It Works
+      </a>
+      <a href="#" class="btn-ghost">
+        <i class="bi bi-terminal"></i>
+        Open Workspace
+      </a>
+    </div>
 
-            // Back to top
-            var btn = document.querySelector('.back-to-top');
-            if (btn) {
-                window.addEventListener('scroll', function () { btn.classList.toggle('show', window.scrollY > 100); }, { passive: true });
-                btn.addEventListener('click', function (e) { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
-            }
-        })();
-    </script>
+    <div class="stat-strip">
+      <div class="stat-cell">
+        <div class="stat-value">78<span class="unit">%</span></div>
+        <div class="stat-label"><i class="bi bi-graph-down-arrow" style="margin-right:4px;"></i>Alert Queue Reduction</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-value">1.4<span class="unit">K</span></div>
+        <div class="stat-label"><i class="bi bi-person-x-fill" style="margin-right:4px;"></i>Stale Accounts Eliminated</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-value">48<span class="unit">h</span></div>
+        <div class="stat-label"><i class="bi bi-lightning-fill" style="margin-right:4px;"></i>Breach Vector Closed</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-value">0<span class="unit">x</span></div>
+        <div class="stat-label"><i class="bi bi-cloud-slash-fill" style="margin-right:4px;"></i>Data Leaves VPC</div>
+      </div>
+    </div>
 
-    <!-- main.js (Clarity analytics) -->
-    <script defer src="js/main.js"></script>
+  </div>
+</div>
 
-    <!-- Cloudflare Web Analytics -->
-    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f43066cf480b4383abeb276c44747bbb"}'></script>
+<div class="divider"></div>
+
+<!-- SERVICES -->
+<div class="section">
+  <div class="eyebrow">Core Services</div>
+  <h2>Security, Data, and AI — Unified</h2>
+  <p class="section-desc">One platform deployed inside your own infrastructure. Your data never leaves the perimeter.</p>
+
+  <div class="card-grid-3">
+    <div class="svc-card">
+      <div class="svc-icon"><i class="bi bi-shield-shaded"></i></div>
+      <h3>IAM &amp; PAM Agent</h3>
+      <p>Autonomous identity hygiene that flags stale accounts, enumerates non-human identities, and responds in real time without opening a ticket.</p>
+      <div class="card-link"><i class="bi bi-arrow-right"></i> Explore</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon"><i class="bi bi-speedometer2"></i></div>
+      <h3>SIEM First-Line Response</h3>
+      <p>AI-powered front-line agent that triages, correlates, and escalates alerts before your analysts even look at the queue.</p>
+      <div class="card-link"><i class="bi bi-arrow-right"></i> Explore</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon"><i class="bi bi-database-lock"></i></div>
+      <h3>Private Data Intelligence</h3>
+      <p>Query your own private data through any AI model — hosted entirely inside your own infrastructure with zero SaaS exposure.</p>
+      <div class="card-link"><i class="bi bi-arrow-right"></i> Explore</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon"><i class="bi bi-diagram-3-fill"></i></div>
+      <h3>Model Mesh Routing</h3>
+      <p>Continuously orchestrates model choice by intent, risk posture, latency budgets, and quality targets in real time.</p>
+      <div class="card-link"><i class="bi bi-arrow-right"></i> Explore</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon"><i class="bi bi-eye-fill"></i></div>
+      <h3>Retrieval Quality Engineering</h3>
+      <p>Ensure your RAG pipelines return accurate, policy-governed results with observability baked into every retrieval step.</p>
+      <div class="card-link"><i class="bi bi-arrow-right"></i> Explore</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon"><i class="bi bi-patch-check-fill"></i></div>
+      <h3>Guardrail Policy Engineering</h3>
+      <p>Compile, test, and deploy behavioral guardrails across every model endpoint with version control and rollback.</p>
+      <div class="card-link"><i class="bi bi-arrow-right"></i> Explore</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PRODUCTS -->
+<div class="section">
+  <div class="eyebrow">Product Portfolio</div>
+  <h2>Instruments for the AI Security Operator</h2>
+  <p class="section-desc">Purpose-built tools that bolt directly into your existing security stack.</p>
+
+  <div class="shelf-grid">
+    <div class="prod-card">
+      <div class="prod-icon"><i class="bi bi-shield-lock-fill"></i></div>
+      <div>
+        <h4>PromptShield Nexus</h4>
+        <p>Real-time prompt injection detection and response across all model endpoints.</p>
+        <span class="prod-tag">Threat Detection</span>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-icon"><i class="bi bi-broadcast-pin"></i></div>
+      <div>
+        <h4>VectorPulse Sentinel</h4>
+        <p>Monitors embedding space drift and anomalous retrieval patterns in live RAG systems.</p>
+        <span class="prod-tag">RAG Ops</span>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-icon"><i class="bi bi-node-plus-fill"></i></div>
+      <div>
+        <h4>AgentChain Commander</h4>
+        <p>Full observability and policy enforcement across multi-agent AI workflows.</p>
+        <span class="prod-tag">Agentic AI</span>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-icon"><i class="bi bi-bug-fill"></i></div>
+      <div>
+        <h4>Hallucination Forensics Studio</h4>
+        <p>Trace, score, and policy-map every AI response for compliance teams and auditors.</p>
+        <span class="prod-tag">Compliance</span>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-icon"><i class="bi bi-check2-circle"></i></div>
+      <div>
+        <h4>Compliance Guardian</h4>
+        <p>Auto-generated reports mapped to SOC 2, ISO 27001, HIPAA, and NIST 800-53.</p>
+        <span class="prod-tag">Audit-Ready</span>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-icon"><i class="bi bi-hdd-network-fill"></i></div>
+      <div>
+        <h4>Adaptive AI Honeymesh</h4>
+        <p>Deception layer that traps adversarial probes against your AI infrastructure perimeter.</p>
+        <span class="prod-tag">Deception</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- TERMINAL -->
+<div class="section">
+  <div class="eyebrow">Live Operator View</div>
+  <h2>One Console. Every AI Signal.</h2>
+  <p class="section-desc">The Stack Lume operator view surfaces identity risk, SIEM events, model activity, and data exposure in a single authenticated workspace.</p>
+
+  <div class="terminal">
+    <div class="term-bar">
+      <div class="td td-r"></div>
+      <div class="td td-a"></div>
+      <div class="td td-g"></div>
+      <span class="term-title">stacklume-operator · siem-triage · live</span>
+    </div>
+    <div class="term-body">
+      <div><span class="tl-m">09:14:03</span> <span class="tl-a">[ IAM-AGENT ]</span> <span class="tl-t">Scan complete — </span><span class="tl-a2">14 stale accounts flagged</span><span class="tl-t"> · queuing human review</span></div>
+      <div><span class="tl-m">09:14:11</span> <span class="tl-g">[ SIEM ]</span> <span class="tl-t">Alert queue </span><span class="tl-g">reduced 78%</span><span class="tl-t"> after front-line triage · 3 escalated to SOC</span></div>
+      <div><span class="tl-m">09:14:29</span> <span class="tl-r">[ PROMPTSHIELD ]</span> <span class="tl-r">BLOCKED</span><span class="tl-t"> — injection attempt on /infer endpoint · origin: 185.220.101.x</span></div>
+      <div><span class="tl-m">09:14:47</span> <span class="tl-a">[ VECTOR-SENTINEL ]</span> <span class="tl-t">Embedding drift </span><span class="tl-a2">+2.4σ</span><span class="tl-t"> on contracts-rag cluster · anomaly logged</span></div>
+      <div><span class="tl-m">09:15:02</span> <span class="tl-g">[ COMPLIANCE ]</span> <span class="tl-t">SOC 2 access review report </span><span class="tl-g">generated</span><span class="tl-t"> · ready for auditors</span></div>
+      <div><span class="tl-m">09:15:18</span> <span class="tl-a">[ AGENTCHAIN ]</span> <span class="tl-t">Multi-agent workflow policy check </span><span class="tl-g">PASSED</span><span class="tl-t"> · 7 guardrails enforced</span></div>
+      <div><span class="tl-m">09:15:31</span> <span class="tl-m">[ SYSTEM ] Next identity re-scan in 14m 29s · 0 data left VPC boundary_</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- BLOG -->
+<div class="section">
+  <div class="eyebrow">Latest Intelligence</div>
+  <h2>Fresh coverage on AI threat operations</h2>
+  <p class="section-desc">Stay ahead with Stack Lume briefings on AI-assisted attacks, critical infrastructure risk, and LLM exploitation.</p>
+
+  <div class="blog-grid">
+    <div class="blog-card">
+      <div class="blog-meta">
+        <span class="blog-tag">Threat Intel</span>
+        April 2026
+      </div>
+      <h4>AI Tools, Claude, and Fortinet FortiGate Attacks</h4>
+      <p>How AI-assisted threat actors are scaling attacks against Fortinet firewalls and exposed management interfaces.</p>
+      <a href="#" class="blog-link"><i class="bi bi-arrow-right-short"></i> Read article</a>
+    </div>
+    <div class="blog-card">
+      <div class="blog-meta">
+        <span class="blog-tag">Critical Infra</span>
+        April 2026
+      </div>
+      <h4>Iranian Hackers Target PLCs and PCM Boards</h4>
+      <p>A joint advisory warns Iranian-linked actors are exploiting internet-exposed PLCs in critical infrastructure.</p>
+      <a href="#" class="blog-link"><i class="bi bi-arrow-right-short"></i> Read article</a>
+    </div>
+    <div class="blog-card">
+      <div class="blog-meta">
+        <span class="blog-tag">AI Security</span>
+        April 2026
+      </div>
+      <h4>LLM Jacking: How Hackers Exploit Large Language Models</h4>
+      <p>What enterprises need to know about prompt and output manipulation in generative AI systems.</p>
+      <a href="#" class="blog-link"><i class="bi bi-arrow-right-short"></i> Read article</a>
+    </div>
+  </div>
+</div>
+
+<!-- CTA BANNER -->
+<div class="cta-wrap">
+  <div class="cta-banner">
+    <div>
+      <h2>Your AI-Powered First Line of Defense</h2>
+      <p>Deploy inside your own perimeter. No SaaS vendor holding your data. No shared endpoints. No black-box alerts.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="#" class="btn-primary"><i class="bi bi-play-circle-fill"></i> Try Demo</a>
+      <a href="#" class="btn-ghost"><i class="bi bi-calendar2-check"></i> Book a Call</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <span style="display:inline-flex;width:22px;height:22px;align-items:center;justify-content:center;">
+      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;overflow:visible;">
+        <rect x="6"  y="22"   width="14" height="3.2" rx="1.2" fill="var(--accent)"  opacity="0.55"></rect>
+        <rect x="6"  y="15.6" width="20" height="3.2" rx="1.2" fill="var(--accent)"  opacity="0.85"></rect>
+        <rect x="6"  y="9.2"  width="11" height="3.2" rx="1.2" fill="var(--accent2)"></rect>
+        <circle cx="22" cy="10.8" r="1.9" fill="var(--accent2)"></circle>
+      </svg>
+    </span>
+    <span><span style="color:var(--text);">Stack </span><span style="color:var(--accent);">Lume</span></span>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Products</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Careers</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Model Signal · stacklume.cloud</div>
+</footer>
+
+</div><!-- #page -->
+
+<script>
+const themeNames = {
+  "ocean-depths":     "Ocean Depths",
+  "sunset-boulevard": "Sunset Boulevard",
+  "forest-canopy":    "Forest Canopy",
+  "modern-minimalist":"Modern Minimalist",
+  "golden-hour":      "Golden Hour",
+  "arctic-frost":     "Arctic Frost",
+  "desert-rose":      "Desert Rose",
+  "tech-innovation":  "Tech Innovation",
+  "botanical-garden": "Botanical Garden",
+  "midnight-galaxy":  "Midnight Galaxy"
+};
+
+const body = document.body;
+const dd = document.getElementById('theme-dd');
+const trigger = document.getElementById('theme-dd-trigger');
+const menu = document.getElementById('theme-dd-menu');
+const ddSwatch = document.getElementById('theme-dd-swatch');
+const opts = document.querySelectorAll('.theme-opt');
+
+function closeDD() {
+  dd.classList.remove('open');
+  trigger.setAttribute('aria-expanded', 'false');
+}
+function openDD() {
+  dd.classList.add('open');
+  trigger.setAttribute('aria-expanded', 'true');
+}
+
+trigger.addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (dd.classList.contains('open')) closeDD(); else openDD();
+});
+
+document.addEventListener('click', (e) => {
+  if (!dd.contains(e.target)) closeDD();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeDD();
+});
+
+opts.forEach(opt => {
+  opt.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const t = opt.dataset.t;
+    const c = opt.dataset.c;
+    body.setAttribute('data-theme', t);
+    ddSwatch.style.background = c;
+    opts.forEach(o => o.classList.remove('active'));
+    opt.classList.add('active');
+    closeDD();
+  });
+});
+</script>
 </body>
 </html>
