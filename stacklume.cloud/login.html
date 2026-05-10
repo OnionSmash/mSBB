@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stack Lume — Sign In</title>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --void:        #08080E;
+  --deep-slate:  #12111F;
+  --surface:     #1C1A2E;
+  --surface-2:   #252338;
+  --border:      rgba(255,255,255,0.07);
+  --border-mid:  rgba(255,255,255,0.12);
+  --violet:      #6B4CFF;
+  --violet-light:#8B72FF;
+  --violet-dim:  #3D2BA8;
+  --cyan:        #00D4FF;
+  --mint:        #00F5C3;
+  --ember:       #FF6B35;
+  --plasma:      #BF5FFF;
+  --text-1:      #FFFFFF;
+  --text-2:      rgba(255,255,255,0.65);
+  --text-3:      rgba(255,255,255,0.35);
+  --f-display:   'Syne', sans-serif;
+  --f-body:      'DM Sans', sans-serif;
+  --f-mono:      'DM Mono', monospace;
+}
+
+html, body {
+  min-height: 100%;
+  background: var(--void);
+  color: var(--text-1);
+  font-family: var(--f-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── Background ── */
+.bg {
+  position: fixed; inset: 0; z-index: 0;
+}
+.bg-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(107,76,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(107,76,255,0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+  animation: grid-drift 30s linear infinite;
+}
+@keyframes grid-drift {
+  0%   { background-position: 0 0; }
+  100% { background-position: 56px 56px; }
+}
+.orb {
+  position: absolute; border-radius: 50%; pointer-events: none;
+}
+.orb-1 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(107,76,255,0.16) 0%, transparent 65%);
+  top: -220px; right: -160px;
+  animation: float-1 14s ease-in-out infinite;
+}
+.orb-2 {
+  width: 480px; height: 480px;
+  background: radial-gradient(circle, rgba(0,212,255,0.09) 0%, transparent 65%);
+  bottom: -180px; left: -140px;
+  animation: float-2 18s ease-in-out infinite;
+}
+.orb-3 {
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(191,95,255,0.07) 0%, transparent 65%);
+  top: 40%; left: 10%;
+  animation: float-3 22s ease-in-out infinite;
+}
+@keyframes float-1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-20px,30px)} }
+@keyframes float-2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(30px,-40px)} }
+@keyframes float-3 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(15px,20px) scale(1.04)} }
+
+/* ── Layout ── */
+.page {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+}
+
+/* ── Minimal nav ── */
+.signin-nav {
+  height: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(8,8,14,0.7);
+  backdrop-filter: blur(16px);
+  flex-shrink: 0;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 9px; text-decoration: none;
+}
+.nav-mark {
+  width: 28px; height: 28px; border-radius: 8px;
+  background: var(--violet);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 16px rgba(107,76,255,0.4);
+}
+.nav-wordmark {
+  font-family: var(--f-display); font-size: 16px; font-weight: 700;
+  letter-spacing: -0.3px; color: var(--text-1);
+}
+.nav-wordmark span { color: var(--violet-light); }
+.nav-right { font-size: 13px; color: var(--text-3); }
+.nav-right a { color: var(--violet-light); text-decoration: none; font-weight: 500; }
+.nav-right a:hover { color: var(--text-1); }
+
+/* ── Main centered area ── */
+.signin-main {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px 24px;
+}
+
+/* ── Card ── */
+.signin-card {
+  width: 100%; max-width: 420px;
+  background: var(--deep-slate);
+  border: 1px solid var(--border-mid);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow:
+    0 0 0 1px rgba(107,76,255,0.1),
+    0 32px 80px rgba(0,0,0,0.5),
+    0 0 40px rgba(107,76,255,0.06);
+  animation: card-in 0.5s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Card header */
+.card-logo {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 28px;
+}
+.card-mark {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--violet);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 20px rgba(107,76,255,0.45);
+}
+.card-wordmark {
+  font-family: var(--f-display); font-size: 18px; font-weight: 700;
+  letter-spacing: -0.3px; color: var(--text-1);
+}
+.card-wordmark span { color: var(--violet-light); }
+
+.card-title {
+  font-family: var(--f-display); font-size: 22px; font-weight: 700;
+  letter-spacing: -0.5px; color: var(--text-1); margin-bottom: 6px;
+}
+.card-subtitle {
+  font-size: 13px; color: var(--text-3); margin-bottom: 32px; line-height: 1.5;
+}
+
+/* Form fields */
+.form-group { margin-bottom: 16px; }
+.form-label {
+  display: block; font-size: 12px; font-weight: 500;
+  color: var(--text-2); margin-bottom: 7px; letter-spacing: 0.02em;
+}
+.form-input {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border-mid);
+  border-radius: 9px;
+  padding: 11px 14px;
+  color: var(--text-1);
+  font-family: var(--f-body); font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+.form-input::-moz-placeholder { color: var(--text-3); }
+.form-input::placeholder { color: var(--text-3); }
+.form-input:focus {
+  border-color: var(--violet-light);
+  box-shadow: 0 0 0 3px rgba(107,76,255,0.15);
+}
+
+/* Password wrapper with show/hide */
+.input-wrap { position: relative; }
+.input-wrap .form-input { padding-right: 42px; }
+.input-toggle {
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; cursor: pointer;
+  color: var(--text-3); font-size: 14px; padding: 4px;
+  transition: color 0.12s;
+}
+.input-toggle:hover { color: var(--text-2); }
+
+/* Login button */
+.btn-login {
+  width: 100%; margin-top: 24px;
+  background: var(--violet); border: none; color: #fff;
+  font-family: var(--f-body); font-size: 14px; font-weight: 500;
+  padding: 13px 20px; border-radius: 10px; cursor: pointer;
+  box-shadow: 0 0 28px rgba(107,76,255,0.38);
+  transition: background 0.15s, box-shadow 0.15s, transform 0.15s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  letter-spacing: 0.01em;
+}
+.btn-login:hover {
+  background: var(--violet-light);
+  box-shadow: 0 0 40px rgba(107,76,255,0.55);
+  transform: translateY(-1px);
+}
+.btn-login:active { transform: translateY(0); }
+
+/* Divider */
+.form-divider {
+  display: flex; align-items: center; gap: 12px;
+  margin: 24px 0 20px;
+}
+.form-divider::before,
+.form-divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: var(--border-mid);
+}
+.form-divider span {
+  font-size: 11px; color: var(--text-3);
+  font-family: var(--f-mono); letter-spacing: 0.06em; white-space: nowrap;
+}
+
+/* Recovery links */
+.recovery-links {
+  display: flex; flex-direction: column; gap: 12px;
+  align-items: center; margin-top: 4px;
+}
+.recovery-link {
+  font-size: 13px; color: var(--text-3); cursor: pointer;
+  text-decoration: none;
+  transition: color 0.15s;
+  display: flex; align-items: center; gap: 5px;
+}
+.recovery-link:hover { color: var(--violet-light); }
+.recovery-link-icon { font-size: 11px; opacity: 0.6; }
+
+/* SSO row */
+.sso-row { display: flex; gap: 8px; }
+.btn-sso {
+  flex: 1; background: var(--surface); border: 1px solid var(--border-mid);
+  color: var(--text-2); font-family: var(--f-body); font-size: 12px;
+  padding: 9px 12px; border-radius: 8px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+}
+.btn-sso:hover { background: var(--surface-2); border-color: rgba(255,255,255,0.18); color: var(--text-1); }
+.sso-icon { font-size: 14px; }
+
+/* Sign up prompt */
+.signup-prompt {
+  text-align: center; margin-top: 28px; padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-size: 13px; color: var(--text-3);
+}
+.signup-prompt a {
+  color: var(--violet-light); text-decoration: none; font-weight: 500;
+  margin-left: 4px;
+}
+.signup-prompt a:hover { color: var(--text-1); }
+
+/* Footer strip */
+.signin-footer {
+  text-align: center; padding: 20px;
+  border-top: 1px solid var(--border);
+  display: flex; gap: 20px; justify-content: center; align-items: center;
+  flex-shrink: 0;
+}
+.signin-footer a {
+  font-size: 11px; color: var(--text-3); text-decoration: none;
+  transition: color 0.12s;
+}
+.signin-footer a:hover { color: var(--text-2); }
+.footer-sep { color: var(--border-mid); font-size: 11px; }
+
+/* Error message */
+#error-msg {
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.3);
+  color: #FCA5A5;
+  padding: 11px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 16px;
+  display: none;
+}
+</style>
+</head>
+<body>
+
+<!-- Background -->
+<div class="bg">
+  <div class="bg-grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+
+<!-- Page -->
+<div class="page">
+
+  <!-- Minimal nav -->
+  <nav class="signin-nav">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-mark">
+        <svg width="16" height="16" viewBox="0 0 28 28" fill="none">
+          <rect x="4" y="4" width="9" height="9" rx="2.5" fill="rgba(255,255,255,0.95)"/>
+          <rect x="15" y="4" width="9" height="9" rx="2.5" fill="rgba(255,255,255,0.55)"/>
+          <rect x="4" y="15" width="9" height="9" rx="2.5" fill="rgba(255,255,255,0.55)"/>
+          <rect x="15" y="15" width="9" height="9" rx="2.5" fill="rgba(255,255,255,0.2)"/>
+        </svg>
+      </div>
+      <span class="nav-wordmark">Stack <span>Lume</span></span>
+    </a>
+    <div class="nav-right">Don't have an account? <a href="#">Sign up free</a></div>
+  </nav>
+
+  <!-- Sign-in card -->
+  <main class="signin-main">
+    <div class="signin-card">
+
+      <!-- Card logo -->
+      <div class="card-logo">
+        <div class="card-mark">
+          <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
+            <rect x="4" y="4" width="9" height="9" rx="2.5" fill="rgba(255,255,255,0.95)"/>
+            <rect x="15" y="4" width="9" height="9" rx="2.5" fill="rgba(255,255,255,0.55)"/>
+            <rect x="4" y="15" width="9" height="9" rx="2.5" fill="rgba(255,255,255,0.55)"/>
+            <rect x="15" y="15" width="9" height="9" rx="2.5" fill="rgba(255,255,255,0.2)"/>
+          </svg>
+        </div>
+        <span class="card-wordmark">Stack <span>Lume</span></span>
+      </div>
+
+      <h1 class="card-title">Welcome back</h1>
+      <p class="card-subtitle">Sign in to your workspace to continue</p>
+
+      <div id="error-msg">
+        <span>Invalid username or password.</span>
+      </div>
+
+      <!-- Form -->
+      <form id="login-form" onsubmit="return false;">
+        <div class="form-group">
+          <label class="form-label" for="username">Username or email</label>
+          <input
+            class="form-input" type="text" id="username"
+            placeholder="you@company.com" autocomplete="username"
+          >
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <div class="input-wrap">
+            <input
+              class="form-input" type="password" id="password"
+              placeholder="••••••••••••" autocomplete="current-password"
+            >
+            <button type="button" class="input-toggle" id="pw-toggle" aria-label="Show password">
+              👁
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-login">
+          Sign in
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </form>
+
+      <!-- Recovery links -->
+      <div class="form-divider" style="margin-top:24px; margin-bottom:0;"><span>account recovery</span></div>
+      <div class="recovery-links" style="margin-top:16px;">
+        <a class="recovery-link" href="#">
+          <span class="recovery-link-icon">🔑</span>
+          Forgot password?
+        </a>
+        <a class="recovery-link" href="#">
+          <span class="recovery-link-icon">👤</span>
+          Forgot username?
+        </a>
+      </div>
+
+      <!-- Sign up prompt -->
+      <div class="signup-prompt">
+        New to Stack Lume? <a href="#">Create an account →</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="signin-footer">
+    <a href="#">Privacy Policy</a>
+    <span class="footer-sep">·</span>
+    <a href="#">Terms of Service</a>
+    <span class="footer-sep">·</span>
+    <a href="#">Security</a>
+    <span class="footer-sep">·</span>
+    <a href="#">Help Center</a>
+  </footer>
+
+</div>
+
+<script>
+  // ── Password show/hide toggle ──
+  const pwInput = document.getElementById('password');
+  const pwToggle = document.getElementById('pw-toggle');
+  pwToggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    const showing = pwInput.type === 'text';
+    pwInput.type = showing ? 'password' : 'text';
+    pwToggle.textContent = showing ? '👁' : '🙈';
+  });
+
+  // ── Login form handler ──
+  const loginForm = document.getElementById('login-form');
+  const usernameInput = document.getElementById('username');
+  const passwordInput = document.getElementById('password');
+  const errorMsg = document.getElementById('error-msg');
+
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorMsg.style.display = 'none';
+
+    const username = usernameInput.value.trim();
+    const password = passwordInput.value;
+
+    if (!username || !password) {
+      errorMsg.style.display = 'flex';
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+
+      if (response.ok) {
+        window.location.href = '/index.html';
+      } else {
+        errorMsg.style.display = 'flex';
+      }
+    } catch (err) {
+      console.error('Login error:', err);
+      errorMsg.style.display = 'flex';
+    }
+  });
+</script>
+
+</body>
+</html>
