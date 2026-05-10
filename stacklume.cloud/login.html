@@ -3,472 +3,420 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stack Lume — Sign In</title>
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Sign In | Stack Lume</title>
+<meta name="description" content="Sign in to your Stack Lume workspace.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="favicon.ico">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=DM+Serif+Display:ital@0;1&family=Playfair+Display:wght@700;800&family=Raleway:wght@300;400;600;700&family=Josefin+Sans:wght@300;400;600&family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;600;700&family=Lora:wght@400;600&family=Oxanium:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --void:        #08080E;
-  --deep-slate:  #12111F;
-  --surface:     #1C1A2E;
-  --surface-2:   #252338;
-  --border:      rgba(255,255,255,0.07);
-  --border-mid:  rgba(255,255,255,0.12);
-  --violet:      #6B4CFF;
-  --violet-light:#8B72FF;
-  --violet-dim:  #3D2BA8;
-  --cyan:        #00D4FF;
-  --mint:        #00F5C3;
-  --ember:       #FF6B35;
-  --plasma:      #BF5FFF;
-  --text-1:      #FFFFFF;
-  --text-2:      rgba(255,255,255,0.65);
-  --text-3:      rgba(255,255,255,0.35);
-  --f-display:   'Syne', sans-serif;
-  --f-body:      'DM Sans', sans-serif;
-  --f-mono:      'DM Mono', monospace;
+/* Login-specific layout — uses theme variables from site.css */
+.login-shell {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  position: relative;
+  overflow: hidden;
 }
-
-html, body {
-  min-height: 100%;
-  background: var(--void);
-  color: var(--text-1);
-  font-family: var(--f-body);
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-
-/* ── Background ── */
-.bg {
-  position: fixed; inset: 0; z-index: 0;
-}
-.bg-grid {
-  position: absolute; inset: 0;
+.login-shell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background-image:
-    linear-gradient(rgba(107,76,255,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(107,76,255,0.04) 1px, transparent 1px);
-  background-size: 56px 56px;
-  animation: grid-drift 30s linear infinite;
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 100%);
+  pointer-events: none;
 }
-@keyframes grid-drift {
-  0%   { background-position: 0 0; }
-  100% { background-position: 56px 56px; }
+.login-shell::after {
+  content: '';
+  position: absolute;
+  top: -100px; left: 50%;
+  transform: translateX(-50%);
+  width: 600px; height: 360px;
+  background: radial-gradient(ellipse, var(--tag-bg) 0%, transparent 70%);
+  pointer-events: none;
 }
-.orb {
-  position: absolute; border-radius: 50%; pointer-events: none;
-}
-.orb-1 {
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(107,76,255,0.16) 0%, transparent 65%);
-  top: -220px; right: -160px;
-  animation: float-1 14s ease-in-out infinite;
-}
-.orb-2 {
-  width: 480px; height: 480px;
-  background: radial-gradient(circle, rgba(0,212,255,0.09) 0%, transparent 65%);
-  bottom: -180px; left: -140px;
-  animation: float-2 18s ease-in-out infinite;
-}
-.orb-3 {
-  width: 320px; height: 320px;
-  background: radial-gradient(circle, rgba(191,95,255,0.07) 0%, transparent 65%);
-  top: 40%; left: 10%;
-  animation: float-3 22s ease-in-out infinite;
-}
-@keyframes float-1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-20px,30px)} }
-@keyframes float-2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(30px,-40px)} }
-@keyframes float-3 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(15px,20px) scale(1.04)} }
-
-/* ── Layout ── */
-.page {
-  position: relative; z-index: 1;
-  min-height: 100vh;
-  display: flex; flex-direction: column;
-}
-
-/* ── Minimal nav ── */
-.signin-nav {
-  height: 56px;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 40px;
-  border-bottom: 1px solid var(--border);
-  background: rgba(8,8,14,0.7);
-  backdrop-filter: blur(16px);
-  flex-shrink: 0;
-}
-.nav-logo {
-  display: flex; align-items: center; gap: 9px; text-decoration: none;
-}
-.nav-mark {
-  width: 28px; height: 28px; border-radius: 8px;
-  background: var(--violet);
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 0 16px rgba(107,76,255,0.4);
-}
-.nav-wordmark {
-  font-family: var(--f-display); font-size: 16px; font-weight: 700;
-  letter-spacing: -0.3px; color: var(--text-1);
-}
-.nav-wordmark span { color: var(--violet-light); }
-.nav-right { font-size: 13px; color: var(--text-3); }
-.nav-right a { color: var(--violet-light); text-decoration: none; font-weight: 500; }
-.nav-right a:hover { color: var(--text-1); }
-
-/* ── Main centered area ── */
-.signin-main {
-  flex: 1;
-  display: flex; align-items: center; justify-content: center;
-  padding: 40px 24px;
-}
-
-/* ── Card ── */
-.signin-card {
-  width: 100%; max-width: 420px;
-  background: var(--deep-slate);
-  border: 1px solid var(--border-mid);
-  border-radius: 20px;
-  padding: 40px;
-  box-shadow:
-    0 0 0 1px rgba(107,76,255,0.1),
-    0 32px 80px rgba(0,0,0,0.5),
-    0 0 40px rgba(107,76,255,0.06);
-  animation: card-in 0.5s cubic-bezier(0.2, 0.8, 0.3, 1) both;
-}
-@keyframes card-in {
-  from { opacity: 0; transform: translateY(20px) scale(0.98); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-/* Card header */
-.card-logo {
-  display: flex; align-items: center; gap: 10px; margin-bottom: 28px;
-}
-.card-mark {
-  width: 36px; height: 36px; border-radius: 10px;
-  background: var(--violet);
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 0 20px rgba(107,76,255,0.45);
-}
-.card-wordmark {
-  font-family: var(--f-display); font-size: 18px; font-weight: 700;
-  letter-spacing: -0.3px; color: var(--text-1);
-}
-.card-wordmark span { color: var(--violet-light); }
-
-.card-title {
-  font-family: var(--f-display); font-size: 22px; font-weight: 700;
-  letter-spacing: -0.5px; color: var(--text-1); margin-bottom: 6px;
-}
-.card-subtitle {
-  font-size: 13px; color: var(--text-3); margin-bottom: 32px; line-height: 1.5;
-}
-
-/* Form fields */
-.form-group { margin-bottom: 16px; }
-.form-label {
-  display: block; font-size: 12px; font-weight: 500;
-  color: var(--text-2); margin-bottom: 7px; letter-spacing: 0.02em;
-}
-.form-input {
+.login-card {
+  position: relative;
+  z-index: 1;
   width: 100%;
-  background: var(--surface);
-  border: 1px solid var(--border-mid);
-  border-radius: 9px;
-  padding: 11px 14px;
-  color: var(--text-1);
-  font-family: var(--f-body); font-size: 14px;
+  max-width: 440px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 2.5rem 2.25rem;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.28), 0 0 0 1px var(--border);
+}
+.login-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.7rem;
+}
+.login-eyebrow::before {
+  content: '';
+  width: 18px; height: 1px;
+  background: var(--accent);
+}
+.login-card h1 {
+  font-family: var(--hf);
+  font-size: 1.7rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 0.45rem;
+  line-height: 1.1;
+}
+.login-card .login-sub {
+  font-size: 0.86rem;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 1.6rem;
+  font-weight: 300;
+}
+.field {
+  margin-bottom: 1rem;
+}
+.field-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--subtle);
+  margin-bottom: 0.4rem;
+}
+.field-input {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: var(--bf);
+  font-size: 0.88rem;
+  color: var(--text);
   outline: none;
-  transition: border-color 0.15s, box-shadow 0.15s;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
 }
-.form-input::-moz-placeholder { color: var(--text-3); }
-.form-input::placeholder { color: var(--text-3); }
-.form-input:focus {
-  border-color: var(--violet-light);
-  box-shadow: 0 0 0 3px rgba(107,76,255,0.15);
+.field-input::placeholder { color: var(--subtle); }
+.field-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--tag-bg);
+  background: var(--surface);
 }
-
-/* Password wrapper with show/hide */
-.input-wrap { position: relative; }
-.input-wrap .form-input { padding-right: 42px; }
-.input-toggle {
-  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
-  background: none; border: none; cursor: pointer;
-  color: var(--text-3); font-size: 14px; padding: 4px;
-  transition: color 0.12s;
+.field-pw {
+  position: relative;
 }
-.input-toggle:hover { color: var(--text-2); }
-
-/* Login button */
-.btn-login {
-  width: 100%; margin-top: 24px;
-  background: var(--violet); border: none; color: #fff;
-  font-family: var(--f-body); font-size: 14px; font-weight: 500;
-  padding: 13px 20px; border-radius: 10px; cursor: pointer;
-  box-shadow: 0 0 28px rgba(107,76,255,0.38);
-  transition: background 0.15s, box-shadow 0.15s, transform 0.15s;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  letter-spacing: 0.01em;
+.field-pw .field-input { padding-right: 44px; }
+.pw-toggle {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 6px 8px;
+  font-size: 14px;
+  border-radius: 3px;
+  transition: color 0.15s, background 0.15s;
 }
-.btn-login:hover {
-  background: var(--violet-light);
-  box-shadow: 0 0 40px rgba(107,76,255,0.55);
-  transform: translateY(-1px);
+.pw-toggle:hover { color: var(--text); background: var(--bg2); }
+.field-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  margin: 0.2rem 0 1.4rem;
 }
-.btn-login:active { transform: translateY(0); }
-
-/* Divider */
-.form-divider {
-  display: flex; align-items: center; gap: 12px;
-  margin: 24px 0 20px;
+.field-row label {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--muted);
+  cursor: pointer;
+  font-weight: 300;
 }
-.form-divider::before,
-.form-divider::after {
-  content: ''; flex: 1; height: 1px;
-  background: var(--border-mid);
+.field-row input[type="checkbox"] {
+  width: 14px; height: 14px;
+  accent-color: var(--accent);
 }
-.form-divider span {
-  font-size: 11px; color: var(--text-3);
-  font-family: var(--f-mono); letter-spacing: 0.06em; white-space: nowrap;
-}
-
-/* Recovery links */
-.recovery-links {
-  display: flex; flex-direction: column; gap: 12px;
-  align-items: center; margin-top: 4px;
-}
-.recovery-link {
-  font-size: 13px; color: var(--text-3); cursor: pointer;
+.field-row a {
+  color: var(--accent);
   text-decoration: none;
-  transition: color 0.15s;
-  display: flex; align-items: center; gap: 5px;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
 }
-.recovery-link:hover { color: var(--violet-light); }
-.recovery-link-icon { font-size: 11px; opacity: 0.6; }
-
-/* SSO row */
-.sso-row { display: flex; gap: 8px; }
-.btn-sso {
-  flex: 1; background: var(--surface); border: 1px solid var(--border-mid);
-  color: var(--text-2); font-family: var(--f-body); font-size: 12px;
-  padding: 9px 12px; border-radius: 8px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center; gap: 6px;
-  transition: background 0.12s, border-color 0.12s, color 0.12s;
+.field-row a:hover { text-decoration: underline; }
+.btn-submit {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 4px;
+  font-family: var(--hf);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: opacity 0.18s, transform 0.05s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
-.btn-sso:hover { background: var(--surface-2); border-color: rgba(255,255,255,0.18); color: var(--text-1); }
-.sso-icon { font-size: 14px; }
-
-/* Sign up prompt */
-.signup-prompt {
-  text-align: center; margin-top: 28px; padding-top: 24px;
-  border-top: 1px solid var(--border);
-  font-size: 13px; color: var(--text-3);
-}
-.signup-prompt a {
-  color: var(--violet-light); text-decoration: none; font-weight: 500;
-  margin-left: 4px;
-}
-.signup-prompt a:hover { color: var(--text-1); }
-
-/* Footer strip */
-.signin-footer {
-  text-align: center; padding: 20px;
-  border-top: 1px solid var(--border);
-  display: flex; gap: 20px; justify-content: center; align-items: center;
-  flex-shrink: 0;
-}
-.signin-footer a {
-  font-size: 11px; color: var(--text-3); text-decoration: none;
-  transition: color 0.12s;
-}
-.signin-footer a:hover { color: var(--text-2); }
-.footer-sep { color: var(--border-mid); font-size: 11px; }
-
-/* Error message */
-#error-msg {
-  background: rgba(239,68,68,0.1);
-  border: 1px solid rgba(239,68,68,0.3);
-  color: #FCA5A5;
-  padding: 11px 14px;
-  border-radius: 8px;
-  font-size: 13px;
-  margin-bottom: 16px;
+.btn-submit:hover { opacity: 0.9; }
+.btn-submit:active { transform: translateY(1px); }
+.error-banner {
   display: none;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.85rem;
+  background: rgba(248,113,113,0.1);
+  border: 1px solid rgba(248,113,113,0.3);
+  border-radius: 4px;
+  color: #f87171;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+.error-banner.visible { display: flex; }
+.divider-or {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 1.5rem 0;
+}
+.divider-or::before,
+.divider-or::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.divider-or span {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--subtle);
+}
+.sso-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.55rem;
+}
+.sso-btn {
+  padding: 0.6rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  transition: all 0.18s;
+}
+.sso-btn:hover {
+  color: var(--text);
+  border-color: var(--border-glow);
+  background: var(--bg2);
+}
+.signup-line {
+  margin-top: 1.4rem;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-weight: 300;
+}
+.signup-line a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+.signup-line a:hover { text-decoration: underline; }
+@media (max-width: 480px) {
+  .login-card { padding: 1.75rem 1.4rem; }
+  .login-card h1 { font-size: 1.4rem; }
+  .sso-row { grid-template-columns: 1fr; }
 }
 </style>
 </head>
-<body>
+<body data-theme="ocean-depths">
 
-<!-- Background -->
-<div class="bg">
-  <div class="bg-grid"></div>
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-</div>
+<div id="page">
 
-<!-- Page -->
-<div class="page">
-
-  <!-- Minimal nav -->
-  <nav class="signin-nav">
-    <a href="index.html" class="nav-logo">
-      <div class="nav-mark">
-        <svg width="16" height="16" viewBox="0 0 28 28" fill="none">
-          <rect x="4" y="4" width="9" height="9" rx="2.5" fill="rgba(255,255,255,0.95)"/>
-          <rect x="15" y="4" width="9" height="9" rx="2.5" fill="rgba(255,255,255,0.55)"/>
-          <rect x="4" y="15" width="9" height="9" rx="2.5" fill="rgba(255,255,255,0.55)"/>
-          <rect x="15" y="15" width="9" height="9" rx="2.5" fill="rgba(255,255,255,0.2)"/>
-        </svg>
-      </div>
-      <span class="nav-wordmark">Stack <span>Lume</span></span>
-    </a>
-    <div class="nav-right">Don't have an account? <a href="#">Sign up free</a></div>
-  </nav>
-
-  <!-- Sign-in card -->
-  <main class="signin-main">
-    <div class="signin-card">
-
-      <!-- Card logo -->
-      <div class="card-logo">
-        <div class="card-mark">
-          <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
-            <rect x="4" y="4" width="9" height="9" rx="2.5" fill="rgba(255,255,255,0.95)"/>
-            <rect x="15" y="4" width="9" height="9" rx="2.5" fill="rgba(255,255,255,0.55)"/>
-            <rect x="4" y="15" width="9" height="9" rx="2.5" fill="rgba(255,255,255,0.55)"/>
-            <rect x="15" y="15" width="9" height="9" rx="2.5" fill="rgba(255,255,255,0.2)"/>
-          </svg>
-        </div>
-        <span class="card-wordmark">Stack <span>Lume</span></span>
-      </div>
-
-      <h1 class="card-title">Welcome back</h1>
-      <p class="card-subtitle">Sign in to your workspace to continue</p>
-
-      <div id="error-msg">
-        <span>Invalid username or password.</span>
-      </div>
-
-      <!-- Form -->
-      <form id="login-form" onsubmit="return false;">
-        <div class="form-group">
-          <label class="form-label" for="username">Username or email</label>
-          <input
-            class="form-input" type="text" id="username"
-            placeholder="you@company.com" autocomplete="username"
-          >
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="password">Password</label>
-          <div class="input-wrap">
-            <input
-              class="form-input" type="password" id="password"
-              placeholder="••••••••••••" autocomplete="current-password"
-            >
-            <button type="button" class="input-toggle" id="pw-toggle" aria-label="Show password">
-              👁
-            </button>
-          </div>
-        </div>
-
-        <button type="submit" class="btn-login">
-          Sign in
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-      </form>
-
-      <!-- Recovery links -->
-      <div class="form-divider" style="margin-top:24px; margin-bottom:0;"><span>account recovery</span></div>
-      <div class="recovery-links" style="margin-top:16px;">
-        <a class="recovery-link" href="#">
-          <span class="recovery-link-icon">🔑</span>
-          Forgot password?
-        </a>
-        <a class="recovery-link" href="#">
-          <span class="recovery-link-icon">👤</span>
-          Forgot username?
-        </a>
-      </div>
-
-      <!-- Sign up prompt -->
-      <div class="signup-prompt">
-        New to Stack Lume? <a href="#">Create an account →</a>
-      </div>
-
+<!-- Slim nav with brand + theme switcher -->
+<nav>
+  <a href="index.html" class="nav-brand">
+    <div class="brand-icon">
+      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-label="Stack Lume">
+        <rect class="lm-bar lm-stack" x="6"  y="22" width="14" height="3.2" rx="1.2" opacity="0.55"></rect>
+        <rect class="lm-bar lm-stack" x="6"  y="15.6" width="20" height="3.2" rx="1.2" opacity="0.85"></rect>
+        <rect class="lm-bar lm-top"   x="6"  y="9.2"  width="11" height="3.2" rx="1.2"></rect>
+        <circle class="lm-bar lm-top" cx="22" cy="10.8" r="1.9"></circle>
+      </svg>
     </div>
-  </main>
+    <span class="nav-brand-wordmark"><span class="wm-stack">Stack </span><span class="wm-lume">Lume</span></span>
+  </a>
+  <button class="nav-mobile-toggle" id="nav-mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <i class="bi bi-list"></i>
+  </button>
+  <ul class="nav-links"></ul>
+  <div class="theme-dd" id="theme-dd">
+    <button class="theme-dd-trigger" id="theme-dd-trigger" aria-haspopup="listbox" aria-expanded="false">
+      <span class="swatch" id="theme-dd-swatch" style="background:#2d8b8b;"></span>
+      <span>Theme</span>
+      <span class="caret"><i class="bi bi-chevron-down"></i></span>
+    </button>
+    <div class="theme-dd-menu" id="theme-dd-menu" role="listbox">
+      <div class="theme-dd-label">Choose a theme</div>
+      <button class="theme-opt active" data-t="ocean-depths"     data-c="#2d8b8b"><span class="swatch" style="background:#2d8b8b;"></span>Ocean Depths<i class="bi bi-check2 check"></i></button>
+      <button class="theme-opt"        data-t="sunset-boulevard" data-c="#e76f51"><span class="swatch" style="background:#e76f51;"></span>Sunset Boulevard<i class="bi bi-check2 check"></i></button>
+      <button class="theme-opt"        data-t="forest-canopy"    data-c="#2d4a2b"><span class="swatch" style="background:#2d4a2b;"></span>Forest Canopy<i class="bi bi-check2 check"></i></button>
+      <button class="theme-opt"        data-t="modern-minimalist" data-c="#708090"><span class="swatch" style="background:#708090;"></span>Modern Minimalist<i class="bi bi-check2 check"></i></button>
+      <button class="theme-opt"        data-t="golden-hour"      data-c="#f4a900"><span class="swatch" style="background:#f4a900;"></span>Golden Hour<i class="bi bi-check2 check"></i></button>
+      <button class="theme-opt"        data-t="arctic-frost"     data-c="#4a6fa5"><span class="swatch" style="background:#4a6fa5;"></span>Arctic Frost<i class="bi bi-check2 check"></i></button>
+      <button class="theme-opt"        data-t="desert-rose"      data-c="#b87d6d"><span class="swatch" style="background:#b87d6d;"></span>Desert Rose<i class="bi bi-check2 check"></i></button>
+      <button class="theme-opt"        data-t="tech-innovation"  data-c="#0066ff"><span class="swatch" style="background:#0066ff;"></span>Tech Innovation<i class="bi bi-check2 check"></i></button>
+      <button class="theme-opt"        data-t="botanical-garden" data-c="#4a7c59"><span class="swatch" style="background:#4a7c59;"></span>Botanical Garden<i class="bi bi-check2 check"></i></button>
+      <button class="theme-opt"        data-t="midnight-galaxy"  data-c="#a490c2"><span class="swatch" style="background:#a490c2;"></span>Midnight Galaxy<i class="bi bi-check2 check"></i></button>
+    </div>
+  </div>
+</nav>
 
-  <!-- Footer -->
-  <footer class="signin-footer">
-    <a href="#">Privacy Policy</a>
-    <span class="footer-sep">·</span>
-    <a href="#">Terms of Service</a>
-    <span class="footer-sep">·</span>
-    <a href="#">Security</a>
-    <span class="footer-sep">·</span>
-    <a href="#">Help Center</a>
-  </footer>
+<main class="login-shell">
+  <div class="login-card">
+    <div class="login-eyebrow">Workspace · Sign In</div>
+    <h1>Welcome back</h1>
+    <p class="login-sub">Sign in to your Stack Lume workspace to continue.</p>
+
+    <div class="error-banner" id="error-msg">
+      <i class="bi bi-exclamation-triangle-fill"></i>
+      <span>Invalid username or password.</span>
+    </div>
+
+    <form id="login-form" autocomplete="on">
+      <div class="field">
+        <label class="field-label" for="username">Username or email</label>
+        <input class="field-input" type="text" id="username" name="username"
+               placeholder="you@company.com" autocomplete="username" required>
+      </div>
+      <div class="field">
+        <label class="field-label" for="password">Password</label>
+        <div class="field-pw">
+          <input class="field-input" type="password" id="password" name="password"
+                 placeholder="••••••••••••" autocomplete="current-password" required>
+          <button type="button" class="pw-toggle" id="pw-toggle" aria-label="Show password">
+            <i class="bi bi-eye-fill" id="pw-icon"></i>
+          </button>
+        </div>
+      </div>
+      <div class="field-row">
+        <label><input type="checkbox" id="remember"> Remember me</label>
+        <a href="#">Forgot password?</a>
+      </div>
+      <button type="submit" class="btn-submit">
+        Sign in
+        <i class="bi bi-arrow-right"></i>
+      </button>
+    </form>
+
+    <div class="divider-or"><span>or continue with</span></div>
+    <div class="sso-row">
+      <button class="sso-btn" type="button"><i class="bi bi-google"></i> Google</button>
+      <button class="sso-btn" type="button"><i class="bi bi-microsoft"></i> Microsoft</button>
+      <button class="sso-btn" type="button"><i class="bi bi-shield-lock-fill"></i> SSO</button>
+    </div>
+
+    <div class="signup-line">
+      New to Stack Lume? <a href="company/contact.html">Talk to sales</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-brand">
+    <span style="display:inline-flex;width:22px;height:22px;align-items:center;justify-content:center;">
+      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;overflow:visible;">
+        <rect x="6"  y="22"   width="14" height="3.2" rx="1.2" fill="var(--accent)"  opacity="0.55"></rect>
+        <rect x="6"  y="15.6" width="20" height="3.2" rx="1.2" fill="var(--accent)"  opacity="0.85"></rect>
+        <rect x="6"  y="9.2"  width="11" height="3.2" rx="1.2" fill="var(--accent2)"></rect>
+        <circle cx="22" cy="10.8" r="1.9" fill="var(--accent2)"></circle>
+      </svg>
+    </span>
+    <span><span style="color:var(--text);">Stack </span><span style="color:var(--accent);">Lume</span></span>
+  </div>
+  <ul class="footer-links">
+    <li><a href="company/contact.html">Support</a></li>
+    <li><a href="#">Privacy</a></li>
+    <li><a href="#">Terms</a></li>
+    <li><a href="#">Security</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Model Signal · <a href="https://stacklume.cloud">stacklume.cloud</a></div>
+</footer>
 
 </div>
 
+<script src="js/site.js"></script>
 <script>
-  // ── Password show/hide toggle ──
+// Password toggle
+(() => {
   const pwInput = document.getElementById('password');
   const pwToggle = document.getElementById('pw-toggle');
-  pwToggle.addEventListener('click', (e) => {
-    e.preventDefault();
+  const pwIcon = document.getElementById('pw-icon');
+  pwToggle.addEventListener('click', () => {
     const showing = pwInput.type === 'text';
     pwInput.type = showing ? 'password' : 'text';
-    pwToggle.textContent = showing ? '👁' : '🙈';
+    pwIcon.className = showing ? 'bi bi-eye-fill' : 'bi bi-eye-slash-fill';
+    pwToggle.setAttribute('aria-label', showing ? 'Show password' : 'Hide password');
   });
 
-  // ── Login form handler ──
-  const loginForm = document.getElementById('login-form');
-  const usernameInput = document.getElementById('username');
-  const passwordInput = document.getElementById('password');
+  const form = document.getElementById('login-form');
   const errorMsg = document.getElementById('error-msg');
-
-  loginForm.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    errorMsg.style.display = 'none';
-
-    const username = usernameInput.value.trim();
-    const password = passwordInput.value;
-
+    errorMsg.classList.remove('visible');
+    const username = document.getElementById('username').value.trim();
+    const password = pwInput.value;
     if (!username || !password) {
-      errorMsg.style.display = 'flex';
+      errorMsg.classList.add('visible');
       return;
     }
-
     try {
-      const response = await fetch('/api/auth/login', {
+      const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
       });
-
-      if (response.ok) {
+      if (res.ok) {
         window.location.href = '/index.html';
       } else {
-        errorMsg.style.display = 'flex';
+        errorMsg.classList.add('visible');
       }
     } catch (err) {
-      console.error('Login error:', err);
-      errorMsg.style.display = 'flex';
+      errorMsg.classList.add('visible');
     }
   });
+})();
 </script>
-
 </body>
 </html>
