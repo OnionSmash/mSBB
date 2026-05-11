@@ -4064,3 +4064,25 @@ AQlfAKgotEgPQfmzftRHvTab4vAx+D2u8+NHlzitJg==
 2026-05-10 15:17:02,119:DEBUG:certbot._internal.display.obj:Notifying user: No hooks were run.
 2026-05-10 15:17:02,119:DEBUG:certbot._internal.display.obj:Notifying user: - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 2026-05-10 15:17:02,119:DEBUG:certbot._internal.renewal:no renewal failures
+2026-05-11 03:17:02,050:DEBUG:certbot._internal.main:certbot version: 2.9.0
+2026-05-11 03:17:02,051:DEBUG:certbot._internal.main:Location of certbot entry point: /usr/bin/certbot
+2026-05-11 03:17:02,051:DEBUG:certbot._internal.main:Arguments: ['--cert-name', 'truenorthinsurancesolutions.com', '--config-dir', '/var/www/truenorthinsurancesolutions.com/ssl/config', '--work-dir', '/var/www/truenorthinsurancesolutions.com/ssl/work', '--logs-dir', '/var/www/truenorthinsurancesolutions.com/ssl/logs', '--quiet', '--deploy-hook', 'systemctl reload apache2']
+2026-05-11 03:17:02,051:DEBUG:certbot._internal.main:Discovered plugins: PluginsRegistry(PluginEntryPoint#apache,PluginEntryPoint#manual,PluginEntryPoint#null,PluginEntryPoint#standalone,PluginEntryPoint#webroot)
+2026-05-11 03:17:02,059:DEBUG:certbot._internal.log:Root logging level set at 40
+2026-05-11 03:17:02,059:DEBUG:certbot._internal.display.obj:Notifying user: Processing
+/var/www/truenorthinsurancesolutions.com/ssl/config/renewal/truenorthinsurancesolutions.com.conf
+2026-05-11 03:17:02,060:DEBUG:certbot.configuration:Var config_dir=/var/www/truenorthinsurancesolutions.com/ssl/config (set by user).
+2026-05-11 03:17:02,061:DEBUG:certbot.configuration:Var logs_dir=/var/www/truenorthinsurancesolutions.com/ssl/logs (set by user).
+2026-05-11 03:17:02,061:DEBUG:certbot.configuration:Var work_dir=/var/www/truenorthinsurancesolutions.com/ssl/work (set by user).
+2026-05-11 03:17:02,061:DEBUG:certbot._internal.plugins.selection:Requested authenticator None and installer None
+2026-05-11 03:17:02,081:INFO:certbot.ocsp:Cannot extract OCSP URI from /var/www/truenorthinsurancesolutions.com/ssl/config/archive/truenorthinsurancesolutions.com/cert1.pem
+2026-05-11 03:17:02,085:DEBUG:certbot._internal.display.obj:Notifying user: Certificate not yet due for renewal
+2026-05-11 03:17:02,085:DEBUG:certbot._internal.plugins.selection:Requested authenticator webroot and installer None
+2026-05-11 03:17:02,085:DEBUG:certbot._internal.display.obj:Notifying user: 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2026-05-11 03:17:02,086:DEBUG:certbot._internal.display.obj:Notifying user: The following certificates are not due for renewal yet:
+2026-05-11 03:17:02,086:DEBUG:certbot._internal.display.obj:Notifying user:   /var/www/truenorthinsurancesolutions.com/ssl/config/live/truenorthinsurancesolutions.com/fullchain.pem expires on 2026-07-05 (skipped)
+2026-05-11 03:17:02,086:DEBUG:certbot._internal.display.obj:Notifying user: No renewals were attempted.
+2026-05-11 03:17:02,086:DEBUG:certbot._internal.display.obj:Notifying user: No hooks were run.
+2026-05-11 03:17:02,086:DEBUG:certbot._internal.display.obj:Notifying user: - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2026-05-11 03:17:02,086:DEBUG:certbot._internal.renewal:no renewal failures

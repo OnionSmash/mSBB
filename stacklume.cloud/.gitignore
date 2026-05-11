@@ -1,0 +1,18 @@
+# Composer
+/portal/vendor/
+/vendor/
+
+# Env / secrets — never commit
+.env
+*.env
+
+# Node (in case anything uses it later)
+node_modules/
+
+# Editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

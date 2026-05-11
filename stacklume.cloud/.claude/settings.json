@@ -1,0 +1,49 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/usr/bin/sudo /usr/bin/mkdir -p /var/www/stacklume.cloud/portal/templates)",
+      "Bash(/usr/bin/sudo /usr/bin/chown groot:www-data /var/www/stacklume.cloud/portal/templates)",
+      "Bash(/usr/bin/sudo /usr/bin/chmod 775 /var/www/stacklume.cloud/portal/templates)",
+      "Bash(/usr/bin/ls -ld /var/www/stacklume.cloud/portal/templates)",
+      "Bash(PGPASSWORD=2QFqkCuWvG84yBpiXgyJHJlTxhyY /usr/bin/psql -h 127.0.0.1 -U stackcompli_user -d stackcompli -f /var/www/stacklume.cloud/portal/migrations/009_otp_and_trusted_devices.sql)",
+      "Bash(/usr/bin/sudo /usr/sbin/apache2ctl configtest)",
+      "Bash(/usr/bin/sudo /usr/bin/systemctl restart apache2)",
+      "Bash(/usr/bin/grep -n \"wm-stack\\\\|wm-lume\\\\|wm-vault\\\\|nav-brand-wordmark\" /var/www/stacklume.cloud/index.html /var/www/stacklume.cloud/services/stack-vault.html /var/www/stacklume.cloud/login.html)",
+      "Bash(/usr/bin/grep -n \"wm-stack\\\\|wm-lume\\\\|nav-brand-wordmark\\\\|letter-spacing\" /var/www/stacklume.cloud/css/site.css)",
+      "Bash(/usr/bin/curl -sk https://stacklume.cloud/)",
+      "Bash(/usr/bin/grep -E \"wm-stack|nav-brand-wordmark|<body\")",
+      "Bash(/usr/bin/head -5)",
+      "Bash(/usr/bin/curl -sk https://stacklume.cloud/services/stack-vault.html)",
+      "Bash(/usr/bin/grep -E \"wm-stack\")",
+      "Bash(/usr/bin/od -c)",
+      "Bash(/usr/bin/head -2)",
+      "Bash(/usr/bin/head -10)",
+      "Bash(/usr/bin/grep -rl --include=\"*.html\" -P 'wm-stack\">Stack\\\\xc2\\\\xa0' /var/www/stacklume.cloud/)",
+      "Bash(/usr/bin/grep -nP 'wm-stack\">Stack\\\\xc2\\\\xa0' /var/www/stacklume.cloud/portal/lib/layout.php)",
+      "Bash(/usr/bin/perl -ne 'print \"$ARGV\\\\n\" if /wm-stack\">Stack\\\\xc2\\\\xa0/' '/var/www/stacklume.cloud/*.html' '/var/www/stacklume.cloud/**/*.html')",
+      "Bash(/usr/bin/sort -u)",
+      "Bash(/usr/bin/perl -i -pe 's/wm-stack\">Stack\\\\xc2\\\\xa0/wm-stack\">Stack /g' /var/www/stacklume.cloud/index.html)",
+      "Bash(/usr/bin/grep \"wm-stack\" /var/www/stacklume.cloud/index.html)",
+      "Bash(/usr/bin/grep \"wm-stack\")",
+      "Bash(/usr/bin/find /var/www/stacklume.cloud -type f '\\(' -name '*.html' -o -name '*.php' -o -name '*.css' '\\)' ! -path '*/.git/*' -exec /usr/bin/perl -ne 'print \"$ARGV:$.\\\\n\" if /Stack\\\\xc2\\\\xa0|\\\\xc2\\\\xa0Vault|\\\\xc2\\\\xa0Lume/' '{}' ';')",
+      "Bash(/usr/bin/grep -n \"dropdown\\\\|submenu\\\\|has-children\\\\|nav-children\\\\|nav-item\\\\|mega\" /var/www/stacklume.cloud/css/site.css /var/www/stacklume.cloud/js/site.js)",
+      "Bash(/usr/bin/sed -n '32,90p' /var/www/stacklume.cloud/index.html)",
+      "Bash(/usr/bin/node --check /var/www/stacklume.cloud/js/site.js)",
+      "Bash(/usr/bin/grep -c \"HOVER_OPEN_DELAY\\\\|HOVER_CLOSE_DELAY\" /var/www/stacklume.cloud/js/site.js)",
+      "Bash(/usr/bin/grep -c \"has-js\\\\|nav-menu::before\" /var/www/stacklume.cloud/css/site.css)",
+      "Bash(/usr/bin/curl -sk https://stacklume.cloud/js/site.js)",
+      "Bash(/usr/bin/grep -c \"HOVER_OPEN_DELAY\")",
+      "Bash(/usr/bin/curl -sk https://stacklume.cloud/css/site.css)",
+      "Bash(/usr/bin/grep -c \"has-js\")",
+      "Bash(PGPASSWORD=2QFqkCuWvG84yBpiXgyJHJlTxhyY /usr/bin/psql -h 127.0.0.1 -U stackcompli_user -d stackcompli -f /var/www/stacklume.cloud/portal/migrations/010_demo_tier.sql)",
+      "Bash(/usr/bin/grep -n \"tsToken\\\\|signup-turnstile\\\\|signup-form\\\\|signupForm\" /var/www/stacklume.cloud/login.html)",
+      "Bash(/usr/bin/sed -i 's|Stack Compli|Stack Vault Console|g' /var/www/stacklume.cloud/login.html)",
+      "Bash(/usr/bin/grep -c \"Stack Compli\\\\|Stack Vault Console\" /var/www/stacklume.cloud/login.html)",
+      "Bash(/usr/bin/sudo /usr/bin/bash *)",
+      "Bash(/usr/bin/sudo /usr/bin/tail -5 /var/log/stackcompli/mail.log)"
+    ],
+    "additionalDirectories": [
+      "/etc/apache2/sites-available"
+    ]
+  }
+}

@@ -406,7 +406,7 @@ nav {
   position: relative;
 }
 
-/* Stack Lume mark — three stacked bars; top bar 'lights' with accent2 glow.
+/* Stack Vault mark — three stacked bars; top bar 'lights' with accent2 glow.
    Uses currentColor (set to var(--accent)) so it follows the theme. */
 .brand-icon svg { width: 100%; height: 100%; display: block; overflow: visible; }
 .brand-icon .lm-stack { color: var(--accent); }
@@ -426,8 +426,21 @@ nav {
   display: inline-flex;
   align-items: baseline;
 }
-.nav-brand-wordmark .wm-stack { font-weight: 800; }
+.nav-brand-wordmark .wm-stack {
+  font-weight: 800;
+  margin-right: 0.28em;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
 .nav-brand-wordmark .wm-lume  { font-weight: 800; color: var(--accent); }
+
+/* Footer brand wordmark — apply the same STACK-as-uppercase treatment to the
+   "Stack " span (the first inner span). The product word ("Vault") in the
+   second span keeps its case. Body prose elsewhere remains sentence case. */
+.footer-brand > span > span:first-child {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
 
 .nav-links {
   display: flex;
@@ -487,6 +500,9 @@ nav {
   transition: transform 0.25s ease;
 }
 
+/* Trigger active styles. :hover preserved for instant feedback (so the trigger
+ * lights up as the cursor arrives, before the 80ms open delay fires).
+ * The dropdown panel itself is the only thing gated on .open vs :hover above. */
 .nav-item:hover .nav-trigger,
 .nav-item.open .nav-trigger {
   color: var(--text);
@@ -504,13 +520,29 @@ nav {
   transform: scaleX(1);
 }
 
-.nav-item:hover .nav-trigger .ni-caret,
 .nav-item.open .nav-trigger .ni-caret {
   transform: rotate(180deg);
   opacity: 1;
 }
+html:not(.has-js) .nav-item:hover .nav-trigger .ni-caret {
+  transform: rotate(180deg);
+  opacity: 1;
+}
 
-/* Dropdown menu */
+/* Dropdown menu.
+ * Two reasons selection used to be twitchy:
+ *   1. 6px gap between trigger and menu — cursor would fall through, hover lost.
+ *   2. CSS-only :hover closes the menu the instant the cursor leaves the trigger,
+ *      which loses the user during a diagonal cross toward a menu item.
+ *
+ * Fix:
+ *   - The 6px gap is now visually preserved but covered by a transparent
+ *     "bridge" pseudo-element on the menu itself, so the cursor never
+ *     enters dead space between trigger and menu.
+ *   - The JS-driven .open class is the authoritative state; CSS :hover is
+ *     kept as a no-JS fallback. JS handles the hover-intent delay (~250ms
+ *     close grace period) to forgive diagonal sweeps.
+ */
 .nav-menu {
   position: absolute;
   top: calc(100% + 6px);
@@ -528,7 +560,23 @@ nav {
   z-index: 200;
 }
 
-.nav-item:hover .nav-menu,
+/* Invisible bridge that closes the 6px gap between trigger and menu so the
+ * cursor stays inside the .nav-item hover region while moving down. */
+.nav-menu::before {
+  content: '';
+  position: absolute;
+  top: -10px;            /* slightly more than the visual gap */
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: transparent;
+}
+
+/* Pure-CSS hover fallback for no-JS users only. When JS boots it sets
+ * html.has-js, which switches dropdown control entirely to the JS .open class
+ * (with hover-intent timers). Mixing the two would let CSS :hover snap the
+ * menu closed before our 250ms close grace fires. */
+html:not(.has-js) .nav-item:hover .nav-menu,
 .nav-item.open .nav-menu {
   opacity: 1;
   transform: translateY(0);
@@ -1583,3 +1631,33 @@ footer {
   transition-duration: 0.3s;
   transition-timing-function: ease;
 }
+
+/* =============================================
+   PRODUCT-PAGE LOGO LOCKUP
+   (Stack Compli, future Stack-branded products)
+   ============================================= */
+.product-logo {
+  margin-bottom: 1.4rem;
+  display: block;
+}
+.product-logo img {
+  display: block;
+  height: auto;
+  max-width: 240px;
+  width: 100%;
+}
+/* Default: show the dark-text logo, hide the white variant. */
+.product-logo-light { display: none; }
+.product-logo-dark  { display: block; }
+
+/* On dark themes: swap. */
+[data-theme="ocean-depths"]      .product-logo-dark,
+[data-theme="sunset-boulevard"]  .product-logo-dark,
+[data-theme="golden-hour"]       .product-logo-dark,
+[data-theme="tech-innovation"]   .product-logo-dark,
+[data-theme="midnight-galaxy"]   .product-logo-dark { display: none; }
+[data-theme="ocean-depths"]      .product-logo-light,
+[data-theme="sunset-boulevard"]  .product-logo-light,
+[data-theme="golden-hour"]       .product-logo-light,
+[data-theme="tech-innovation"]   .product-logo-light,
+[data-theme="midnight-galaxy"]   .product-logo-light { display: block; }

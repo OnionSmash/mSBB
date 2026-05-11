@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sign In | Stack Lume</title>
-<meta name="description" content="Sign in to your Stack Lume workspace.">
+<title>Sign In | Stack Vault Console</title>
+<meta name="description" content="Sign in to your Stack Vault Console workspace.">
 <meta name="robots" content="noindex,nofollow">
 <link rel="icon" href="favicon.ico">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -253,6 +253,80 @@
   font-weight: 600;
 }
 .signup-line a:hover { text-decoration: underline; }
+/* Two-column field rows on signup */
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+.field-grid .field { margin-bottom: 1rem; }
+.field-hint {
+  font-size: 0.7rem;
+  color: var(--subtle);
+  margin-top: 0.35rem;
+  font-weight: 300;
+}
+.field-hint-inline {
+  font-weight: 300;
+  color: var(--subtle);
+  text-transform: none;
+  letter-spacing: 0;
+  margin-left: 0.3rem;
+}
+.signup-disclaimer {
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.5;
+  padding: 0.7rem 0.85rem;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+/* Signup card needs more room */
+#signup-form ~ .signup-line { margin-top: 1rem; }
+.login-card:has(#signup-form:not([style*="display:none"])),
+.login-card:has(#signup-form:not([style*="display: none"])) {
+  max-width: 540px;
+}
+/* Make selects look the same as inputs */
+select.field-input {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%238aacb3' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+}
+/* Pending success state */
+.pending-icon {
+  font-size: 2.4rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.pending-title {
+  font-family: var(--f-display, var(--f-body, sans-serif));
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--text);
+  text-align: center;
+  margin-bottom: 0.8rem;
+}
+.pending-body {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+#pending-state { padding: 0.5rem 0; text-align: center; }
+
+@media (max-width: 540px) {
+  .field-grid { grid-template-columns: 1fr; gap: 0; }
+}
 @media (max-width: 480px) {
   .login-card { padding: 1.75rem 1.4rem; }
   .login-card h1 { font-size: 1.4rem; }
@@ -261,6 +335,7 @@
 </style>
 </head>
 <body data-theme="ocean-depths">
+<script>(function(){try{var t=localStorage.getItem("stacklume-theme");if(t)document.body.setAttribute("data-theme",t);}catch(e){}})();</script>
 
 <div id="page">
 
@@ -268,14 +343,14 @@
 <nav>
   <a href="index.html" class="nav-brand">
     <div class="brand-icon">
-      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-label="Stack Lume">
+      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-label="Stack Vault">
         <rect class="lm-bar lm-stack" x="6"  y="22" width="14" height="3.2" rx="1.2" opacity="0.55"></rect>
         <rect class="lm-bar lm-stack" x="6"  y="15.6" width="20" height="3.2" rx="1.2" opacity="0.85"></rect>
         <rect class="lm-bar lm-top"   x="6"  y="9.2"  width="11" height="3.2" rx="1.2"></rect>
         <circle class="lm-bar lm-top" cx="22" cy="10.8" r="1.9"></circle>
       </svg>
     </div>
-    <span class="nav-brand-wordmark"><span class="wm-stack">Stack </span><span class="wm-lume">Lume</span></span>
+    <span class="nav-brand-wordmark"><span class="wm-stack">Stack </span><span class="wm-lume">Vault</span></span>
   </a>
   <button class="nav-mobile-toggle" id="nav-mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
     <i class="bi bi-list"></i>
@@ -305,19 +380,20 @@
 
 <main class="login-shell">
   <div class="login-card">
-    <div class="login-eyebrow">Workspace · Sign In</div>
-    <h1>Welcome back</h1>
-    <p class="login-sub">Sign in to your Stack Lume workspace to continue.</p>
+    <div class="login-eyebrow" id="form-eyebrow">Stack Vault Console · Sign In</div>
+    <h1 id="form-title">Welcome back</h1>
+    <p class="login-sub" id="form-sub">Sign in to your Stack Vault Console workspace to continue.</p>
 
     <div class="error-banner" id="error-msg">
       <i class="bi bi-exclamation-triangle-fill"></i>
-      <span>Invalid username or password.</span>
+      <span id="error-text">Invalid username or password.</span>
     </div>
 
+    <!-- Sign-in form -->
     <form id="login-form" autocomplete="on">
       <div class="field">
-        <label class="field-label" for="username">Username or email</label>
-        <input class="field-input" type="text" id="username" name="username"
+        <label class="field-label" for="username">Email</label>
+        <input class="field-input" type="email" id="username" name="username"
                placeholder="you@company.com" autocomplete="username" required>
       </div>
       <div class="field">
@@ -334,21 +410,149 @@
         <label><input type="checkbox" id="remember"> Remember me</label>
         <a href="#">Forgot password?</a>
       </div>
+      <div id="turnstile-slot" style="margin: 0.6rem 0 0;"></div>
       <button type="submit" class="btn-submit">
         Sign in
         <i class="bi bi-arrow-right"></i>
       </button>
     </form>
 
-    <div class="divider-or"><span>or continue with</span></div>
-    <div class="sso-row">
-      <button class="sso-btn" type="button"><i class="bi bi-google"></i> Google</button>
-      <button class="sso-btn" type="button"><i class="bi bi-microsoft"></i> Microsoft</button>
-      <button class="sso-btn" type="button"><i class="bi bi-shield-lock-fill"></i> SSO</button>
+    <!-- OTP verification step (hidden by default; shown after password OK) -->
+    <form id="otp-form" autocomplete="one-time-code" style="display:none;">
+      <p class="login-sub" id="otp-sub">We sent a 6-digit code to <strong id="otp-email-hint">your email</strong>. It expires in 10 minutes.</p>
+      <div class="field">
+        <label class="field-label" for="otp-code">Verification code</label>
+        <input class="field-input otp-input" type="text" id="otp-code" name="code"
+               inputmode="numeric" pattern="[0-9]{6}" maxlength="6"
+               autocomplete="one-time-code" placeholder="000000" required
+               style="font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.5em; font-size: 1.3rem; text-align: center;">
+      </div>
+      <div class="field-row">
+        <label><input type="checkbox" id="otp-trust"> Trust this device for 30 days</label>
+        <a href="#" id="otp-resend">Resend code</a>
+      </div>
+      <button type="submit" class="btn-submit">
+        Verify &amp; sign in
+        <i class="bi bi-arrow-right"></i>
+      </button>
+      <div style="margin-top: 0.6rem; text-align: center; font-size: 0.78rem;">
+        <a href="#" id="otp-restart" style="color: var(--subtle);">← Use a different account</a>
+      </div>
+    </form>
+
+    <!-- Sign-up form (hidden by default) -->
+    <form id="signup-form" autocomplete="on" style="display:none;">
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label" for="su-first">First name</label>
+          <input class="field-input" type="text" id="su-first" name="first_name" autocomplete="given-name" required>
+        </div>
+        <div class="field">
+          <label class="field-label" for="su-last">Last name</label>
+          <input class="field-input" type="text" id="su-last" name="last_name" autocomplete="family-name" required>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label" for="su-email">Work email</label>
+        <input class="field-input" type="email" id="su-email" name="email" placeholder="you@company.com" autocomplete="email" required>
+        <div class="field-hint" id="freemail-hint">Use your company email — free-mail providers aren't accepted.</div>
+      </div>
+      <div class="field">
+        <label class="field-label" for="su-password">Password <span class="field-hint-inline">(10+ characters)</span></label>
+        <input class="field-input" type="password" id="su-password" name="password" minlength="10" autocomplete="new-password" required>
+      </div>
+      <div class="field">
+        <label class="field-label" for="su-company">Company name</label>
+        <input class="field-input" type="text" id="su-company" name="company" autocomplete="organization" required>
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label" for="su-cemail">Company email <span class="field-hint-inline">(optional)</span></label>
+          <input class="field-input" type="email" id="su-cemail" name="company_email" placeholder="hello@company.com">
+        </div>
+        <div class="field">
+          <label class="field-label" for="su-phone">Phone</label>
+          <input class="field-input" type="tel" id="su-phone" name="phone" placeholder="+1 415 555 1234" autocomplete="tel" required>
+        </div>
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label" for="su-country">Country</label>
+          <select class="field-input" id="su-country" name="country" required>
+            <option value="">Select country…</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field-label" for="su-size">Company size</label>
+          <select class="field-input" id="su-size" name="employee_size" required>
+            <option value="">Select size…</option>
+            <option value="1-10">1–10</option>
+            <option value="11-50">11–50</option>
+            <option value="51-200">51–200</option>
+            <option value="201-500">201–500</option>
+            <option value="501-1000">501–1,000</option>
+            <option value="1001-5000">1,001–5,000</option>
+            <option value="5000+">5,000+</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label" for="su-industry">Business type</label>
+          <select class="field-input" id="su-industry" name="industry" required>
+            <option value="">Select industry…</option>
+            <option value="saas">SaaS / Software</option>
+            <option value="fintech">Financial Services / Fintech</option>
+            <option value="healthcare">Healthcare / HealthTech</option>
+            <option value="ai_ml">AI / ML</option>
+            <option value="ecommerce">E-commerce / Retail</option>
+            <option value="manufacturing">Manufacturing / Industrial</option>
+            <option value="services">Professional Services / Consulting</option>
+            <option value="government">Government / Public Sector / Federal</option>
+            <option value="education">Education</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field-label" for="su-function">Business function</label>
+          <select class="field-input" id="su-function" name="business_function" required>
+            <option value="">Select function…</option>
+            <option value="security">Security</option>
+            <option value="compliance">Compliance / GRC</option>
+            <option value="engineering">Engineering / DevOps</option>
+            <option value="it">IT</option>
+            <option value="legal">Legal / Privacy</option>
+            <option value="risk">Risk</option>
+            <option value="executive">Executive (CEO / COO / CFO)</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="signup-disclaimer">
+        Accounts are reviewed by an administrator before access is granted. You'll receive an email once approved.
+      </div>
+      <div id="signup-turnstile-slot" style="margin: 0 0 0.8rem;"></div>
+      <button type="submit" class="btn-submit">
+        Request access
+        <i class="bi bi-arrow-right"></i>
+      </button>
+    </form>
+
+    <!-- Pending state shown after successful signup -->
+    <div id="pending-state" style="display:none;">
+      <div class="pending-icon"><i class="bi bi-hourglass-split"></i></div>
+      <h2 class="pending-title">You're on the list</h2>
+      <p class="pending-body" id="pending-body">
+        Your account is awaiting administrator approval. We'll send a confirmation email to the address you provided as soon as your access is granted — usually within one business day.
+      </p>
+      <a href="/" class="btn-submit" style="text-decoration:none; display:inline-flex;">
+        Back to stacklume.cloud
+        <i class="bi bi-arrow-right"></i>
+      </a>
     </div>
 
     <div class="signup-line">
-      New to Stack Lume? <a href="company/contact.html">Talk to sales</a>
+      <span id="toggle-prompt">New to Stack Vault Console? <a href="#" id="toggle-form">Create an account</a></span>
     </div>
   </div>
 </main>
@@ -363,7 +567,7 @@
         <circle cx="22" cy="10.8" r="1.9" fill="var(--accent2)"></circle>
       </svg>
     </span>
-    <span><span style="color:var(--text);">Stack </span><span style="color:var(--accent);">Lume</span></span>
+    <span><span style="color:var(--text);">Stack </span><span style="color:var(--accent);">Vault</span></span>
   </div>
   <ul class="footer-links">
     <li><a href="company/contact.html">Support</a></li>
@@ -371,18 +575,19 @@
     <li><a href="#">Terms</a></li>
     <li><a href="#">Security</a></li>
   </ul>
-  <div class="footer-copy">© 2026 Model Signal · <a href="https://stacklume.cloud">stacklume.cloud</a></div>
+  <div class="footer-copy">© 2026 Stack Vault</div>
 </footer>
 
 </div>
 
 <script src="js/site.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=scTurnstileReady" async defer></script>
 <script>
-// Password toggle
 (() => {
-  const pwInput = document.getElementById('password');
+  // Password toggle (sign-in form only — sign-up is single-shot).
+  const pwInput  = document.getElementById('password');
   const pwToggle = document.getElementById('pw-toggle');
-  const pwIcon = document.getElementById('pw-icon');
+  const pwIcon   = document.getElementById('pw-icon');
   pwToggle.addEventListener('click', () => {
     const showing = pwInput.type === 'text';
     pwInput.type = showing ? 'password' : 'text';
@@ -390,32 +595,341 @@
     pwToggle.setAttribute('aria-label', showing ? 'Show password' : 'Hide password');
   });
 
-  const form = document.getElementById('login-form');
-  const errorMsg = document.getElementById('error-msg');
-  form.addEventListener('submit', async (e) => {
+  const loginForm  = document.getElementById('login-form');
+  const otpForm    = document.getElementById('otp-form');
+  const signupForm = document.getElementById('signup-form');
+  const errorMsg   = document.getElementById('error-msg');
+  const errorText  = document.getElementById('error-text');
+  const eyebrow    = document.getElementById('form-eyebrow');
+  const title      = document.getElementById('form-title');
+  const sub        = document.getElementById('form-sub');
+  const togglePrompt = document.getElementById('toggle-prompt');
+  const toggleLink   = document.getElementById('toggle-form');
+
+  // ----- Turnstile widget bootstrap (sign-in + sign-up each get a widget) -----
+  let tsWidgetId = null;     // sign-in widget
+  let suTsWidgetId = null;   // sign-up widget
+  let tsSitekey  = null;
+  fetch('/portal/api/public_config.php')
+    .then(r => r.json())
+    .then(cfg => { tsSitekey = cfg.turnstile_sitekey; tryRenderTurnstile(); tryRenderSuTurnstile(); })
+    .catch(() => { /* no captcha — server will allow if not configured */ });
+  window.scTurnstileReady = () => { tryRenderTurnstile(); tryRenderSuTurnstile(); };
+  function tryRenderTurnstile() {
+    if (!tsSitekey || !window.turnstile) return;
+    if (tsWidgetId !== null) return;
+    const slot = document.getElementById('turnstile-slot');
+    if (!slot) return;
+    tsWidgetId = window.turnstile.render(slot, { sitekey: tsSitekey, theme: 'auto', size: 'flexible' });
+  }
+  function tryRenderSuTurnstile() {
+    if (!tsSitekey || !window.turnstile) return;
+    if (suTsWidgetId !== null) return;
+    const slot = document.getElementById('signup-turnstile-slot');
+    if (!slot) return;
+    suTsWidgetId = window.turnstile.render(slot, { sitekey: tsSitekey, theme: 'auto', size: 'flexible' });
+  }
+  function tsToken()   { return tsWidgetId   !== null && window.turnstile ? (window.turnstile.getResponse(tsWidgetId)   || '') : ''; }
+  function suTsToken() { return suTsWidgetId !== null && window.turnstile ? (window.turnstile.getResponse(suTsWidgetId) || '') : ''; }
+  function tsReset()   { if (tsWidgetId   !== null && window.turnstile) window.turnstile.reset(tsWidgetId); }
+  function suTsReset() { if (suTsWidgetId !== null && window.turnstile) window.turnstile.reset(suTsWidgetId); }
+
+  function showError(msg) {
+    errorText.textContent = msg || 'Something went wrong.';
+    errorMsg.classList.add('visible');
+  }
+  function clearError() { errorMsg.classList.remove('visible'); }
+
+  // Pre-fill email if passed via ?email=
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('email')) document.getElementById('username').value = params.get('email');
+
+  // Open in signup mode when arriving from a marketing demo CTA: /login.html?signup=1
+  const wantSignup = params.get('signup');
+  const signupModeRequested = wantSignup === '1' || wantSignup === 'true';
+
+  // Toggle between sign-in and sign-up.
+  function showSignup() {
+    loginForm.style.display = 'none';
+    signupForm.style.display = '';
+    eyebrow.textContent = 'Stack Vault Console · Create Account';
+    title.textContent   = 'Get started';
+    sub.textContent     = 'Spin up a new Stack Vault Console workspace for your organization.';
+    togglePrompt.innerHTML = 'Already have an account? <a href="#" id="toggle-form">Sign in</a>';
+    document.getElementById('toggle-form').addEventListener('click', toggleHandler);
+    clearError();
+  }
+  function showSignin() {
+    signupForm.style.display = 'none';
+    loginForm.style.display  = '';
+    eyebrow.textContent = 'Stack Vault Console · Sign In';
+    title.textContent   = 'Welcome back';
+    sub.textContent     = 'Sign in to your Stack Vault Console workspace to continue.';
+    togglePrompt.innerHTML = 'New to Stack Vault Console? <a href="#" id="toggle-form">Create an account</a>';
+    document.getElementById('toggle-form').addEventListener('click', toggleHandler);
+    clearError();
+  }
+  function toggleHandler(e) {
     e.preventDefault();
-    errorMsg.classList.remove('visible');
-    const username = document.getElementById('username').value.trim();
+    if (signupForm.style.display === 'none') showSignup(); else showSignin();
+  }
+  toggleLink.addEventListener('click', toggleHandler);
+
+  // If the user landed here from a marketing demo CTA (?signup=1), open the
+  // signup form by default. Falls through to the normal sign-in view otherwise.
+  if (signupModeRequested) showSignup();
+
+  // ----- View helpers for OTP step -----
+  function showOtpStep(emailHint) {
+    loginForm.style.display = 'none';
+    otpForm.style.display = '';
+    document.getElementById('otp-email-hint').textContent = emailHint || 'your email';
+    eyebrow.textContent = 'Stack Vault · Verify';
+    title.textContent   = 'Check your inbox';
+    sub.style.display = 'none';
+    togglePrompt.parentElement && (togglePrompt.parentElement.style.display = 'none');
+    setTimeout(() => document.getElementById('otp-code').focus(), 30);
+  }
+  function showSigninStep() {
+    otpForm.style.display = 'none';
+    loginForm.style.display = '';
+    eyebrow.textContent = 'Stack Vault · Sign In';
+    title.textContent   = 'Welcome back';
+    sub.style.display = '';
+    sub.textContent = 'Sign in to your Stack Vault workspace to continue.';
+    togglePrompt.parentElement && (togglePrompt.parentElement.style.display = '');
+    document.getElementById('otp-code').value = '';
+    clearError();
+    tsReset();
+  }
+
+  // Sign-in submit (password step — may branch to OTP).
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearError();
+    const email    = document.getElementById('username').value.trim();
     const password = pwInput.value;
-    if (!username || !password) {
-      errorMsg.classList.add('visible');
-      return;
-    }
+    if (!email || !password) { showError('Email and password required.'); return; }
+    const submitBtn = loginForm.querySelector('button[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true;
     try {
-      const res = await fetch('/api/auth/login', {
+      const res = await fetch('/portal/api/login.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ email, password, turnstile_token: tsToken() })
       });
-      if (res.ok) {
-        window.location.href = '/index.html';
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
+        if (data.otp_required) {
+          showOtpStep(data.email_hint || email);
+        } else {
+          const next = params.get('next') || data.redirect || '/portal/';
+          window.location.href = next;
+        }
       } else {
-        errorMsg.classList.add('visible');
+        showError(data.error || 'Invalid email or password.');
+        tsReset();
       }
     } catch (err) {
-      errorMsg.classList.add('visible');
+      showError('Network error — try again.');
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
     }
   });
+
+  // OTP submit.
+  otpForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearError();
+    const code  = document.getElementById('otp-code').value.replace(/\D+/g, '');
+    const trust = document.getElementById('otp-trust').checked;
+    if (code.length !== 6) { showError('Enter the 6-digit code from your email.'); return; }
+    const submitBtn = otpForm.querySelector('button[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true;
+    try {
+      const res = await fetch('/portal/api/login_otp.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'verify', code, trust_device: trust })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
+        const next = params.get('next') || data.redirect || '/portal/';
+        window.location.href = next;
+      } else if (data.restart) {
+        showError(data.error || 'Verification expired. Please sign in again.');
+        showSigninStep();
+      } else {
+        showError(data.error || 'Incorrect code.');
+        document.getElementById('otp-code').select();
+      }
+    } catch (err) {
+      showError('Network error — try again.');
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
+  });
+
+  // OTP resend.
+  document.getElementById('otp-resend').addEventListener('click', async (e) => {
+    e.preventDefault();
+    clearError();
+    try {
+      const res = await fetch('/portal/api/login_otp.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'resend' })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
+        showError('A new code is on the way. Check your email.');
+        errorMsg.classList.add('visible');
+      } else if (data.restart) {
+        showError(data.error || 'Verification expired. Please sign in again.');
+        showSigninStep();
+      } else {
+        showError(data.error || 'Could not resend code.');
+      }
+    } catch (err) {
+      showError('Network error — try again.');
+    }
+  });
+
+  // Restart OTP flow (e.g. user wants different account).
+  document.getElementById('otp-restart').addEventListener('click', (e) => {
+    e.preventDefault();
+    showSigninStep();
+  });
+
+  // ----- Country dropdown population -----
+  // Common-first ordering, then everything else alphabetical.
+  const countriesTop = [
+    ['US','United States'], ['CA','Canada'], ['GB','United Kingdom'],
+    ['AU','Australia'], ['DE','Germany'], ['FR','France'],
+    ['NL','Netherlands'], ['IE','Ireland'], ['IN','India'], ['SG','Singapore'],
+  ];
+  const countriesRest = [
+    ['AE','United Arab Emirates'],['AR','Argentina'],['AT','Austria'],['BE','Belgium'],
+    ['BG','Bulgaria'],['BR','Brazil'],['CH','Switzerland'],['CL','Chile'],['CN','China'],
+    ['CO','Colombia'],['CY','Cyprus'],['CZ','Czechia'],['DK','Denmark'],['EE','Estonia'],
+    ['EG','Egypt'],['ES','Spain'],['FI','Finland'],['GR','Greece'],['HK','Hong Kong'],
+    ['HR','Croatia'],['HU','Hungary'],['ID','Indonesia'],['IL','Israel'],['IS','Iceland'],
+    ['IT','Italy'],['JP','Japan'],['KE','Kenya'],['KR','South Korea'],['LT','Lithuania'],
+    ['LU','Luxembourg'],['LV','Latvia'],['MA','Morocco'],['MT','Malta'],['MX','Mexico'],
+    ['MY','Malaysia'],['NG','Nigeria'],['NO','Norway'],['NZ','New Zealand'],['PE','Peru'],
+    ['PH','Philippines'],['PK','Pakistan'],['PL','Poland'],['PT','Portugal'],['RO','Romania'],
+    ['SA','Saudi Arabia'],['SE','Sweden'],['SI','Slovenia'],['SK','Slovakia'],['TH','Thailand'],
+    ['TR','Turkey'],['TW','Taiwan'],['UA','Ukraine'],['VN','Vietnam'],['ZA','South Africa'],
+  ].sort((a, b) => a[1].localeCompare(b[1]));
+  const countrySel = document.getElementById('su-country');
+  if (countrySel) {
+    const make = ([cc, name]) => {
+      const o = document.createElement('option');
+      o.value = cc; o.textContent = name;
+      return o;
+    };
+    countriesTop.forEach(c => countrySel.appendChild(make(c)));
+    const sep = document.createElement('option');
+    sep.disabled = true; sep.textContent = '──────────';
+    countrySel.appendChild(sep);
+    countriesRest.forEach(c => countrySel.appendChild(make(c)));
+  }
+
+  // ----- Free-mail soft warning (server enforces the rule) -----
+  const FREEMAIL = new Set([
+    'gmail.com','googlemail.com','yahoo.com','yahoo.co.uk','outlook.com','hotmail.com',
+    'live.com','msn.com','aol.com','icloud.com','me.com','protonmail.com','proton.me',
+    'pm.me','gmx.com','mail.com','zoho.com','duck.com','hey.com',
+  ]);
+  const suEmail = document.getElementById('su-email');
+  const freemailHint = document.getElementById('freemail-hint');
+  suEmail?.addEventListener('blur', () => {
+    const v = suEmail.value.trim().toLowerCase();
+    const at = v.lastIndexOf('@');
+    if (at < 0) return;
+    const dom = v.slice(at + 1);
+    if (FREEMAIL.has(dom)) {
+      freemailHint.textContent = "That looks like a personal email. Please use your work email.";
+      freemailHint.style.color = '#f87171';
+    } else {
+      freemailHint.textContent = "Use your company email — free-mail providers aren't accepted.";
+      freemailHint.style.color = '';
+    }
+  });
+
+  // ----- Phone normalization preview -----
+  const phoneInput = document.getElementById('su-phone');
+  function normalizePhone(raw) {
+    let s = raw.replace(/[\s().\-]/g, '');
+    if (s === '') return null;
+    if (s[0] !== '+') {
+      if (/^\d{10,15}$/.test(s)) s = '+' + s;
+      else return null;
+    }
+    return /^\+[1-9]\d{7,14}$/.test(s) ? s : null;
+  }
+
+  // Sign-up submit.
+  signupForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearError();
+
+    const phoneRaw = phoneInput.value.trim();
+    if (!normalizePhone(phoneRaw)) {
+      showError('Phone number must be in international format (e.g. +14155551234).');
+      phoneInput.focus();
+      return;
+    }
+
+    const payload = {
+      first_name:        document.getElementById('su-first').value.trim(),
+      last_name:         document.getElementById('su-last').value.trim(),
+      email:             document.getElementById('su-email').value.trim(),
+      password:          document.getElementById('su-password').value,
+      company:           document.getElementById('su-company').value.trim(),
+      company_email:     document.getElementById('su-cemail').value.trim(),
+      phone:             phoneRaw,
+      country:           document.getElementById('su-country').value,
+      industry:          document.getElementById('su-industry').value,
+      employee_size:     document.getElementById('su-size').value,
+      business_function: document.getElementById('su-function').value,
+      turnstile_token:   suTsToken(),
+    };
+
+    const submitBtn = signupForm.querySelector('button[type="submit"]');
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.style.opacity = '0.6'; }
+
+    try {
+      const res = await fetch('/portal/api/signup.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
+        // Hide forms, show pending state.
+        signupForm.style.display = 'none';
+        loginForm.style.display = 'none';
+        document.querySelector('.divider-or')?.style.setProperty('display', 'none');
+        document.querySelector('.sso-row')?.style.setProperty('display', 'none');
+        document.querySelector('.signup-line')?.style.setProperty('display', 'none');
+        eyebrow.textContent = 'Stack Vault Console · Request Received';
+        title.textContent   = 'Thanks for signing up';
+        sub.style.display   = 'none';
+        document.getElementById('pending-state').style.display = '';
+        if (data.message) document.getElementById('pending-body').textContent = data.message;
+      } else {
+        showError(data.error || 'Could not create account.');
+        suTsReset();
+      }
+    } catch (err) {
+      showError('Network error — try again.');
+      suTsReset();
+    } finally {
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.style.opacity = ''; }
+    }
+  });
+
 })();
 </script>
 </body>

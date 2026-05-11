@@ -3,38 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Critical Infrastructure & AI | Stack Lume Blog</title>
+<title>Critical Infrastructure &amp; AI — Field Reports | Stack Vault Blog</title>
 <meta name="description" content="Field reports from AI deployments in energy, water, manufacturing, and transportation. OT-aware writeups, not vendor whitepapers.">
 <meta name="keywords" content="critical infrastructure ai, ot ai security, ics ai, energy ai security, manufacturing ai, nerc cip blog">
 <link rel="canonical" href="https://stacklume.cloud/blog/critical-infra.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Critical Infrastructure & AI | Stack Lume Blog">
+<meta property="og:title" content="Critical Infrastructure &amp; AI — Field Reports | Stack Vault Blog">
 <meta property="og:description" content="Field reports from AI deployments in energy, water, manufacturing, and transportation. OT-aware writeups, not vendor whitepapers.">
 <meta property="og:url" content="https://stacklume.cloud/blog/critical-infra.html">
-<meta property="og:site_name" content="Stack Lume">
+<meta property="og:site_name" content="Stack Vault">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Critical Infrastructure & AI | Stack Lume Blog">
+<meta name="twitter:title" content="Critical Infrastructure & AI | Stack Vault Blog">
 <meta name="twitter:description" content="Field reports from AI deployments in energy, water, manufacturing, and transportation. OT-aware writeups, not vendor whitepapers.">
 <link rel="icon" href="../favicon.ico">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=DM+Serif+Display:ital@0;1&family=Playfair+Display:wght@700;800&family=Raleway:wght@300;400;600;700&family=Josefin+Sans:wght@300;400;600&family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;600;700&family=Lora:wght@400;600&family=Oxanium:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/site.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","name":"Critical Infrastructure & AI | Stack Lume Blog","description":"Field reports from AI deployments in energy, water, manufacturing, and transportation. OT-aware writeups, not vendor whitepapers.","url":"https://stacklume.cloud/blog/critical-infra.html"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","name":"Critical Infrastructure & AI | Stack Vault Blog","description":"Field reports from AI deployments in energy, water, manufacturing, and transportation. OT-aware writeups, not vendor whitepapers.","url":"https://stacklume.cloud/blog/critical-infra.html"}</script>
 </head>
 <body data-theme="ocean-depths">
+<script>(function(){try{var t=localStorage.getItem("stacklume-theme");if(t)document.body.setAttribute("data-theme",t);}catch(e){}})();</script>
 
 <div id="page">
 <nav>
   <a href="../index.html" class="nav-brand">
     <div class="brand-icon">
-      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-label="Stack Lume">
+      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-label="Stack Vault">
         <rect class="lm-bar lm-stack" x="6"  y="22" width="14" height="3.2" rx="1.2" opacity="0.55"></rect>
         <rect class="lm-bar lm-stack" x="6"  y="15.6" width="20" height="3.2" rx="1.2" opacity="0.85"></rect>
         <rect class="lm-bar lm-top"   x="6"  y="9.2"  width="11" height="3.2" rx="1.2"></rect>
         <circle class="lm-bar lm-top" cx="22" cy="10.8" r="1.9"></circle>
       </svg>
     </div>
-    <span class="nav-brand-wordmark"><span class="wm-stack">Stack </span><span class="wm-lume">Lume</span></span>
+    <span class="nav-brand-wordmark"><span class="wm-stack">Stack </span><span class="wm-lume">Vault</span></span>
   </a>
   <button class="nav-mobile-toggle" id="nav-mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
     <i class="bi bi-list"></i>
@@ -48,12 +49,12 @@
       </button>
       <div class="nav-menu">
         <div class="nav-menu-label">Core Services</div>
-        <a href="../services/iam-pam-agent.html"><i class="bi bi-shield-shaded nm-icon"></i>IAM &amp; PAM Agent</a>
-        <a href="../services/siem-triage.html"><i class="bi bi-speedometer2 nm-icon"></i>SIEM Triage</a>
-        <a href="../services/private-data-intel.html"><i class="bi bi-database-lock nm-icon"></i>Private Data Intel</a>
-        <a href="../services/model-mesh.html"><i class="bi bi-diagram-3-fill nm-icon"></i>Model Mesh</a>
-        <a href="../services/retrieval-qa.html"><i class="bi bi-eye-fill nm-icon"></i>Retrieval QA</a>
-        <a href="../services/guardrail-policy.html"><i class="bi bi-patch-check-fill nm-icon"></i>Guardrail Policy</a>
+        <a href="../services/stack-vault.html"><i class="bi bi-shield-shaded nm-icon"></i>Stack Vault</a>
+        <a href="../services/stack-triage.html"><i class="bi bi-speedometer2 nm-icon"></i>Stack Triage</a>
+        <a href="../services/stack-insight.html"><i class="bi bi-database-lock nm-icon"></i>Stack Insight</a>
+        <a href="../services/stack-mesh.html"><i class="bi bi-diagram-3-fill nm-icon"></i>Stack Mesh</a>
+        <a href="../services/stack-verify.html"><i class="bi bi-eye-fill nm-icon"></i>Stack Verify</a>
+        <a href="../services/stack-guardrail.html"><i class="bi bi-patch-check-fill nm-icon"></i>Stack Guardrail</a>
       </div>
     </li>
     <li class="nav-item">
@@ -64,12 +65,12 @@
       </button>
       <div class="nav-menu">
         <div class="nav-menu-label">Product Suite</div>
-        <a href="../products/promptshield-nexus.html"><i class="bi bi-shield-lock-fill nm-icon"></i>PromptShield Nexus</a>
-        <a href="../products/vectorpulse-sentinel.html"><i class="bi bi-broadcast-pin nm-icon"></i>VectorPulse Sentinel</a>
-        <a href="../products/agentchain-commander.html"><i class="bi bi-node-plus-fill nm-icon"></i>AgentChain Commander</a>
-        <a href="../products/hallucination-forensics.html"><i class="bi bi-bug-fill nm-icon"></i>Hallucination Forensics</a>
-        <a href="../products/compliance-guardian.html"><i class="bi bi-check2-circle nm-icon"></i>Compliance Guardian</a>
-        <a href="../products/adaptive-honeymesh.html"><i class="bi bi-hdd-network-fill nm-icon"></i>Adaptive Honeymesh</a>
+        <a href="../products/stack-shield.html"><i class="bi bi-shield-lock-fill nm-icon"></i>Stack Shield</a>
+        <a href="../products/stack-beacon.html"><i class="bi bi-broadcast-pin nm-icon"></i>Stack Beacon</a>
+        <a href="../products/stack-conductor.html"><i class="bi bi-node-plus-fill nm-icon"></i>Stack Conductor</a>
+        <a href="../products/stack-forensics.html"><i class="bi bi-bug-fill nm-icon"></i>Stack Forensics</a>
+        <a href="../products/stack-compli.html"><i class="bi bi-check2-circle nm-icon"></i>Stack Compli</a>
+        <a href="../products/stack-decoy.html"><i class="bi bi-hdd-network-fill nm-icon"></i>Stack Decoy</a>
       </div>
     </li>
     <li class="nav-item">
@@ -149,7 +150,7 @@
     <h1>AI in the systems we <span class="accent">can't afford to lose</span>.</h1>
     <p class="hero-sub">Practitioner-grade writeups from energy, water, manufacturing, and transport AI deployments — including the failure modes vendors won't publish.</p>
     <div class="hero-actions">
-      <a href="../company/contact.html" class="btn-primary">
+      <a href="../login.html?signup=1" class="btn-primary">
         <i class="bi bi-play-circle-fill"></i>
         Get a Demo
       </a>
@@ -183,7 +184,7 @@
       <p>Monthly digest of AI deployments, incidents, and lessons across critical sectors.</p>
     </div>
     <div class="cta-actions">
-      <a href="../company/contact.html" class="btn-primary"><i class="bi bi-play-circle-fill"></i> Try Demo</a>
+      <a href="../login.html?signup=1" class="btn-primary"><i class="bi bi-play-circle-fill"></i> Try Demo</a>
       <a href="../company/contact.html" class="btn-ghost"><i class="bi bi-calendar2-check"></i> Book a Call</a>
     </div>
   </div>
@@ -199,17 +200,18 @@
         <circle cx="22" cy="10.8" r="1.9" fill="var(--accent2)"></circle>
       </svg>
     </span>
-    <span><span style="color:var(--text);">Stack </span><span style="color:var(--accent);">Lume</span></span>
+    <span><span style="color:var(--text);">Stack </span><span style="color:var(--accent);">Vault</span></span>
   </div>
   <ul class="footer-links">
-    <li><a href="../services/iam-pam-agent.html">Services</a></li>
-    <li><a href="../products/promptshield-nexus.html">Products</a></li>
+    <li><a href="../services/stack-vault.html">Services</a></li>
+    <li><a href="../products/stack-shield.html">Products</a></li>
     <li><a href="../blog/ai-security.html">Blog</a></li>
     <li><a href="../company/mission.html">About</a></li>
     <li><a href="../company/careers.html">Careers</a></li>
     <li><a href="../company/contact.html">Contact</a></li>
+    <li><a href="../login.html">Login</a></li>
   </ul>
-  <div class="footer-copy">© 2026 Model Signal · <a href="https://stacklume.cloud" target="_blank" rel="noopener noreferrer">stacklume.cloud</a></div>
+  <div class="footer-copy">© 2026 Stack Vault</div>
 </footer>
 </div>
 

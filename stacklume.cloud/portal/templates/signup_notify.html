@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>New customer signup — Stack Vault Console</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body style="margin:0; padding:0; background:#f5f6f7; font-family:'Syne','Helvetica Neue',Arial,sans-serif; color:#1a2024;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr><td align="center" style="padding:28px 12px;">
+    <table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0"
+           style="background:#ffffff; border:1px solid #e5e8eb; border-radius:10px; overflow:hidden;">
+      <tr><td style="padding:28px 36px 18px; border-bottom:1px solid #eef0f2;">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td style="vertical-align:middle; padding-right:10px;">
+              <svg width="28" height="28" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="6" y="22"   width="14" height="3.2" rx="1.2" fill="#1a2024" opacity="0.55"/>
+                <rect x="6" y="15.6" width="20" height="3.2" rx="1.2" fill="#1a2024" opacity="0.85"/>
+                <rect x="6" y="9.2"  width="11" height="3.2" rx="1.2" fill="#2d8b8b"/>
+                <circle cx="22" cy="10.8" r="1.9" fill="#2d8b8b"/>
+              </svg>
+            </td>
+            <td style="vertical-align:middle; font-family:'Syne',sans-serif; font-weight:800; font-size:18px; letter-spacing:-0.01em;">
+              Stack&nbsp;<span style="color:#2d8b8b;">Vault</span>
+            </td>
+          </tr>
+        </table>
+      </td></tr>
+
+      <tr><td style="padding:30px 36px 8px;">
+        <div style="font-family:'IBM Plex Mono',Menlo,Consolas,monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#7d8790;">
+          Platform &middot; new signup
+        </div>
+        <h1 style="margin:8px 0 6px; font-family:'Syne',sans-serif; font-size:24px; font-weight:800; line-height:1.2;">
+          {{COMPANY}}
+        </h1>
+        <p style="margin:0; font-family:Helvetica,Arial,sans-serif; font-size:14px; line-height:1.55; color:#566069;">
+          A new organization just registered for the Stack Vault Console. Review and approve in the platform admin.
+        </p>
+      </td></tr>
+
+      <tr><td style="padding:22px 36px;">
+        <table cellpadding="6" cellspacing="0" border="0" style="font-family:Helvetica,Arial,sans-serif; font-size:14px;">
+          <tr><td style="color:#7d8790; vertical-align:top; width:120px;">Contact</td><td><strong>{{NAME}}</strong> &lt;<a href="mailto:{{EMAIL}}" style="color:#2d8b8b;">{{EMAIL}}</a>&gt;</td></tr>
+          <tr><td style="color:#7d8790; vertical-align:top;">Company email</td><td>{{COMPANY_EMAIL}}</td></tr>
+          <tr><td style="color:#7d8790; vertical-align:top;">Phone</td><td>{{PHONE}}</td></tr>
+          <tr><td style="color:#7d8790; vertical-align:top;">Country</td><td>{{COUNTRY}}</td></tr>
+          <tr><td style="color:#7d8790; vertical-align:top;">Industry</td><td>{{INDUSTRY}}</td></tr>
+          <tr><td style="color:#7d8790; vertical-align:top;">Size</td><td>{{SIZE}}</td></tr>
+          <tr><td style="color:#7d8790; vertical-align:top;">Function</td><td>{{FUNCTION}}</td></tr>
+          <tr><td style="color:#7d8790; vertical-align:top;">Signup IP</td><td style="font-family:monospace; color:#566069;">{{IP}}</td></tr>
+          <tr><td style="color:#7d8790; vertical-align:top;">Submitted</td><td style="color:#566069;">{{SUBMITTED_AT}}</td></tr>
+        </table>
+      </td></tr>
+
+      <tr><td style="padding:18px 36px 28px; border-top:1px solid #eef0f2;">
+        <a href="https://stacklume.cloud/portal/admin/pending.php"
+           style="display:inline-block; padding:10px 18px; background:#2d8b8b; color:#fff; border-radius:6px; text-decoration:none; font-family:Helvetica,Arial,sans-serif; font-weight:600; font-size:14px;">
+          Review in admin &rarr;
+        </a>
+      </td></tr>
+
+      <tr><td style="padding:18px 36px; background:#fafbfc; border-top:1px solid #eef0f2; font-size:11px; color:#9aa2aa; font-family:Helvetica,Arial,sans-serif;">
+        Sent to platform admins.
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+</body>
+</html>

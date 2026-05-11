@@ -1,0 +1,40 @@
+# stacklume.cloud — root .htaccess
+# Mostly handles 301 redirects from old product/service slugs to new "Stack X" slugs.
+
+# Deny direct fetches of any dotfile (.env, .git/, .htaccess, .htpasswd, etc.).
+# Apache's default config only blocks .ht* — so .env was previously web-readable.
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+# Also block any path that starts with a dot (catches /.git/config, etc.).
+RedirectMatch 404 (^|/)\.[^/]+(/|$)
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# ----- Services rename (2026-05) -----
+RewriteRule ^services/iam-pam-agent\.html$       /services/stack-vault.html  [R=301,L]
+RewriteRule ^services/stack-identity\.html$       /services/stack-vault.html      [R=301,L]
+RewriteRule ^services/siem-triage\.html$         /services/stack-triage.html    [R=301,L]
+RewriteRule ^services/private-data-intel\.html$  /services/stack-insight.html   [R=301,L]
+RewriteRule ^services/model-mesh\.html$          /services/stack-mesh.html      [R=301,L]
+RewriteRule ^services/retrieval-qa\.html$        /services/stack-verify.html    [R=301,L]
+RewriteRule ^services/guardrail-policy\.html$    /services/stack-guardrail.html [R=301,L]
+
+# ----- Products rename (2026-05) -----
+RewriteRule ^products/promptshield-nexus\.html$      /products/stack-shield.html     [R=301,L]
+RewriteRule ^products/vectorpulse-sentinel\.html$    /products/stack-beacon.html     [R=301,L]
+RewriteRule ^products/agentchain-commander\.html$    /products/stack-conductor.html  [R=301,L]
+RewriteRule ^products/hallucination-forensics\.html$ /products/stack-forensics.html  [R=301,L]
+RewriteRule ^products/compliance-guardian\.html$     /products/stack-compli.html     [R=301,L]
+RewriteRule ^products/adaptive-honeymesh\.html$      /products/stack-decoy.html      [R=301,L]
+
+# ----- Portal: Compli pages moved under apps framework (2026-05) -----
+RewriteRule ^portal/frameworks\.php$  /portal/apps/compli/frameworks.php   [R=301,L]
+RewriteRule ^portal/controls\.php$    /portal/apps/compli/controls.php     [R=301,L]
+RewriteRule ^portal/evidence\.php$    /portal/apps/compli/evidence.php     [R=301,L]
+RewriteRule ^portal/tasks\.php$       /portal/apps/compli/tasks.php        [R=301,L]
+RewriteRule ^portal/reports\.php$     /portal/apps/compli/reports.php      [R=301,L]
+RewriteRule ^portal/team\.php$        /portal/apps/compli/team.php         [R=301,L]
+RewriteRule ^portal/settings\.php$    /portal/apps/compli/settings.php     [R=301,L]
+</IfModule>
