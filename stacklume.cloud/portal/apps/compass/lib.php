@@ -127,7 +127,146 @@ const SC_COMPASS_CATALOG = [
             ['slug' => 'continuous-monitor','name' => 'Ongoing monitoring of critical vendors'],
         ],
     ],
+
+    // Strategic governance — NIST CSF 2.0 added "Govern" as the central function
+    // in 2024. It is the lens through which the other five functions are
+    // prioritized; without it, the rest of the program drifts.
+    'governance' => [
+        'name' => 'Strategic Governance',
+        'icon' => 'bi-bank',
+        'blurb' => 'Board-level oversight, risk appetite, and the program-shaping decisions.',
+        'capabilities' => [
+            ['slug' => 'board-reporting',  'name' => 'Quarterly security report to board / exec team'],
+            ['slug' => 'risk-appetite',    'name' => 'Documented risk appetite & tolerance statement'],
+            ['slug' => 'budget-aligned',   'name' => 'Security budget aligned to top risks, not headcount'],
+            ['slug' => 'roles-defined',    'name' => 'Security roles & accountability assigned (RACI)'],
+            ['slug' => 'metrics-outcome',  'name' => 'Outcome-based metrics (MTTD/MTTC) tracked monthly'],
+            ['slug' => 'strategy-doc',     'name' => 'Written multi-year security strategy on file'],
+        ],
+    ],
+
+    // Application & code security — the SDLC seam where prevention is cheapest.
+    'appsec' => [
+        'name' => 'Application & Code Security',
+        'icon' => 'bi-code-square',
+        'blurb' => 'Secure-by-default development: SAST, DAST, SCA, and review gates in the SDLC.',
+        'capabilities' => [
+            ['slug' => 'sast',            'name' => 'Static analysis (SAST) on every pull request'],
+            ['slug' => 'sca',             'name' => 'Software composition analysis (SCA) for OSS deps'],
+            ['slug' => 'secrets-scan',    'name' => 'Secrets scanning pre-commit and in CI'],
+            ['slug' => 'dast',            'name' => 'Dynamic / API security testing (DAST) in staging'],
+            ['slug' => 'code-review',     'name' => 'Mandatory human review for security-sensitive changes'],
+            ['slug' => 'sdlc-training',   'name' => 'Annual secure-coding training for engineers'],
+        ],
+    ],
+
+    // Data security posture — DSPM, the new must-have. Cloud + AI workloads
+    // exploded data sprawl; controls now live at the data layer, not the app.
+    'data' => [
+        'name' => 'Data Security Posture',
+        'icon' => 'bi-database-fill-lock',
+        'blurb' => 'Where sensitive data lives, who can reach it, and whether it leaves.',
+        'capabilities' => [
+            ['slug' => 'classification',  'name' => 'Data classification scheme enforced in production'],
+            ['slug' => 'dspm',            'name' => 'DSPM tooling mapping sensitive data across cloud'],
+            ['slug' => 'dlp',             'name' => 'DLP / egress controls on PII, PHI, source code'],
+            ['slug' => 'encryption',      'name' => 'Encryption at rest and in transit for all sensitive stores'],
+            ['slug' => 'retention',       'name' => 'Retention & deletion policy enforced, not just written'],
+            ['slug' => 'access-logging',  'name' => 'Access to sensitive data logged and reviewable'],
+        ],
+    ],
+
+    // AI & agent security — net-new attack surface most programs have not
+    // measured. Prompt injection, model abuse, training-data poisoning, agent
+    // capability misuse. NIST AI RMF + MITRE ATLAS are the reference points.
+    'ai' => [
+        'name' => 'AI & Agent Security',
+        'icon' => 'bi-robot',
+        'blurb' => 'Model risk, prompt injection, agent capability bounds, training data hygiene.',
+        'capabilities' => [
+            ['slug' => 'ai-inventory',    'name' => 'Inventory of every LLM/agent in production'],
+            ['slug' => 'prompt-defense',  'name' => 'Runtime prompt-injection & jailbreak defenses'],
+            ['slug' => 'rag-controls',    'name' => 'Access controls on RAG corpora & vector stores'],
+            ['slug' => 'agent-bounds',    'name' => 'Tool/capability allow-lists for autonomous agents'],
+            ['slug' => 'training-hygiene','name' => 'Training & fine-tuning data reviewed for PII / secrets'],
+            ['slug' => 'ai-monitoring',   'name' => 'Hallucination / drift monitoring in production'],
+            ['slug' => 'ai-policy',       'name' => 'Written AI-use policy with prohibited use cases'],
+        ],
+    ],
+
+    // Software supply chain — SolarWinds / xz / npm-typosquat era. SBOMs,
+    // build-pipeline integrity, and signed artifacts. SLSA framework is the
+    // reference here.
+    'supply' => [
+        'name' => 'Software Supply Chain',
+        'icon' => 'bi-boxes',
+        'blurb' => 'Component-level inventory, build-pipeline integrity, and provenance.',
+        'capabilities' => [
+            ['slug' => 'sbom',            'name' => 'SBOM generated for every shipped artifact'],
+            ['slug' => 'dep-monitoring',  'name' => 'Continuous monitoring of dependency CVEs'],
+            ['slug' => 'pipeline-hardened','name' => 'CI/CD runners hardened; secrets scoped per job'],
+            ['slug' => 'signed-artifacts','name' => 'Signed builds / artifact provenance (SLSA L2+)'],
+            ['slug' => 'image-scanning',  'name' => 'Container images scanned + admission-gated'],
+        ],
+    ],
 ];
+
+/**
+ * NIST CSF 2.0 lifecycle mapping. Each function maps to the Compass domain
+ * slugs that contribute to it. Used by the strategic-posture (200ft view)
+ * panel on the Compass overview page. A domain can map to multiple functions
+ * because real security controls span the lifecycle (e.g. governance touches
+ * Govern, Identify, AND Respond).
+ *
+ * The order of keys is the canonical CSF 2.0 wheel order:
+ *   Govern (center) → Identify → Protect → Detect → Respond → Recover.
+ */
+const SC_COMPASS_CSF_LIFECYCLE = [
+    'govern' => [
+        'label'   => 'Govern',
+        'icon'    => 'bi-bank',
+        'blurb'   => 'Risk strategy, roles, and outcome accountability — the center of the program.',
+        'domains' => ['governance', 'compliance', 'vendor'],
+    ],
+    'identify' => [
+        'label'   => 'Identify',
+        'icon'    => 'bi-search',
+        'blurb'   => 'Asset inventory, data discovery, and risk visibility across the tech stack.',
+        'domains' => ['data', 'supply', 'ai', 'vendor', 'cloud'],
+    ],
+    'protect' => [
+        'label'   => 'Protect',
+        'icon'    => 'bi-shield-fill',
+        'blurb'   => 'Preventative controls at every seam: identity, network, endpoint, app, data, model.',
+        'domains' => ['iam', 'network', 'endpoint', 'cloud', 'appsec', 'data', 'ai', 'supply'],
+    ],
+    'detect' => [
+        'label'   => 'Detect',
+        'icon'    => 'bi-radar',
+        'blurb'   => 'Continuous monitoring across humans, machines, models, and data flows.',
+        'domains' => ['siem', 'ai', 'data', 'appsec'],
+    ],
+    'respond' => [
+        'label'   => 'Respond',
+        'icon'    => 'bi-broadcast-pin',
+        'blurb'   => 'Tested runbooks, communications, and decision authority during an incident.',
+        'domains' => ['siem', 'governance'],
+    ],
+    'recover' => [
+        'label'   => 'Recover',
+        'icon'    => 'bi-arrow-counterclockwise',
+        'blurb'   => 'Resilient restoration of systems, data, and business operations.',
+        'domains' => ['backup', 'governance'],
+    ],
+];
+
+/**
+ * Domains considered "modern / emerging" in 2026 — these are net-new coverage
+ * surfaces most legacy programs do not yet measure. The overview surfaces them
+ * separately so leadership sees where the program is still catching up to the
+ * tech stack, regardless of overall maturity score.
+ */
+const SC_COMPASS_EMERGING_DOMAINS = ['ai', 'data', 'supply', 'appsec', 'governance'];
 
 /** Domains visible to this org. Demo tier sees IAM only; paid tiers see all. */
 function sc_compass_visible_domains(int $orgId): array {
@@ -297,4 +436,108 @@ function sc_compass_stats(int $assessmentId, array $domains): array {
         'avg_gap'     => round(($tgt - $cur) / $n, 1),
         'critical'    => $crit,
     ];
+}
+
+/**
+ * Per-domain maturity rollup. Returns ['domain' => ['scored'=>n,'avg_current'=>x,'avg_target'=>y]]
+ * for every domain that has at least one scored capability in the assessment.
+ * Used by the 200ft posture view to map maturity onto the NIST CSF lifecycle.
+ */
+function sc_compass_domain_rollup(int $assessmentId, array $visibleDomains): array {
+    if (!$visibleDomains) return [];
+    $placeholders = implode(',', array_fill(0, count($visibleDomains), '?'));
+    $sql = 'SELECT domain_slug, current_state, target_state
+              FROM compass_responses
+             WHERE assessment_id = ? AND domain_slug IN (' . $placeholders . ')';
+    $stmt = sc_db()->prepare($sql);
+    $stmt->execute(array_merge([$assessmentId], $visibleDomains));
+    $agg = [];
+    foreach ($stmt->fetchAll() as $r) {
+        $d = $r['domain_slug'];
+        if (!isset($agg[$d])) $agg[$d] = ['scored' => 0, 'sum_cur' => 0, 'sum_tgt' => 0];
+        $agg[$d]['scored']++;
+        $agg[$d]['sum_cur'] += (int)$r['current_state'];
+        $agg[$d]['sum_tgt'] += (int)$r['target_state'];
+    }
+    $out = [];
+    foreach ($agg as $d => $a) {
+        $out[$d] = [
+            'scored'      => $a['scored'],
+            'avg_current' => round($a['sum_cur'] / $a['scored'], 1),
+            'avg_target'  => round($a['sum_tgt'] / $a['scored'], 1),
+        ];
+    }
+    return $out;
+}
+
+/**
+ * For each NIST CSF 2.0 function, compute an averaged maturity score across
+ * all contributing domains that have been assessed. Returns per-function:
+ *   ['current'=>x,'target'=>y,'pct'=>0-100,'domains'=>[slug...],
+ *    'covered_count'=>n,'total_count'=>n].
+ *
+ * - current/target are 0-4 (Compass maturity scale).
+ * - pct is current/4 * 100 — a bar-fill percentage for visualization.
+ * - covered_count = # of contributing domains that have at least one score.
+ * - total_count   = # of domains that should contribute to this function.
+ */
+function sc_compass_lifecycle_scores(int $assessmentId, array $visibleDomains): array {
+    $rollup = sc_compass_domain_rollup($assessmentId, $visibleDomains);
+    $out = [];
+    foreach (SC_COMPASS_CSF_LIFECYCLE as $fn => $cfg) {
+        $contributing = array_values(array_intersect($cfg['domains'], $visibleDomains));
+        $covered = array_values(array_intersect($contributing, array_keys($rollup)));
+        if (!$covered) {
+            $out[$fn] = [
+                'current'       => 0.0,
+                'target'        => 0.0,
+                'pct'           => 0,
+                'domains'       => $contributing,
+                'covered_count' => 0,
+                'total_count'   => count($contributing),
+            ];
+            continue;
+        }
+        $cur = 0.0; $tgt = 0.0;
+        foreach ($covered as $d) {
+            $cur += (float)$rollup[$d]['avg_current'];
+            $tgt += (float)$rollup[$d]['avg_target'];
+        }
+        $n = count($covered);
+        $avgCur = $cur / $n;
+        $out[$fn] = [
+            'current'       => round($avgCur, 1),
+            'target'        => round($tgt / $n, 1),
+            'pct'           => (int)round(($avgCur / 4) * 100),
+            'domains'       => $contributing,
+            'covered_count' => $n,
+            'total_count'   => count($contributing),
+        ];
+    }
+    return $out;
+}
+
+/**
+ * Emerging-coverage gaps: which of the modern 2026 domains the org has not
+ * meaningfully addressed yet (no scores, or current maturity well below
+ * target). Used to surface the AI / DSPM / AppSec / Supply Chain blind spot
+ * that legacy security programs typically have.
+ */
+function sc_compass_emerging_gaps(int $assessmentId, array $visibleDomains): array {
+    $rollup = sc_compass_domain_rollup($assessmentId, $visibleDomains);
+    $out = [];
+    foreach (SC_COMPASS_EMERGING_DOMAINS as $d) {
+        if (!in_array($d, $visibleDomains, true)) continue;
+        $r = $rollup[$d] ?? null;
+        if ($r === null) {
+            $out[$d] = ['status' => 'unscored', 'avg_current' => null, 'avg_target' => null];
+        } elseif ((float)$r['avg_current'] < 1.5) {
+            $out[$d] = ['status' => 'critical',  'avg_current' => $r['avg_current'], 'avg_target' => $r['avg_target']];
+        } elseif ((float)$r['avg_current'] < (float)$r['avg_target'] - 1) {
+            $out[$d] = ['status' => 'behind',    'avg_current' => $r['avg_current'], 'avg_target' => $r['avg_target']];
+        } else {
+            $out[$d] = ['status' => 'on-track',  'avg_current' => $r['avg_current'], 'avg_target' => $r['avg_target']];
+        }
+    }
+    return $out;
 }

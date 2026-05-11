@@ -1980,14 +1980,31 @@ footer {
 .product-logo-light { display: none; }
 .product-logo-dark  { display: block; }
 
-/* On dark themes: swap. */
-[data-theme="ocean-depths"]      .product-logo-dark,
-[data-theme="sunset-boulevard"]  .product-logo-dark,
-[data-theme="golden-hour"]       .product-logo-dark,
-[data-theme="tech-innovation"]   .product-logo-dark,
-[data-theme="midnight-galaxy"]   .product-logo-dark { display: none; }
-[data-theme="ocean-depths"]      .product-logo-light,
-[data-theme="sunset-boulevard"]  .product-logo-light,
-[data-theme="golden-hour"]       .product-logo-light,
-[data-theme="tech-innovation"]   .product-logo-light,
-[data-theme="midnight-galaxy"]   .product-logo-light { display: block; }
+/* On dark themes: swap. Keep this list in sync with every theme that sets
+ * --is-dark: 1; missed entries leave a dark-text logo on a dark background. */
+[data-theme="ocean-depths"]       .product-logo-dark,
+[data-theme="sunset-boulevard"]   .product-logo-dark,
+[data-theme="golden-hour"]        .product-logo-dark,
+[data-theme="tech-innovation"]    .product-logo-dark,
+[data-theme="midnight-galaxy"]    .product-logo-dark,
+[data-theme="stripe-blurple"]     .product-logo-dark,
+[data-theme="cyberpunk-void"]     .product-logo-dark,
+[data-theme="corporate-emerald"]  .product-logo-dark,
+[data-theme="carbon-graphite"]    .product-logo-dark,
+[data-theme="cyber-onyx"]         .product-logo-dark,
+[data-theme="terminal-amber"]     .product-logo-dark,
+[data-theme="federal-slate"]      .product-logo-dark,
+[data-theme="emerald-ops"]        .product-logo-dark { display: none; }
+[data-theme="ocean-depths"]       .product-logo-light,
+[data-theme="sunset-boulevard"]   .product-logo-light,
+[data-theme="golden-hour"]        .product-logo-light,
+[data-theme="tech-innovation"]    .product-logo-light,
+[data-theme="midnight-galaxy"]    .product-logo-light,
+[data-theme="stripe-blurple"]     .product-logo-light,
+[data-theme="cyberpunk-void"]     .product-logo-light,
+[data-theme="corporate-emerald"]  .product-logo-light,
+[data-theme="carbon-graphite"]    .product-logo-light,
+[data-theme="cyber-onyx"]         .product-logo-light,
+[data-theme="terminal-amber"]     .product-logo-light,
+[data-theme="federal-slate"]      .product-logo-light,
+[data-theme="emerald-ops"]        .product-logo-light { display: block; }
