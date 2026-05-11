@@ -129,7 +129,13 @@ sc_layout_head($appName . ' — Coming Soon', 'coming-soon:' . $slug);
   <p><?= sc_e($appName) ?> is part of the Stack Vault platform roadmap. The in-product surface isn't live yet — but the team building it wants to talk to early customers.</p>
   <p>Tell us what you'd want <?= sc_e($appName) ?> to do for your team and we'll loop you into the design partner program and the launch waitlist.</p>
   <?php if ($marketingHref): ?>
-    <p style="margin-bottom:0;"><a class="sc-link" href="<?= sc_e($marketingHref) ?>" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right"></i> Read the full <?= sc_e($appName) ?> overview</a></p>
+    <div style="margin-top:1.25rem;">
+      <a class="sc-btn sc-btn-ghost" href="<?= sc_e($marketingHref) ?>" target="_blank" rel="noopener"
+         style="border-color:var(--accent);color:var(--accent);font-size:0.78rem;">
+        <i class="bi bi-file-text"></i> Read the full <?= sc_e($appName) ?> overview
+        <i class="bi bi-arrow-up-right" style="font-size:0.7rem;opacity:0.7;"></i>
+      </a>
+    </div>
   <?php endif; ?>
 </div>
 
