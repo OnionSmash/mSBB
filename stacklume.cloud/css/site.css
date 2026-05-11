@@ -213,6 +213,306 @@
 }
 
 /* =============================================
+   ENTERPRISE THEME PACK (5 from DEV.to "10 Modern
+   Color Palettes for SaaS Dashboards 2026" +
+   9 curated enterprise palettes for security SaaS).
+   ============================================= */
+
+/* 11. Stripe-Like Blurple — fintech-style dark + indigo CTA. */
+[data-theme="stripe-blurple"] {
+  --bg:          #0f172a;
+  --bg2:         #1e293b;
+  --bg3:         #0a1020;
+  --surface:     #1e293b;
+  --border:      rgba(99,102,241,0.22);
+  --border-glow: rgba(129,140,248,0.45);
+  --accent:      #6366f1;
+  --accent2:     #818cf8;
+  --text:        #f1f5f9;
+  --muted:       #94a3b8;
+  --subtle:      #64748b;
+  --tag-bg:      rgba(99,102,241,0.14);
+  --tag-color:   #a5b4fc;
+  --hf:          'Syne', sans-serif;
+  --bf:          'Montserrat', sans-serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --is-dark:     1;
+}
+
+/* 12. Cyberpunk Void — neons on near-black for dev/CLI surfaces. */
+[data-theme="cyberpunk-void"] {
+  --bg:          #020617;
+  --bg2:         #0f172a;
+  --bg3:         #000000;
+  --surface:     #0f172a;
+  --border:      rgba(34,211,238,0.25);
+  --border-glow: rgba(244,114,182,0.5);
+  --accent:      #22d3ee;
+  --accent2:     #f472b6;
+  --text:        #f8fafc;
+  --muted:       #94a3b8;
+  --subtle:      #475569;
+  --tag-bg:      rgba(168,85,247,0.16);
+  --tag-color:   #c4b5fd;
+  --hf:          'Oxanium', sans-serif;
+  --bf:          'Josefin Sans', sans-serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --is-dark:     1;
+}
+
+/* 13. Corporate Emerald — deep-forest base with mint highlight; finance vibe. */
+[data-theme="corporate-emerald"] {
+  --bg:          #052e16;
+  --bg2:         #14532d;
+  --bg3:         #021a0c;
+  --surface:     #14532d;
+  --border:      rgba(34,197,94,0.22);
+  --border-glow: rgba(134,239,172,0.45);
+  --accent:      #22c55e;
+  --accent2:     #86efac;
+  --text:        #f0fdf4;
+  --muted:       #86efac;
+  --subtle:      #4ade80;
+  --tag-bg:      rgba(34,197,94,0.14);
+  --tag-color:   #86efac;
+  --hf:          'Syne', sans-serif;
+  --bf:          'Montserrat', sans-serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --is-dark:     1;
+}
+
+/* 14. Warm Analytics — light cream + orange, friendly without reading as error. */
+[data-theme="warm-analytics"] {
+  --bg:          #fff7ed;
+  --bg2:         #ffedd5;
+  --bg3:         #fed7aa;
+  --surface:     #ffffff;
+  --border:      rgba(249,115,22,0.18);
+  --border-glow: rgba(249,115,22,0.4);
+  --accent:      #f97316;
+  --accent2:     #9a3412;
+  --text:        #431407;
+  --muted:       #9a3412;
+  --subtle:      #c2410c;
+  --tag-bg:      rgba(249,115,22,0.1);
+  --tag-color:   #9a3412;
+  --hf:          'Playfair Display', serif;
+  --bf:          'Lora', serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --is-dark:     0;
+}
+
+/* 15. Monochrome Pro — pure neutral scale, for wireframe-grade clarity. */
+[data-theme="monochrome-pro"] {
+  --bg:          #f8fafc;
+  --bg2:         #e2e8f0;
+  --bg3:         #cbd5e1;
+  --surface:     #ffffff;
+  --border:      rgba(15,23,42,0.12);
+  --border-glow: rgba(71,85,105,0.3);
+  --accent:      #0f172a;
+  --accent2:     #475569;
+  --text:        #0f172a;
+  --muted:       #475569;
+  --subtle:      #94a3b8;
+  --tag-bg:      rgba(15,23,42,0.06);
+  --tag-color:   #0f172a;
+  --hf:          'Josefin Sans', sans-serif;
+  --bf:          'Montserrat', sans-serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --is-dark:     0;
+}
+
+/* 16. Carbon Graphite — IBM Carbon dark, industrial-software default. */
+[data-theme="carbon-graphite"] {
+  --bg:          #161616;
+  --bg2:         #262626;
+  --bg3:         #0c0c0c;
+  --surface:     #262626;
+  --border:      rgba(57,57,57,1);
+  --border-glow: rgba(15,98,254,0.45);
+  --accent:      #0f62fe;
+  --accent2:     #78a9ff;
+  --text:        #f4f4f4;
+  --muted:       #c6c6c6;
+  --subtle:      #6f6f6f;
+  --tag-bg:      rgba(15,98,254,0.16);
+  --tag-color:   #78a9ff;
+  --hf:          'Syne', sans-serif;
+  --bf:          'Montserrat', sans-serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --is-dark:     1;
+}
+
+/* 17. Fluent Navy — Microsoft Fluent light + Azure-blue CTA. */
+[data-theme="fluent-navy"] {
+  --bg:          #faf9f8;
+  --bg2:         #f3f2f1;
+  --bg3:         #edebe9;
+  --surface:     #ffffff;
+  --border:      rgba(0,120,212,0.18);
+  --border-glow: rgba(0,120,212,0.4);
+  --accent:      #0078d4;
+  --accent2:     #106ebe;
+  --text:        #201f1e;
+  --muted:       #605e5c;
+  --subtle:      #a19f9d;
+  --tag-bg:      rgba(0,120,212,0.08);
+  --tag-color:   #0078d4;
+  --hf:          'Syne', sans-serif;
+  --bf:          'Montserrat', sans-serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --is-dark:     0;
+}
+
+/* 18. Cyber Onyx — true-black SOC console with crimson alert accent. */
+[data-theme="cyber-onyx"] {
+  --bg:          #000000;
+  --bg2:         #0a0a0a;
+  --bg3:         #050505;
+  --surface:     #111111;
+  --border:      rgba(255,60,74,0.25);
+  --border-glow: rgba(255,60,74,0.5);
+  --accent:      #ff3c4a;
+  --accent2:     #ff8a92;
+  --text:        #ffffff;
+  --muted:       #a0a0a0;
+  --subtle:      #5a5a5a;
+  --tag-bg:      rgba(255,60,74,0.12);
+  --tag-color:   #ff8a92;
+  --hf:          'Oxanium', sans-serif;
+  --bf:          'Josefin Sans', sans-serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --is-dark:     1;
+}
+
+/* 19. Terminal Amber — Bloomberg-style deep navy + amber accent. */
+[data-theme="terminal-amber"] {
+  --bg:          #0d1421;
+  --bg2:         #1a2332;
+  --bg3:         #060a14;
+  --surface:     #1a2332;
+  --border:      rgba(255,136,0,0.22);
+  --border-glow: rgba(255,136,0,0.45);
+  --accent:      #ff8800;
+  --accent2:     #ffb84d;
+  --text:        #e8ecf3;
+  --muted:       #9aa6b8;
+  --subtle:      #5c6c83;
+  --tag-bg:      rgba(255,136,0,0.12);
+  --tag-color:   #ffb84d;
+  --hf:          'Oxanium', sans-serif;
+  --bf:          'Montserrat', sans-serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --is-dark:     1;
+}
+
+/* 20. Federal Slate — defense-coded navy with brushed-gold accent. */
+[data-theme="federal-slate"] {
+  --bg:          #0e1726;
+  --bg2:         #1a2438;
+  --bg3:         #070b14;
+  --surface:     #1f2b42;
+  --border:      rgba(193,154,75,0.22);
+  --border-glow: rgba(193,154,75,0.45);
+  --accent:      #c19a4b;
+  --accent2:     #e1c47d;
+  --text:        #e8ecf3;
+  --muted:       #9aa6b8;
+  --subtle:      #6a7a92;
+  --tag-bg:      rgba(193,154,75,0.12);
+  --tag-color:   #e1c47d;
+  --hf:          'Playfair Display', serif;
+  --bf:          'Lora', serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --is-dark:     1;
+}
+
+/* 21. Oxblood Compliance — formal light theme with burgundy accent. */
+[data-theme="oxblood-compliance"] {
+  --bg:          #faf7f4;
+  --bg2:         #f1ece6;
+  --bg3:         #e6dfd6;
+  --surface:     #ffffff;
+  --border:      rgba(109,26,54,0.16);
+  --border-glow: rgba(109,26,54,0.35);
+  --accent:      #6d1a36;
+  --accent2:     #9a3a5c;
+  --text:        #1f1216;
+  --muted:       #6b4a55;
+  --subtle:      #a08e94;
+  --tag-bg:      rgba(109,26,54,0.07);
+  --tag-color:   #6d1a36;
+  --hf:          'Cormorant Garamond', serif;
+  --bf:          'Lora', serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --is-dark:     0;
+}
+
+/* 22. Emerald Ops — SRE/SOC dark with operations-green semantics. */
+[data-theme="emerald-ops"] {
+  --bg:          #0a1410;
+  --bg2:         #14241c;
+  --bg3:         #050a07;
+  --surface:     #182f24;
+  --border:      rgba(16,185,129,0.22);
+  --border-glow: rgba(110,231,183,0.45);
+  --accent:      #10b981;
+  --accent2:     #6ee7b7;
+  --text:        #d1fae5;
+  --muted:       #6ee7b7;
+  --subtle:      #34d399;
+  --tag-bg:      rgba(16,185,129,0.14);
+  --tag-color:   #6ee7b7;
+  --hf:          'Oxanium', sans-serif;
+  --bf:          'Montserrat', sans-serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --is-dark:     1;
+}
+
+/* 23. Arctic Cobalt — Azure-style light with electric cobalt accent. */
+[data-theme="arctic-cobalt"] {
+  --bg:          #f5f7fb;
+  --bg2:         #e8edf6;
+  --bg3:         #dae1f0;
+  --surface:     #ffffff;
+  --border:      rgba(30,64,175,0.16);
+  --border-glow: rgba(59,130,246,0.4);
+  --accent:      #1e40af;
+  --accent2:     #3b82f6;
+  --text:        #0f1e3d;
+  --muted:       #4c5d80;
+  --subtle:      #8da0c0;
+  --tag-bg:      rgba(30,64,175,0.08);
+  --tag-color:   #1e40af;
+  --hf:          'Syne', sans-serif;
+  --bf:          'Montserrat', sans-serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --is-dark:     0;
+}
+
+/* 24. Graphite Crimson — sober light theme with red-alert accent. */
+[data-theme="graphite-crimson"] {
+  --bg:          #f7f7f8;
+  --bg2:         #ececef;
+  --bg3:         #dcdce0;
+  --surface:     #ffffff;
+  --border:      rgba(190,18,60,0.18);
+  --border-glow: rgba(190,18,60,0.4);
+  --accent:      #be123c;
+  --accent2:     #e11d48;
+  --text:        #1c1c1e;
+  --muted:       #57575b;
+  --subtle:      #9090a0;
+  --tag-bg:      rgba(190,18,60,0.08);
+  --tag-color:   #be123c;
+  --hf:          'Syne', sans-serif;
+  --bf:          'Montserrat', sans-serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --is-dark:     0;
+}
+
+/* =============================================
    RESET & BASE
    ============================================= */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -644,24 +944,40 @@ html:not(.has-js) .nav-item:hover .nav-menu,
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.45rem 1.15rem;
+  padding: 0.5rem 1.2rem;
   border: 1px solid var(--accent);
-  color: var(--accent);
+  background: var(--accent);
+  color: var(--bg);
   font-family: var(--mono);
   font-size: 0.73rem;
-  font-weight: 500;
+  font-weight: 600;
   border-radius: 4px;
   cursor: pointer;
   text-decoration: none;
   transition: all 0.2s;
-  letter-spacing: 0.03em;
-  background: transparent;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-left: 0.6rem;
 }
 
 .nav-cta:hover {
-  background: var(--accent);
-  color: var(--bg);
+  background: transparent;
+  color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
 }
+
+/* Wide variant used by the merged Products dropdown so two grouped columns
+ * (Platform Services + Product Suite) fit side-by-side at desktop widths. */
+.nav-menu--wide {
+  min-width: 520px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.25rem 1.5rem;
+  padding: 0.55rem 0.7rem;
+}
+
+.nav-menu--wide .nav-col { display: flex; flex-direction: column; min-width: 0; }
+.nav-menu--wide .nav-menu-label { padding: 0.4rem 0.7rem 0.45rem; }
 
 /* =============================================
    HERO
@@ -1287,6 +1603,20 @@ footer {
 
   .nav-item.open .nav-menu {
     display: block !important;
+  }
+
+  /* Wide two-column dropdown collapses to a single stacked column on mobile. */
+  .nav-menu--wide {
+    grid-template-columns: 1fr;
+    min-width: 0;
+  }
+
+  /* Log In CTA stays visible in the top bar alongside brand + hamburger. */
+  .nav-cta {
+    order: 2;
+    margin-left: auto;
+    margin-right: 0.5rem;
+    padding: 0.5rem 0.9rem;
   }
 
   .theme-dd {

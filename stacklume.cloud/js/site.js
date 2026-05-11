@@ -23,30 +23,58 @@ document.documentElement.classList.add('has-js');
 
 (() => {
   const themeNames = {
-    "ocean-depths":      "Ocean Depths",
-    "sunset-boulevard":  "Sunset Boulevard",
-    "forest-canopy":     "Forest Canopy",
-    "modern-minimalist": "Modern Minimalist",
-    "golden-hour":       "Golden Hour",
-    "arctic-frost":      "Arctic Frost",
-    "desert-rose":       "Desert Rose",
-    "tech-innovation":   "Tech Innovation",
-    "botanical-garden":  "Botanical Garden",
-    "midnight-galaxy":   "Midnight Galaxy"
+    "ocean-depths":       "Ocean Depths",
+    "sunset-boulevard":   "Sunset Boulevard",
+    "forest-canopy":      "Forest Canopy",
+    "modern-minimalist":  "Modern Minimalist",
+    "golden-hour":        "Golden Hour",
+    "arctic-frost":       "Arctic Frost",
+    "desert-rose":        "Desert Rose",
+    "tech-innovation":    "Tech Innovation",
+    "botanical-garden":   "Botanical Garden",
+    "midnight-galaxy":    "Midnight Galaxy",
+    "stripe-blurple":     "Stripe-Like Blurple",
+    "cyberpunk-void":     "Cyberpunk Void",
+    "corporate-emerald":  "Corporate Emerald",
+    "warm-analytics":     "Warm Analytics",
+    "monochrome-pro":     "Monochrome Pro",
+    "carbon-graphite":    "Carbon Graphite",
+    "fluent-navy":        "Fluent Navy",
+    "cyber-onyx":         "Cyber Onyx",
+    "terminal-amber":     "Terminal Amber",
+    "federal-slate":      "Federal Slate",
+    "oxblood-compliance": "Oxblood Compliance",
+    "emerald-ops":        "Emerald Ops",
+    "arctic-cobalt":      "Arctic Cobalt",
+    "graphite-crimson":   "Graphite Crimson"
   };
 
   // Map theme slug -> swatch color (mirrors data-c on each .theme-opt).
   const themeColors = {
-    "ocean-depths":      "#2d8b8b",
-    "sunset-boulevard":  "#e76f51",
-    "forest-canopy":     "#2d4a2b",
-    "modern-minimalist": "#708090",
-    "golden-hour":       "#f4a900",
-    "arctic-frost":      "#4a6fa5",
-    "desert-rose":       "#b87d6d",
-    "tech-innovation":   "#0066ff",
-    "botanical-garden":  "#4a7c59",
-    "midnight-galaxy":   "#a490c2"
+    "ocean-depths":       "#2d8b8b",
+    "sunset-boulevard":   "#e76f51",
+    "forest-canopy":      "#2d4a2b",
+    "modern-minimalist":  "#708090",
+    "golden-hour":        "#f4a900",
+    "arctic-frost":       "#4a6fa5",
+    "desert-rose":        "#b87d6d",
+    "tech-innovation":    "#0066ff",
+    "botanical-garden":   "#4a7c59",
+    "midnight-galaxy":    "#a490c2",
+    "stripe-blurple":     "#6366f1",
+    "cyberpunk-void":     "#22d3ee",
+    "corporate-emerald":  "#22c55e",
+    "warm-analytics":     "#f97316",
+    "monochrome-pro":     "#0f172a",
+    "carbon-graphite":    "#0f62fe",
+    "fluent-navy":        "#0078d4",
+    "cyber-onyx":         "#ff3c4a",
+    "terminal-amber":     "#ff8800",
+    "federal-slate":      "#c19a4b",
+    "oxblood-compliance": "#6d1a36",
+    "emerald-ops":        "#10b981",
+    "arctic-cobalt":      "#1e40af",
+    "graphite-crimson":   "#be123c"
   };
 
   const STORAGE_KEY = 'stacklume-theme';
