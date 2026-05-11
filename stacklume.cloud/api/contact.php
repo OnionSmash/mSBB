@@ -121,13 +121,13 @@ if (!$ok) {
 }
 
 // ---------- Auto-ack to submitter ----------
-$ackSubject = 'We got your message — Stack Lume';
+$ackSubject = 'We got your message — Stack Vault';
 $ackHtml = <<<HTML
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%"
        style="font-family:-apple-system,Segoe UI,sans-serif; color:#1a2024; max-width:520px;">
   <tr><td style="padding:24px 0; text-align:center;">
     <strong style="font-size:16px; letter-spacing:0.04em; color:#1a2024;">
-      Stack <span style="color:#2d8b8b;">Lume</span>
+      Stack <span style="color:#2d8b8b;">Vault</span>
     </strong>
   </td></tr>
   <tr><td style="padding:8px 0;">
@@ -139,10 +139,7 @@ $ackHtml = <<<HTML
       If it's urgent (or it's a vulnerability disclosure), email
       <a href="mailto:security@stacklume.cloud" style="color:#2d8b8b;">security@stacklume.cloud</a> and we'll triage within four hours, 24/7.
     </p>
-    <p style="font-size:15px; line-height:1.55; margin:0;">— The Stack Lume team</p>
-  </td></tr>
-  <tr><td style="padding:24px 0 8px; border-top:1px solid #eef0f2; font-size:12px; color:#9aa2aa;">
-    <a href="%unsubscribe_url%" style="color:#9aa2aa;">Unsubscribe</a>
+    <p style="font-size:15px; line-height:1.55; margin:0;">— The Stack Vault team</p>
   </td></tr>
 </table>
 HTML;
