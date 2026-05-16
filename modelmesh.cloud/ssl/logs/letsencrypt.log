@@ -2031,3 +2031,213 @@ AQlfAKgotEgPQfmzftRHvTab4vAx+D2u8+NHlzitJg==
 2026-05-11 04:23:02,024:DEBUG:certbot._internal.display.obj:Notifying user: No hooks were run.
 2026-05-11 04:23:02,024:DEBUG:certbot._internal.display.obj:Notifying user: - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 2026-05-11 04:23:02,025:DEBUG:certbot._internal.renewal:no renewal failures
+2026-05-11 16:23:02,200:DEBUG:certbot._internal.main:certbot version: 2.9.0
+2026-05-11 16:23:02,200:DEBUG:certbot._internal.main:Location of certbot entry point: /usr/bin/certbot
+2026-05-11 16:23:02,200:DEBUG:certbot._internal.main:Arguments: ['--cert-name', 'modelmesh.cloud', '--config-dir', '/var/www/modelmesh.cloud/ssl/config', '--work-dir', '/var/www/modelmesh.cloud/ssl/work', '--logs-dir', '/var/www/modelmesh.cloud/ssl/logs', '--quiet', '--deploy-hook', 'systemctl reload apache2']
+2026-05-11 16:23:02,200:DEBUG:certbot._internal.main:Discovered plugins: PluginsRegistry(PluginEntryPoint#apache,PluginEntryPoint#manual,PluginEntryPoint#null,PluginEntryPoint#standalone,PluginEntryPoint#webroot)
+2026-05-11 16:23:02,207:DEBUG:certbot._internal.log:Root logging level set at 40
+2026-05-11 16:23:02,209:DEBUG:certbot._internal.display.obj:Notifying user: Processing /var/www/modelmesh.cloud/ssl/config/renewal/modelmesh.cloud.conf
+2026-05-11 16:23:02,210:DEBUG:certbot.configuration:Var config_dir=/var/www/modelmesh.cloud/ssl/config (set by user).
+2026-05-11 16:23:02,210:DEBUG:certbot.configuration:Var logs_dir=/var/www/modelmesh.cloud/ssl/logs (set by user).
+2026-05-11 16:23:02,210:DEBUG:certbot.configuration:Var work_dir=/var/www/modelmesh.cloud/ssl/work (set by user).
+2026-05-11 16:23:02,210:DEBUG:certbot._internal.plugins.selection:Requested authenticator None and installer None
+2026-05-11 16:23:02,231:INFO:certbot.ocsp:Cannot extract OCSP URI from /var/www/modelmesh.cloud/ssl/config/archive/modelmesh.cloud/cert1.pem
+2026-05-11 16:23:02,236:DEBUG:certbot._internal.display.obj:Notifying user: Certificate not yet due for renewal
+2026-05-11 16:23:02,236:DEBUG:certbot._internal.plugins.selection:Requested authenticator webroot and installer None
+2026-05-11 16:23:02,236:DEBUG:certbot._internal.display.obj:Notifying user: 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2026-05-11 16:23:02,237:DEBUG:certbot._internal.display.obj:Notifying user: The following certificates are not due for renewal yet:
+2026-05-11 16:23:02,237:DEBUG:certbot._internal.display.obj:Notifying user:   /var/www/modelmesh.cloud/ssl/config/live/modelmesh.cloud/fullchain.pem expires on 2026-07-05 (skipped)
+2026-05-11 16:23:02,237:DEBUG:certbot._internal.display.obj:Notifying user: No renewals were attempted.
+2026-05-11 16:23:02,237:DEBUG:certbot._internal.display.obj:Notifying user: No hooks were run.
+2026-05-11 16:23:02,237:DEBUG:certbot._internal.display.obj:Notifying user: - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2026-05-11 16:23:02,237:DEBUG:certbot._internal.renewal:no renewal failures
+2026-05-12 04:23:01,593:DEBUG:certbot._internal.main:certbot version: 2.9.0
+2026-05-12 04:23:01,593:DEBUG:certbot._internal.main:Location of certbot entry point: /usr/bin/certbot
+2026-05-12 04:23:01,593:DEBUG:certbot._internal.main:Arguments: ['--cert-name', 'modelmesh.cloud', '--config-dir', '/var/www/modelmesh.cloud/ssl/config', '--work-dir', '/var/www/modelmesh.cloud/ssl/work', '--logs-dir', '/var/www/modelmesh.cloud/ssl/logs', '--quiet', '--deploy-hook', 'systemctl reload apache2']
+2026-05-12 04:23:01,593:DEBUG:certbot._internal.main:Discovered plugins: PluginsRegistry(PluginEntryPoint#apache,PluginEntryPoint#manual,PluginEntryPoint#null,PluginEntryPoint#standalone,PluginEntryPoint#webroot)
+2026-05-12 04:23:01,600:DEBUG:certbot._internal.log:Root logging level set at 40
+2026-05-12 04:23:01,601:DEBUG:certbot._internal.display.obj:Notifying user: Processing /var/www/modelmesh.cloud/ssl/config/renewal/modelmesh.cloud.conf
+2026-05-12 04:23:01,603:DEBUG:certbot.configuration:Var config_dir=/var/www/modelmesh.cloud/ssl/config (set by user).
+2026-05-12 04:23:01,603:DEBUG:certbot.configuration:Var logs_dir=/var/www/modelmesh.cloud/ssl/logs (set by user).
+2026-05-12 04:23:01,603:DEBUG:certbot.configuration:Var work_dir=/var/www/modelmesh.cloud/ssl/work (set by user).
+2026-05-12 04:23:01,603:DEBUG:certbot._internal.plugins.selection:Requested authenticator None and installer None
+2026-05-12 04:23:01,623:INFO:certbot.ocsp:Cannot extract OCSP URI from /var/www/modelmesh.cloud/ssl/config/archive/modelmesh.cloud/cert1.pem
+2026-05-12 04:23:01,626:DEBUG:certbot._internal.display.obj:Notifying user: Certificate not yet due for renewal
+2026-05-12 04:23:01,627:DEBUG:certbot._internal.plugins.selection:Requested authenticator webroot and installer None
+2026-05-12 04:23:01,627:DEBUG:certbot._internal.display.obj:Notifying user: 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2026-05-12 04:23:01,627:DEBUG:certbot._internal.display.obj:Notifying user: The following certificates are not due for renewal yet:
+2026-05-12 04:23:01,627:DEBUG:certbot._internal.display.obj:Notifying user:   /var/www/modelmesh.cloud/ssl/config/live/modelmesh.cloud/fullchain.pem expires on 2026-07-05 (skipped)
+2026-05-12 04:23:01,627:DEBUG:certbot._internal.display.obj:Notifying user: No renewals were attempted.
+2026-05-12 04:23:01,627:DEBUG:certbot._internal.display.obj:Notifying user: No hooks were run.
+2026-05-12 04:23:01,627:DEBUG:certbot._internal.display.obj:Notifying user: - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2026-05-12 04:23:01,627:DEBUG:certbot._internal.renewal:no renewal failures
+2026-05-12 16:23:01,539:DEBUG:certbot._internal.main:certbot version: 2.9.0
+2026-05-12 16:23:01,540:DEBUG:certbot._internal.main:Location of certbot entry point: /usr/bin/certbot
+2026-05-12 16:23:01,540:DEBUG:certbot._internal.main:Arguments: ['--cert-name', 'modelmesh.cloud', '--config-dir', '/var/www/modelmesh.cloud/ssl/config', '--work-dir', '/var/www/modelmesh.cloud/ssl/work', '--logs-dir', '/var/www/modelmesh.cloud/ssl/logs', '--quiet', '--deploy-hook', 'systemctl reload apache2']
+2026-05-12 16:23:01,540:DEBUG:certbot._internal.main:Discovered plugins: PluginsRegistry(PluginEntryPoint#apache,PluginEntryPoint#manual,PluginEntryPoint#null,PluginEntryPoint#standalone,PluginEntryPoint#webroot)
+2026-05-12 16:23:01,548:DEBUG:certbot._internal.log:Root logging level set at 40
+2026-05-12 16:23:01,548:DEBUG:certbot._internal.display.obj:Notifying user: Processing /var/www/modelmesh.cloud/ssl/config/renewal/modelmesh.cloud.conf
+2026-05-12 16:23:01,549:DEBUG:certbot.configuration:Var config_dir=/var/www/modelmesh.cloud/ssl/config (set by user).
+2026-05-12 16:23:01,549:DEBUG:certbot.configuration:Var logs_dir=/var/www/modelmesh.cloud/ssl/logs (set by user).
+2026-05-12 16:23:01,549:DEBUG:certbot.configuration:Var work_dir=/var/www/modelmesh.cloud/ssl/work (set by user).
+2026-05-12 16:23:01,549:DEBUG:certbot._internal.plugins.selection:Requested authenticator None and installer None
+2026-05-12 16:23:01,571:INFO:certbot.ocsp:Cannot extract OCSP URI from /var/www/modelmesh.cloud/ssl/config/archive/modelmesh.cloud/cert1.pem
+2026-05-12 16:23:01,574:DEBUG:certbot._internal.display.obj:Notifying user: Certificate not yet due for renewal
+2026-05-12 16:23:01,575:DEBUG:certbot._internal.plugins.selection:Requested authenticator webroot and installer None
+2026-05-12 16:23:01,575:DEBUG:certbot._internal.display.obj:Notifying user: 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2026-05-12 16:23:01,575:DEBUG:certbot._internal.display.obj:Notifying user: The following certificates are not due for renewal yet:
+2026-05-12 16:23:01,575:DEBUG:certbot._internal.display.obj:Notifying user:   /var/www/modelmesh.cloud/ssl/config/live/modelmesh.cloud/fullchain.pem expires on 2026-07-05 (skipped)
+2026-05-12 16:23:01,575:DEBUG:certbot._internal.display.obj:Notifying user: No renewals were attempted.
+2026-05-12 16:23:01,575:DEBUG:certbot._internal.display.obj:Notifying user: No hooks were run.
+2026-05-12 16:23:01,575:DEBUG:certbot._internal.display.obj:Notifying user: - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2026-05-12 16:23:01,576:DEBUG:certbot._internal.renewal:no renewal failures
+2026-05-13 04:23:01,607:DEBUG:certbot._internal.main:certbot version: 2.9.0
+2026-05-13 04:23:01,607:DEBUG:certbot._internal.main:Location of certbot entry point: /usr/bin/certbot
+2026-05-13 04:23:01,607:DEBUG:certbot._internal.main:Arguments: ['--cert-name', 'modelmesh.cloud', '--config-dir', '/var/www/modelmesh.cloud/ssl/config', '--work-dir', '/var/www/modelmesh.cloud/ssl/work', '--logs-dir', '/var/www/modelmesh.cloud/ssl/logs', '--quiet', '--deploy-hook', 'systemctl reload apache2']
+2026-05-13 04:23:01,607:DEBUG:certbot._internal.main:Discovered plugins: PluginsRegistry(PluginEntryPoint#apache,PluginEntryPoint#manual,PluginEntryPoint#null,PluginEntryPoint#standalone,PluginEntryPoint#webroot)
+2026-05-13 04:23:01,615:DEBUG:certbot._internal.log:Root logging level set at 40
+2026-05-13 04:23:01,615:DEBUG:certbot._internal.display.obj:Notifying user: Processing /var/www/modelmesh.cloud/ssl/config/renewal/modelmesh.cloud.conf
+2026-05-13 04:23:01,616:DEBUG:certbot.configuration:Var config_dir=/var/www/modelmesh.cloud/ssl/config (set by user).
+2026-05-13 04:23:01,616:DEBUG:certbot.configuration:Var logs_dir=/var/www/modelmesh.cloud/ssl/logs (set by user).
+2026-05-13 04:23:01,616:DEBUG:certbot.configuration:Var work_dir=/var/www/modelmesh.cloud/ssl/work (set by user).
+2026-05-13 04:23:01,617:DEBUG:certbot._internal.plugins.selection:Requested authenticator None and installer None
+2026-05-13 04:23:01,637:INFO:certbot.ocsp:Cannot extract OCSP URI from /var/www/modelmesh.cloud/ssl/config/archive/modelmesh.cloud/cert1.pem
+2026-05-13 04:23:01,644:DEBUG:certbot._internal.display.obj:Notifying user: Certificate not yet due for renewal
+2026-05-13 04:23:01,644:DEBUG:certbot._internal.plugins.selection:Requested authenticator webroot and installer None
+2026-05-13 04:23:01,645:DEBUG:certbot._internal.display.obj:Notifying user: 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2026-05-13 04:23:01,645:DEBUG:certbot._internal.display.obj:Notifying user: The following certificates are not due for renewal yet:
+2026-05-13 04:23:01,645:DEBUG:certbot._internal.display.obj:Notifying user:   /var/www/modelmesh.cloud/ssl/config/live/modelmesh.cloud/fullchain.pem expires on 2026-07-05 (skipped)
+2026-05-13 04:23:01,645:DEBUG:certbot._internal.display.obj:Notifying user: No renewals were attempted.
+2026-05-13 04:23:01,645:DEBUG:certbot._internal.display.obj:Notifying user: No hooks were run.
+2026-05-13 04:23:01,645:DEBUG:certbot._internal.display.obj:Notifying user: - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2026-05-13 04:23:01,647:DEBUG:certbot._internal.renewal:no renewal failures
+2026-05-13 16:23:01,610:DEBUG:certbot._internal.main:certbot version: 2.9.0
+2026-05-13 16:23:01,611:DEBUG:certbot._internal.main:Location of certbot entry point: /usr/bin/certbot
+2026-05-13 16:23:01,611:DEBUG:certbot._internal.main:Arguments: ['--cert-name', 'modelmesh.cloud', '--config-dir', '/var/www/modelmesh.cloud/ssl/config', '--work-dir', '/var/www/modelmesh.cloud/ssl/work', '--logs-dir', '/var/www/modelmesh.cloud/ssl/logs', '--quiet', '--deploy-hook', 'systemctl reload apache2']
+2026-05-13 16:23:01,611:DEBUG:certbot._internal.main:Discovered plugins: PluginsRegistry(PluginEntryPoint#apache,PluginEntryPoint#manual,PluginEntryPoint#null,PluginEntryPoint#standalone,PluginEntryPoint#webroot)
+2026-05-13 16:23:01,618:DEBUG:certbot._internal.log:Root logging level set at 40
+2026-05-13 16:23:01,619:DEBUG:certbot._internal.display.obj:Notifying user: Processing /var/www/modelmesh.cloud/ssl/config/renewal/modelmesh.cloud.conf
+2026-05-13 16:23:01,622:DEBUG:certbot.configuration:Var config_dir=/var/www/modelmesh.cloud/ssl/config (set by user).
+2026-05-13 16:23:01,622:DEBUG:certbot.configuration:Var logs_dir=/var/www/modelmesh.cloud/ssl/logs (set by user).
+2026-05-13 16:23:01,622:DEBUG:certbot.configuration:Var work_dir=/var/www/modelmesh.cloud/ssl/work (set by user).
+2026-05-13 16:23:01,622:DEBUG:certbot._internal.plugins.selection:Requested authenticator None and installer None
+2026-05-13 16:23:01,643:INFO:certbot.ocsp:Cannot extract OCSP URI from /var/www/modelmesh.cloud/ssl/config/archive/modelmesh.cloud/cert1.pem
+2026-05-13 16:23:01,647:DEBUG:certbot._internal.display.obj:Notifying user: Certificate not yet due for renewal
+2026-05-13 16:23:01,647:DEBUG:certbot._internal.plugins.selection:Requested authenticator webroot and installer None
+2026-05-13 16:23:01,648:DEBUG:certbot._internal.display.obj:Notifying user: 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2026-05-13 16:23:01,648:DEBUG:certbot._internal.display.obj:Notifying user: The following certificates are not due for renewal yet:
+2026-05-13 16:23:01,648:DEBUG:certbot._internal.display.obj:Notifying user:   /var/www/modelmesh.cloud/ssl/config/live/modelmesh.cloud/fullchain.pem expires on 2026-07-05 (skipped)
+2026-05-13 16:23:01,648:DEBUG:certbot._internal.display.obj:Notifying user: No renewals were attempted.
+2026-05-13 16:23:01,648:DEBUG:certbot._internal.display.obj:Notifying user: No hooks were run.
+2026-05-13 16:23:01,648:DEBUG:certbot._internal.display.obj:Notifying user: - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2026-05-13 16:23:01,648:DEBUG:certbot._internal.renewal:no renewal failures
+2026-05-14 04:23:01,657:DEBUG:certbot._internal.main:certbot version: 2.9.0
+2026-05-14 04:23:01,658:DEBUG:certbot._internal.main:Location of certbot entry point: /usr/bin/certbot
+2026-05-14 04:23:01,658:DEBUG:certbot._internal.main:Arguments: ['--cert-name', 'modelmesh.cloud', '--config-dir', '/var/www/modelmesh.cloud/ssl/config', '--work-dir', '/var/www/modelmesh.cloud/ssl/work', '--logs-dir', '/var/www/modelmesh.cloud/ssl/logs', '--quiet', '--deploy-hook', 'systemctl reload apache2']
+2026-05-14 04:23:01,658:DEBUG:certbot._internal.main:Discovered plugins: PluginsRegistry(PluginEntryPoint#apache,PluginEntryPoint#manual,PluginEntryPoint#null,PluginEntryPoint#standalone,PluginEntryPoint#webroot)
+2026-05-14 04:23:01,665:DEBUG:certbot._internal.log:Root logging level set at 40
+2026-05-14 04:23:01,666:DEBUG:certbot._internal.display.obj:Notifying user: Processing /var/www/modelmesh.cloud/ssl/config/renewal/modelmesh.cloud.conf
+2026-05-14 04:23:01,667:DEBUG:certbot.configuration:Var config_dir=/var/www/modelmesh.cloud/ssl/config (set by user).
+2026-05-14 04:23:01,669:DEBUG:certbot.configuration:Var logs_dir=/var/www/modelmesh.cloud/ssl/logs (set by user).
+2026-05-14 04:23:01,669:DEBUG:certbot.configuration:Var work_dir=/var/www/modelmesh.cloud/ssl/work (set by user).
+2026-05-14 04:23:01,669:DEBUG:certbot._internal.plugins.selection:Requested authenticator None and installer None
+2026-05-14 04:23:01,687:INFO:certbot.ocsp:Cannot extract OCSP URI from /var/www/modelmesh.cloud/ssl/config/archive/modelmesh.cloud/cert1.pem
+2026-05-14 04:23:01,690:DEBUG:certbot._internal.display.obj:Notifying user: Certificate not yet due for renewal
+2026-05-14 04:23:01,691:DEBUG:certbot._internal.plugins.selection:Requested authenticator webroot and installer None
+2026-05-14 04:23:01,691:DEBUG:certbot._internal.display.obj:Notifying user: 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2026-05-14 04:23:01,691:DEBUG:certbot._internal.display.obj:Notifying user: The following certificates are not due for renewal yet:
+2026-05-14 04:23:01,691:DEBUG:certbot._internal.display.obj:Notifying user:   /var/www/modelmesh.cloud/ssl/config/live/modelmesh.cloud/fullchain.pem expires on 2026-07-05 (skipped)
+2026-05-14 04:23:01,691:DEBUG:certbot._internal.display.obj:Notifying user: No renewals were attempted.
+2026-05-14 04:23:01,691:DEBUG:certbot._internal.display.obj:Notifying user: No hooks were run.
+2026-05-14 04:23:01,692:DEBUG:certbot._internal.display.obj:Notifying user: - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2026-05-14 04:23:01,692:DEBUG:certbot._internal.renewal:no renewal failures
+2026-05-14 16:23:01,542:DEBUG:certbot._internal.main:certbot version: 2.9.0
+2026-05-14 16:23:01,542:DEBUG:certbot._internal.main:Location of certbot entry point: /usr/bin/certbot
+2026-05-14 16:23:01,542:DEBUG:certbot._internal.main:Arguments: ['--cert-name', 'modelmesh.cloud', '--config-dir', '/var/www/modelmesh.cloud/ssl/config', '--work-dir', '/var/www/modelmesh.cloud/ssl/work', '--logs-dir', '/var/www/modelmesh.cloud/ssl/logs', '--quiet', '--deploy-hook', 'systemctl reload apache2']
+2026-05-14 16:23:01,542:DEBUG:certbot._internal.main:Discovered plugins: PluginsRegistry(PluginEntryPoint#apache,PluginEntryPoint#manual,PluginEntryPoint#null,PluginEntryPoint#standalone,PluginEntryPoint#webroot)
+2026-05-14 16:23:01,549:DEBUG:certbot._internal.log:Root logging level set at 40
+2026-05-14 16:23:01,549:DEBUG:certbot._internal.display.obj:Notifying user: Processing /var/www/modelmesh.cloud/ssl/config/renewal/modelmesh.cloud.conf
+2026-05-14 16:23:01,550:DEBUG:certbot.configuration:Var config_dir=/var/www/modelmesh.cloud/ssl/config (set by user).
+2026-05-14 16:23:01,550:DEBUG:certbot.configuration:Var logs_dir=/var/www/modelmesh.cloud/ssl/logs (set by user).
+2026-05-14 16:23:01,550:DEBUG:certbot.configuration:Var work_dir=/var/www/modelmesh.cloud/ssl/work (set by user).
+2026-05-14 16:23:01,551:DEBUG:certbot._internal.plugins.selection:Requested authenticator None and installer None
+2026-05-14 16:23:01,570:INFO:certbot.ocsp:Cannot extract OCSP URI from /var/www/modelmesh.cloud/ssl/config/archive/modelmesh.cloud/cert1.pem
+2026-05-14 16:23:01,573:DEBUG:certbot._internal.display.obj:Notifying user: Certificate not yet due for renewal
+2026-05-14 16:23:01,573:DEBUG:certbot._internal.plugins.selection:Requested authenticator webroot and installer None
+2026-05-14 16:23:01,573:DEBUG:certbot._internal.display.obj:Notifying user: 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2026-05-14 16:23:01,574:DEBUG:certbot._internal.display.obj:Notifying user: The following certificates are not due for renewal yet:
+2026-05-14 16:23:01,574:DEBUG:certbot._internal.display.obj:Notifying user:   /var/www/modelmesh.cloud/ssl/config/live/modelmesh.cloud/fullchain.pem expires on 2026-07-05 (skipped)
+2026-05-14 16:23:01,574:DEBUG:certbot._internal.display.obj:Notifying user: No renewals were attempted.
+2026-05-14 16:23:01,574:DEBUG:certbot._internal.display.obj:Notifying user: No hooks were run.
+2026-05-14 16:23:01,574:DEBUG:certbot._internal.display.obj:Notifying user: - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2026-05-14 16:23:01,574:DEBUG:certbot._internal.renewal:no renewal failures
+2026-05-15 04:23:01,544:DEBUG:certbot._internal.main:certbot version: 2.9.0
+2026-05-15 04:23:01,545:DEBUG:certbot._internal.main:Location of certbot entry point: /usr/bin/certbot
+2026-05-15 04:23:01,545:DEBUG:certbot._internal.main:Arguments: ['--cert-name', 'modelmesh.cloud', '--config-dir', '/var/www/modelmesh.cloud/ssl/config', '--work-dir', '/var/www/modelmesh.cloud/ssl/work', '--logs-dir', '/var/www/modelmesh.cloud/ssl/logs', '--quiet', '--deploy-hook', 'systemctl reload apache2']
+2026-05-15 04:23:01,545:DEBUG:certbot._internal.main:Discovered plugins: PluginsRegistry(PluginEntryPoint#apache,PluginEntryPoint#manual,PluginEntryPoint#null,PluginEntryPoint#standalone,PluginEntryPoint#webroot)
+2026-05-15 04:23:01,552:DEBUG:certbot._internal.log:Root logging level set at 40
+2026-05-15 04:23:01,552:DEBUG:certbot._internal.display.obj:Notifying user: Processing /var/www/modelmesh.cloud/ssl/config/renewal/modelmesh.cloud.conf
+2026-05-15 04:23:01,554:DEBUG:certbot.configuration:Var config_dir=/var/www/modelmesh.cloud/ssl/config (set by user).
+2026-05-15 04:23:01,554:DEBUG:certbot.configuration:Var logs_dir=/var/www/modelmesh.cloud/ssl/logs (set by user).
+2026-05-15 04:23:01,554:DEBUG:certbot.configuration:Var work_dir=/var/www/modelmesh.cloud/ssl/work (set by user).
+2026-05-15 04:23:01,554:DEBUG:certbot._internal.plugins.selection:Requested authenticator None and installer None
+2026-05-15 04:23:01,575:INFO:certbot.ocsp:Cannot extract OCSP URI from /var/www/modelmesh.cloud/ssl/config/archive/modelmesh.cloud/cert1.pem
+2026-05-15 04:23:01,578:DEBUG:certbot._internal.display.obj:Notifying user: Certificate not yet due for renewal
+2026-05-15 04:23:01,579:DEBUG:certbot._internal.plugins.selection:Requested authenticator webroot and installer None
+2026-05-15 04:23:01,579:DEBUG:certbot._internal.display.obj:Notifying user: 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2026-05-15 04:23:01,579:DEBUG:certbot._internal.display.obj:Notifying user: The following certificates are not due for renewal yet:
+2026-05-15 04:23:01,579:DEBUG:certbot._internal.display.obj:Notifying user:   /var/www/modelmesh.cloud/ssl/config/live/modelmesh.cloud/fullchain.pem expires on 2026-07-05 (skipped)
+2026-05-15 04:23:01,579:DEBUG:certbot._internal.display.obj:Notifying user: No renewals were attempted.
+2026-05-15 04:23:01,579:DEBUG:certbot._internal.display.obj:Notifying user: No hooks were run.
+2026-05-15 04:23:01,579:DEBUG:certbot._internal.display.obj:Notifying user: - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2026-05-15 04:23:01,579:DEBUG:certbot._internal.renewal:no renewal failures
+2026-05-15 16:23:01,554:DEBUG:certbot._internal.main:certbot version: 2.9.0
+2026-05-15 16:23:01,555:DEBUG:certbot._internal.main:Location of certbot entry point: /usr/bin/certbot
+2026-05-15 16:23:01,555:DEBUG:certbot._internal.main:Arguments: ['--cert-name', 'modelmesh.cloud', '--config-dir', '/var/www/modelmesh.cloud/ssl/config', '--work-dir', '/var/www/modelmesh.cloud/ssl/work', '--logs-dir', '/var/www/modelmesh.cloud/ssl/logs', '--quiet', '--deploy-hook', 'systemctl reload apache2']
+2026-05-15 16:23:01,555:DEBUG:certbot._internal.main:Discovered plugins: PluginsRegistry(PluginEntryPoint#apache,PluginEntryPoint#manual,PluginEntryPoint#null,PluginEntryPoint#standalone,PluginEntryPoint#webroot)
+2026-05-15 16:23:01,562:DEBUG:certbot._internal.log:Root logging level set at 40
+2026-05-15 16:23:01,563:DEBUG:certbot._internal.display.obj:Notifying user: Processing /var/www/modelmesh.cloud/ssl/config/renewal/modelmesh.cloud.conf
+2026-05-15 16:23:01,565:DEBUG:certbot.configuration:Var config_dir=/var/www/modelmesh.cloud/ssl/config (set by user).
+2026-05-15 16:23:01,565:DEBUG:certbot.configuration:Var logs_dir=/var/www/modelmesh.cloud/ssl/logs (set by user).
+2026-05-15 16:23:01,565:DEBUG:certbot.configuration:Var work_dir=/var/www/modelmesh.cloud/ssl/work (set by user).
+2026-05-15 16:23:01,565:DEBUG:certbot._internal.plugins.selection:Requested authenticator None and installer None
+2026-05-15 16:23:01,585:INFO:certbot.ocsp:Cannot extract OCSP URI from /var/www/modelmesh.cloud/ssl/config/archive/modelmesh.cloud/cert1.pem
+2026-05-15 16:23:01,589:DEBUG:certbot._internal.display.obj:Notifying user: Certificate not yet due for renewal
+2026-05-15 16:23:01,590:DEBUG:certbot._internal.plugins.selection:Requested authenticator webroot and installer None
+2026-05-15 16:23:01,590:DEBUG:certbot._internal.display.obj:Notifying user: 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2026-05-15 16:23:01,590:DEBUG:certbot._internal.display.obj:Notifying user: The following certificates are not due for renewal yet:
+2026-05-15 16:23:01,590:DEBUG:certbot._internal.display.obj:Notifying user:   /var/www/modelmesh.cloud/ssl/config/live/modelmesh.cloud/fullchain.pem expires on 2026-07-05 (skipped)
+2026-05-15 16:23:01,590:DEBUG:certbot._internal.display.obj:Notifying user: No renewals were attempted.
+2026-05-15 16:23:01,590:DEBUG:certbot._internal.display.obj:Notifying user: No hooks were run.
+2026-05-15 16:23:01,591:DEBUG:certbot._internal.display.obj:Notifying user: - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2026-05-15 16:23:01,591:DEBUG:certbot._internal.renewal:no renewal failures
+2026-05-16 04:23:01,601:DEBUG:certbot._internal.main:certbot version: 2.9.0
+2026-05-16 04:23:01,602:DEBUG:certbot._internal.main:Location of certbot entry point: /usr/bin/certbot
+2026-05-16 04:23:01,602:DEBUG:certbot._internal.main:Arguments: ['--cert-name', 'modelmesh.cloud', '--config-dir', '/var/www/modelmesh.cloud/ssl/config', '--work-dir', '/var/www/modelmesh.cloud/ssl/work', '--logs-dir', '/var/www/modelmesh.cloud/ssl/logs', '--quiet', '--deploy-hook', 'systemctl reload apache2']
+2026-05-16 04:23:01,602:DEBUG:certbot._internal.main:Discovered plugins: PluginsRegistry(PluginEntryPoint#apache,PluginEntryPoint#manual,PluginEntryPoint#null,PluginEntryPoint#standalone,PluginEntryPoint#webroot)
+2026-05-16 04:23:01,611:DEBUG:certbot._internal.log:Root logging level set at 40
+2026-05-16 04:23:01,612:DEBUG:certbot._internal.display.obj:Notifying user: Processing /var/www/modelmesh.cloud/ssl/config/renewal/modelmesh.cloud.conf
+2026-05-16 04:23:01,613:DEBUG:certbot.configuration:Var config_dir=/var/www/modelmesh.cloud/ssl/config (set by user).
+2026-05-16 04:23:01,613:DEBUG:certbot.configuration:Var logs_dir=/var/www/modelmesh.cloud/ssl/logs (set by user).
+2026-05-16 04:23:01,613:DEBUG:certbot.configuration:Var work_dir=/var/www/modelmesh.cloud/ssl/work (set by user).
+2026-05-16 04:23:01,613:DEBUG:certbot._internal.plugins.selection:Requested authenticator None and installer None
+2026-05-16 04:23:01,636:INFO:certbot.ocsp:Cannot extract OCSP URI from /var/www/modelmesh.cloud/ssl/config/archive/modelmesh.cloud/cert1.pem
+2026-05-16 04:23:01,640:DEBUG:certbot._internal.display.obj:Notifying user: Certificate not yet due for renewal
+2026-05-16 04:23:01,641:DEBUG:certbot._internal.plugins.selection:Requested authenticator webroot and installer None
+2026-05-16 04:23:01,641:DEBUG:certbot._internal.display.obj:Notifying user: 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2026-05-16 04:23:01,641:DEBUG:certbot._internal.display.obj:Notifying user: The following certificates are not due for renewal yet:
+2026-05-16 04:23:01,641:DEBUG:certbot._internal.display.obj:Notifying user:   /var/www/modelmesh.cloud/ssl/config/live/modelmesh.cloud/fullchain.pem expires on 2026-07-05 (skipped)
+2026-05-16 04:23:01,641:DEBUG:certbot._internal.display.obj:Notifying user: No renewals were attempted.
+2026-05-16 04:23:01,641:DEBUG:certbot._internal.display.obj:Notifying user: No hooks were run.
+2026-05-16 04:23:01,641:DEBUG:certbot._internal.display.obj:Notifying user: - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2026-05-16 04:23:01,641:DEBUG:certbot._internal.renewal:no renewal failures
